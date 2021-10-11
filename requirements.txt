@@ -1,0 +1,20 @@
+numpy
+pandas
+matplotlib
+plotly
+chart_studio
+bokeh
+k3d
+autograd
+
+# tooling
+jupyter
+jupytext
+ipywidgets
+jupyter-contrib-nbextensions
+
+nbautoeval
+ipythontutor
+nb-courselevels
+
+rise
