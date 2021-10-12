@@ -34,9 +34,10 @@ version: '1.0'
 
 +++
 
-# UE12 - Python avancé
+# écrire un petit jeu
 
-aujourd'hui nous allons coder un petit jeu (ou plus, pour les aguerris)
+aujourd'hui pour le premier cours du module "AP: Apprentissage de la Programmation en Python", 
+nous allons coder un petit jeu (ou plus, pour les aguerris)
 
 +++
 

@@ -1,0 +1,64 @@
+format: jb-book
+root: 0-00-intro
+parts:
+- caption: "un jeu pour commencer"
+  chapters:
+  - file: 1-01-snake
+- caption: "types de base"
+  chapters:
+  - file: 2-01-numbers
+  - file: 2-02-containers-1
+  - file: 2-03-strings
+  - file: 2-04-files
+  - file: 2-05-containers-2
+- caption: "présentation"
+  chapters:
+  - file: 3-11-pep008
+- caption: "itérations"
+  chapters:
+  - file: 4-11-iterations-1
+  - file: 4-12-iterations-2
+- caption: "classes"
+  chapters:
+  - file: 5-11-classes
+  - file: 5-12-dunder-specials
+- caption: "fonctions"
+  chapters:
+  - file: 6-00-intro
+- caption: "regexps"
+  chapters:
+  - file: 7-10-regexps
+- caption: "générateurs"
+  chapters:
+  - file: 7-20-generators
+- caption: "héritage"
+  chapters:
+  - file: 7-30-inheritance
+- caption: "organisation des sources"
+  chapters:
+  - file: 8-10-imports-sources
+- caption: "divers"
+  chapters:
+  - file: 9-10-argparse
+  - file: 9-11-properties
+- caption: "notebooks interactifs"
+  chapters:
+  - file: a-a1-profiling
+  - file: a-b1-linting
+  - file: a-c3-notebooks-interactifs
+  - file: a-c4-animations-matplotlib
+  - file: a-c5-bokeh-et-al
+  - file: a-c6-fourier-k3d
+  - file: a-x1-taylor
+  - file: a-x2-coronavirus
+  - file: a-x3-potentials
+- caption: "Python asynchrone"
+  chapters:
+  - file: b-01-os-basics
+  - file: b-s1-programmation-asynchrone
+  - file: b-s1-z1-thread-safety
+  - file: b-s2-examples
+  - file: b-s3-ecosysteme
+  - file: b-s4-async-with-for
+  - file: b-s6-av-event-loops
+  - file: b-s7-libraries
