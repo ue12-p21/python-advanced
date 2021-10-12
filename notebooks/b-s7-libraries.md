@@ -1,6 +1,6 @@
 ---
 jupytext:
-  cell_metadata_filter: all, -hidden, -heading_collapsed, -run_control, -trusted
+  cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
   notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version, -jupytext.text_representation.format_version,
     -language_info.version, -language_info.codemirror_mode.version, -language_info.codemirror_mode,
     -language_info.file_extension, -language_info.mimetype, -toc
@@ -13,6 +13,7 @@ kernelspec:
   name: python3
 language_info:
   name: python
+  nbconvert_exporter: python
   pygments_lexer: ipython3
 nbhosting:
   title: les librairies
@@ -210,8 +211,6 @@ async def tcp_echo_client(port, message):
 ```
 
 ```{code-cell} ipython3
-:scrolled: true
-
 # un seul client 
 asyncio.ensure_future(tcp_echo_client(8080, "Hey"))
 ```
@@ -222,8 +221,6 @@ async def hurd(nb_clients):
 ```
 
 ```{code-cell} ipython3
-:scrolled: false
-
 client_task = asyncio.ensure_future(hurd(30))
 ```
 
