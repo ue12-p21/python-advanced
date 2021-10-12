@@ -1,8 +1,7 @@
 ---
 jupyter:
   jupytext:
-    cell_metadata_filter: all, -hidden, -heading_collapsed, -run_control, -trusted
-    main_language: python
+    cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
       -language_info.codemirror_mode, -language_info.file_extension, -language_info.mimetype,
@@ -10,14 +9,19 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
   language_info:
     name: python
+    nbconvert_exporter: python
     pygments_lexer: ipython3
 ---
 
 # Quelques petits jeux
 
-## Le Snake
+## Le snake
 
 Le but de ce TP est de réaliser un petit jeu en Python.
 L'objectif est de vous apprendre à concevoir et réaliser un programme complet, et non de réaliser le nouveau best-seller.
@@ -30,32 +34,43 @@ _Ce qui suit suppose que vous avez installé Python avec `conda` et que vous ave
 
 Commencez par créer et activer un environnement dédié au TP:
 
-```sh
+<!-- #region -->
+```bash
 # on commence par créer un environnement "snake"
-(base) $ conda create -n snake pip
+(base) $ conda create -n snake python=3.9
 # puis on l'active
 (base) $ conda activate snake
 # votre terminal doit indiquer le nom d'environnement:
 (snake) $
 ```
+<!-- #endregion -->
 
 **NOTE** Si vous ne voyez pas, comme montré ici, le `(snake)` affiché dans le prompt de bash pour vous rappeler en permanence dans quel environnement on se trouve, il vous faut taper ceci avant de relancer un terminal
 
-```sh
+<!-- #region -->
+```bash
 $ conda init bash
 ```
+<!-- #endregion -->
 
 Installez ensuite la dernière version du module `pygame` avec `pip`:
 
-```sh
-(snake) $ pip install pygame==2.0.0.dev12
+<!-- #region -->
+```bash
+(snake) $ pip install pygame
 ```
+<!-- #endregion -->
 
 Pour tester votre installation, vous pouvez lancer le programme d'exemple comme suit:
 
-```sh
+<!-- #region -->
+```bash
 (snake) $ python -m pygame.examples.aliens
 ```
+<!-- #endregion -->
+
+soyez patient lors du premier lancement, la librairie initialise des tas de choses...
+
 
 ### Code de démarrage
 
@@ -104,11 +119,12 @@ Vous pouvez désormais exécuter le programme avec:
 **Attention** : vous verrez que vous ne pouvez pas _fermer_ la fenêtre normalement, pour quitter votre programme vous devez saisir **CONTROL+C** dans le terminal.
 
 
-### rappels vs-code
+### Rappels vs-code
 
 **Rappel #1** : il est **fortement recommandé** d'installer l'extension de vs-code pour Python
 
-**Rappel #2** : puisqu'on a créé un environnement virtuel, il est opportun d'indiquer à vs-code qu'il faut l'utiliser (plutôt que `base`)  
+**Rappel #2** : on a créé un environnement virtuel;  
+du coup il est opportun d'indiquer à vs-code qu'il faut utiliser `snake` - plutôt que `base`   
 pour cela cliquer dans la bannière du bas la zone qui indique le Python courant
 
 **Rappel #3** : pour lancer le programme directement depuis vs-code :
@@ -118,12 +134,16 @@ pour cela cliquer dans la bannière du bas la zone qui indique le Python courant
   * `⇧ ⌃ P` Shift-Control-P (windows)
 - chercher la fonction *Toggle Integrated Terminal*
   - mémoriser le raccourci clavier
-  - qui est Control-backquote sur Mac (le backquote c'est `)
+  - qui est Control-backtick sur Mac (le backtick c'est `)
 
 
 ### Un petit détail
 
-Il faut savoir que c'est l'appel à `pg.display.update()` qui produit réellement l'affichage; en fait, tous les autres calculs se produisent en mémoire (c'est très rapide), mais à un moment il faut bien parler à la carte vidéo pour l'affichage, et ça c'est beaucoup plus lent (+ieurs centaines de fois plus lent); du coup même si ce `display` reste dans l'ordre de grandeur de la milliseconde, il faut s'efforcer, pour une bonne fluidité du jeu, de n'appeler `update()` que le minimum, pour nous ici une fois par itération de la boucle.
+Il faut savoir que c'est l'appel à `pg.display.update()` qui produit réellement l'affichage.
+
+En fait, tous les autres calculs se produisent en mémoire (c'est très rapide), mais à un moment il faut bien parler à la carte vidéo pour l'affichage, et ça c'est beaucoup plus lent (+ieurs centaines de fois plus lent).
+
+Du coup même si ce `display` reste dans l'ordre de grandeur de la milliseconde, il faut s'efforcer, pour une bonne fluidité du jeu, de n'appeler `update()` que le minimum, pour nous ici **une fois par itération de la boucle**.
 
 
 ### Continuons
@@ -294,6 +314,9 @@ De manière générale, les variables globales sont considérées comme néfaste
 On aimerait pouvoir passer sur la ligne de commande les paramètres du jeu; par exemple, le nombre de cases du tableau en hauteur et largeur, la taille d'une case en pixels, ...
 
 Indice: cherchez le module `argparse` dans la documentation Python.
+
+
+***
 
 
 ## Un second jeu: le flappy bird

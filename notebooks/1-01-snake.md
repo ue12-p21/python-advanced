@@ -13,8 +13,9 @@ kernelspec:
   name: python3
 language_info:
   name: python
+  nbconvert_exporter: python
   pygments_lexer: ipython3
-nbhosting: 
+nbhosting:
   title: des jeux en Python
 rise:
   autolaunch: true
@@ -47,11 +48,26 @@ ce qu'on veut faire aujourd'hui principalement, c'est :
 * pratiquer en vraie grandeur la boucle 
   * écriture de code
   * lancement de programme
+  * debugging éventuellement
 * de préférence avec
   * vs-code pour l'édition de programme
   * le terminal pour le lancement du programme  
-    (celui-ci pouvant être le terminal intégré de vs-code)
 * installation et utilisation d'une librairie
 * écriture de **code simple**
   * pas nécessairement besoin de structures de données compliquées
 * en plus c'est ludique !
+
++++
+
+### avertissement 
+
+il y a dans vs-code une fonction 'terminal intégré' qui peut être pratique  
+ça évite de basculer sans cesse entre deux applications (vs-code / terminal)
+
+**toutefois**  
+par expérience c'est plus compliqué à faire marcher correctement  
+c'est pourquoi **commencez par** faire marcher votre programme dans le **terminal natif**  
+surtout si vous rencontrez des problèmes dans le terminal intégré de vs-code
+
+remarquez qu'on peut facilement basculer entre les applications  
+sans passer par la souris avec la touche `⌘-Tab` (et une clé similaire sur Windows)
