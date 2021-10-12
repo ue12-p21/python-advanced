@@ -23,3 +23,7 @@ body.rise-enabled .reveal ol, body.rise-enabled .reveal dl, body.rise-enabled .r
     margin-top: 0.2em;
 }
 
+.note {
+    font-size: 80%;
+    font-style: italic;
+}

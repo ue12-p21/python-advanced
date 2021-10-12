@@ -9,7 +9,7 @@ jupytext:
     extension: .md
     format_name: myst
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 language_info:
@@ -581,7 +581,15 @@ s.replace('petite', 'grande')
 ```
 
 ```{code-cell} ipython3
+:cell_style: split
+
 s.find('hra')
+```
+
+```{code-cell} ipython3
+:cell_style: split
+
+s[12:15]
 ```
 
 ```{code-cell} ipython3
@@ -642,7 +650,7 @@ s2.split('_')
 * dès qu'on utilise des données textuelles,
   * on décode une suite de bits
   * il faut leur **donner un sens**
-  * c'est l'encodage
+  * c'est l'**encodage** qui nous dit comment faire
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -656,7 +664,7 @@ s2.split('_')
   * terminal ou GUI, etc..
 * vous traitez en fait des flux **binaires**
   * et donc vous êtes confrontés à l'encodage des chaines
-  * et notamment en présence d'accents
+  * et notamment en **présence d'accents**
   * ou autres caractères non-ASCII
 
 +++ {"slideshow": {"slide_type": "slide"}}
@@ -690,7 +698,7 @@ s2.split('_')
 +++
 
 * ***une*** liste des caractères 
-  * avec **chacun un *codepoint*** - un nombre entier unique
+  * avec **chacun un *codepoint*** - un nombre entier unique (*)
   * de l'ordre de 137.000 + en Juin 2018 (*and counting*)
   * limite théorique 1,114,112 caractères
 
@@ -698,14 +706,19 @@ s2.split('_')
     * **UTF-8**: taille variable 1 à 4 octets, **compatible ASCII**
     * UTF-32: taille fixe, 4 octets par caractère
     * UTF-16: taile variable, 2 ou 4 octets
+    
+<div class="note">
+    (*) le modèle mental "1 caractère = 1 codepoint" est une simplification
+</div>
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
 ### l'essentiel sur UTF-8
 
 * c'est l'encodage le plus répandu aujourd'hui 
-  * la famille des ISO-latin et autres cp1252 sont à proscrire absolument
-  * en 2020, c'est de moins en moins un souci
+  * la famille des ISO-latin et autres cp1252  
+    sont à proscrire absolument
+  * en 2021, c'est de moins en moins un souci
 
 * avec UTF-8, les caractères usuels (dits ASCII),   
   sans accent, **sont codés sur 1 octet**
@@ -713,11 +726,17 @@ s2.split('_')
   * les caractères **accentués** européens  
     sont codés sur **2 octets**
 
++++ {"slideshow": {"slide_type": "slide"}}
+
+### digression: notation hexadécimale
+
+![](media/hexadecimal.png)
+
 +++ {"slideshow": {"slide_type": "slide"}, "tags": ["level_intermediate"]}
 
 ### UTF-8 illustré
 
-+++ {"slideshow": {"slide_type": ""}, "tags": []}
++++ {"slideshow": {"slide_type": ""}}
 
 le codepoint du caractère `é` est `0xe8` c'est-à-dire `232` 
 
@@ -737,14 +756,14 @@ voici le flux binaire correspondant à la chaine `"été\n"`
 
 * le nombre d'octets utilisé pour encoder un caractère dépend
   * du caractère et de l'encodage
-  * texte ASCII : identique en UTF-8
+* texte ASCII : identique en UTF-8
   * en particulier, ne prennent qu'un octet
 
 +++ {"slideshow": {"slide_type": ""}}
 
 ![](media/unicode-utf8-areas.png)
 
-+++ {"slideshow": {"slide_type": "slide"}, "hide_input": true, "tags": []}
++++ {"slideshow": {"slide_type": "slide"}, "hide_input": true}
 
 ## UTF-8 et Python: `encode` et `decode`
 
@@ -781,7 +800,7 @@ for b in octets:
 len(octets)
 ```
 
-+++ {"slideshow": {"slide_type": "slide"}, "tags": []}
++++ {"slideshow": {"slide_type": "slide"}}
 
 ### Unicode et Python: `chr` et `ord`
 
@@ -866,7 +885,7 @@ slideshow:
   slide_type: ''
 ---
 # Pierre reçoit le binaire
-# mais se trompe d'encodage
+# mais le décode mais se trompe d'encodage
 reçu = binaire.decode(encoding="cp1252")
 ```
 
