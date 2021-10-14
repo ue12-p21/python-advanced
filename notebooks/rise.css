@@ -24,6 +24,7 @@ body.rise-enabled .reveal ol, body.rise-enabled .reveal dl, body.rise-enabled .r
 }
 
 .note {
-    font-size: 80%;
+    margin-top: 25px;
+    font-size: 75%;
     font-style: italic;
 }
