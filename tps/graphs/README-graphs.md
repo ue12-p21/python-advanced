@@ -1,6 +1,6 @@
 ---
 jupytext:
-  cell_metadata_filter: all, -hidden, -heading_collapsed, -run_control, -trusted
+  cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
   notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version, -jupytext.text_representation.format_version,
     -language_info.version, -language_info.codemirror_mode.version, -language_info.codemirror_mode,
     -language_info.file_extension, -language_info.mimetype, -toc
@@ -13,8 +13,9 @@ kernelspec:
   name: python3
 language_info:
   name: python
+  nbconvert_exporter: python
   pygments_lexer: ipython3
-nbhosting: 
+nbhosting:
   title: algos de graphe
 rise:
   autolaunch: true
@@ -337,7 +338,7 @@ commençons par voir un exemple
 ```{code-cell} ipython3
 :cell_style: split
 
-from dijkstra import parse_graph1
+from graphs import parse_graph1
 
 # un graphe voisin de notre graphe témoin
 # mais avec des boucles
@@ -350,7 +351,7 @@ reach = parse_graph1("data/reach.csv")
 :cell_style: split
 
 # pour le visualiser
-from dijkstra import to_graphviz
+from graphs import to_graphviz
 to_graphviz(reach, "neato")
 ```
 
@@ -358,7 +359,7 @@ to_graphviz(reach, "neato")
 # voilà ce qu'on doit trouver 
 # comme sommets atteignables
 
-from dijkstra import reachables1
+from graphs import reachables1
 
 for s in reach:
     print(f"en partant de {s} → {reachables1(reach, s)}")
@@ -506,7 +507,7 @@ et du coup si/quand on arrive au sommet d'arrivée, on a forcément trouvé le p
 voici une illustration de cet algorithme, sur notre graphe témoin  
 **entre les noeuds `a` et `f`**
 
-<video width="800px" controls src="media/Dijkstra.mp4" type="video/mp4"></video>
+<video width="800px" controls src="media/shortest-paths.mp4" type="video/mp4"></video>
 
 +++
 
@@ -694,7 +695,7 @@ pour vérifier si votre code fonctionne :
 
 ```{code-cell} ipython3
 # une version qui marche pour comparer avec votre résultat
-from dijkstra import shortest_distance1
+from graphs import shortest_distance1
 ```
 
 ```{code-cell} ipython3
@@ -752,7 +753,7 @@ shortest_distance1(G2, 'v1', 'v6')
 comment pourriez-vous adapter cet algorithme pour retourner aussi le chemin ?
 
 ```{code-cell} ipython3
-from dijkstra import shortest_path1
+from graphs import shortest_path1
 
 shortest_path1(G, 'a', 'f')
 ```

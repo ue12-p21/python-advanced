@@ -17,18 +17,18 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
+  nbhosting:
+    title: "jeu: le snake"
 ---
 
-# Quelques petits jeux
-
-## Le snake
+# Le snake
 
 Le but de ce TP est de réaliser un petit jeu en Python.
 L'objectif est de vous apprendre à concevoir et réaliser un programme complet, et non de réaliser le nouveau best-seller.
 
 Gardez ainsi en tête que votre objectif est de réaliser un **programme qui marche** et pas un programme parfait.
 
-### Prérequis
+## Prérequis
 
 _Ce qui suit suppose que vous avez installé Python avec `conda` et que vous avez un terminal `bash` fonctionnel sur votre ordinateur._
 
@@ -72,7 +72,7 @@ Pour tester votre installation, vous pouvez lancer le programme d'exemple comme 
 soyez patient lors du premier lancement, la librairie initialise des tas de choses...
 
 
-### Code de démarrage
+## Code de démarrage
 
 Un premier code très simple est le suivant, écrivez-le dans un fichier `snake.py` et lancez-le avec la commande `python` :
 
@@ -119,7 +119,7 @@ Vous pouvez désormais exécuter le programme avec:
 **Attention** : vous verrez que vous ne pouvez pas _fermer_ la fenêtre normalement, pour quitter votre programme vous devez saisir **CONTROL+C** dans le terminal.
 
 
-### Rappels vs-code
+## Rappels vs-code
 
 **Rappel #1** : il est **fortement recommandé** d'installer l'extension de vs-code pour Python
 
@@ -137,7 +137,7 @@ pour cela cliquer dans la bannière du bas la zone qui indique le Python courant
   - qui est Control-backtick sur Mac (le backtick c'est `)
 
 
-### Un petit détail
+## Un petit détail
 
 Il faut savoir que c'est l'appel à `pg.display.update()` qui produit réellement l'affichage.
 
@@ -146,7 +146,7 @@ En fait, tous les autres calculs se produisent en mémoire (c'est très rapide),
 Du coup même si ce `display` reste dans l'ordre de grandeur de la milliseconde, il faut s'efforcer, pour une bonne fluidité du jeu, de n'appeler `update()` que le minimum, pour nous ici **une fois par itération de la boucle**.
 
 
-### Continuons
+## Continuons
 
 Afin d'avoir un comportement plus "normal", nous devons instruire Pygame en lui disant comment réagir aux clicks sur le clavier ou sur la fenêtre:
 
@@ -189,7 +189,7 @@ while running:
 pg.quit()
 ```
 
-### Le damier
+## Le damier
 
 Nous allons commencer par construire notre plateau de jeu ainsi:
 
@@ -214,7 +214,7 @@ color = (255, 0, 0) # couleur rouge
 pg.draw.rect(screen, color, rect)
 ```
 
-### Un serpent fixe
+## Un serpent fixe
 
 L'étape suivante est de dessiner le serpent. Le serpent est simplement une suite de blocks de couleurs.
 On veut dessiner le serpent aux coordonnées suivantes:
@@ -234,7 +234,7 @@ pour obtenir un schéma comme suit; disons pour fixer les idées que dans ce cas
 ![](media/serpent.png)
 
 
-### Un serpent qui bouge
+## Un serpent qui bouge
 
 Ensuite, nous allons faire bouger le serpent.
 C'est en fait très simple:
@@ -253,7 +253,7 @@ Aussi on peut commencer à envisager d'accélérer un peu le jeu à ce stade...
   ![](media/serpent-bouge.gif)
 
 
-### Le fruit
+## Le fruit
 
 Il faut maintenant faire manger notre serpent.
 On va procéder comme suit:
@@ -269,7 +269,7 @@ On va procéder comme suit:
 ![](media/manger.gif)
 
 
-### Épilogue
+## Épilogue
 
 Il nous reste deux petits changements pour avoir un serpent complètement fonctionnel:
 
@@ -292,7 +292,7 @@ Fin de la partie obligatoire
 Pour les rapides, je vous invite à aborder les sujets suivants :
 
 
-### Asynchronisme
+## Asynchronisme
 
 À ce stade nous avons un jeu à une seule vitesse; la boucle principale est entièrement cadencée par le `clock.tick(n)`, et la vitesse du serpent est entièrement fixée par ce moyen-là.
 
@@ -304,110 +304,13 @@ Modifiez votre code pour pouvoir paramétrer deux fréquences séparément :
 * la fréquence de déplacement du serpent (en case / seconde)
 
 
-### Variables globales
+## Variables globales
 
 De manière générale, les variables globales sont considérées comme néfastes à la réutilisabilité du code; retouchez votre code pour minimiser le nombre de variables globales.
 
 
-### Ligne de commande
+## Ligne de commande
 
 On aimerait pouvoir passer sur la ligne de commande les paramètres du jeu; par exemple, le nombre de cases du tableau en hauteur et largeur, la taille d'une case en pixels, ...
 
 Indice: cherchez le module `argparse` dans la documentation Python.
-
-
-***
-
-
-## Un second jeu: le flappy bird
-
-Ce second exemple va nous permettre de nous confronter à un cas plus compliqué de jeu vidéo:
-- l'espace de jeu n'est plus "discret": on n'avance plus case après case mais "continuement" à une vitesse donnée
-- on va afficher des images et non des simples carrés de couleur
-- on va devoir se poser la question de la collision entre l'oiseau et les éléments du décor
-
-
-### Code de démarrage
-
-Il est semblable au code de démarrage précédent:
-
-```python
-import pygame as pg
-
-BG_BLUE = (0, 195, 204)
-
-pg.init()
-screen = pg.display.set_mode((640, 480))
-clock = pg.time.Clock()
-
-running = True
-while running:
-    clock.tick(30)
-
-    # 1. lecture des évênements
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            running = False
-
-    # 2. actions
-
-    # 3. rendu
-    screen.fill(BG_BLUE)
-    pg.display.update()
-
-pg.quit()
-```
-
-### À vous de jouer
-
-La première action à mener est de dessiner notre oiseau (de malheur ?).
-Pour dessiner une image en pygame, deux actions sont nécessaires:
-
-- on doit charger l'image depuis un fichier, par ex.
-  ```python
-  image = pg.image.load("chemin/vers/image.png")
-  ```
-- puis on l'affiche, en donnant les coordonnées de son coin supérieur gauche:
-  ```python
-  # cette instruction va écraser ce qui se trouve en (100, 100) avec l'image
-  screen.blit(image, (100, 100))
-  ```
-  
-les images nécessaires sont disponibles ici
-https://github.com/ue12/python-advanced/tree/main/tps/games/images
-
-
-vous devriez avoir un rendu semblable à celui-ci:
-
-![](media/oiseau.png)
-
-Il faut maintenant faire bouger notre oiseau.
-Contrairement à l'exemple précédent, nous allons devoir utilisé un mouvement "continu", c'est à dire caractérisé par:
-- l'accélération de la pesanteur (quelle unité ?)
-- la vitesse de déplacement horizontale de l'oiseau (quelle unité ?)
-
-Pour cela nous allons avoir besoin d'une notion de temps. Celle-ci va nous être donné par l'objet `clock` (plûtot logique !) qui retourne à chaque appel à `tick` le nombre de millisecondes écoulées depuis la dernière invocation, soit:
-
-```python
-# delta_ms contient le nombre de ms depuis la dernière invocation
-delta_ms = clock.tick(30)
-```
-
-du coup l'algorithme a réaliser est le suivant:
-- ajouter une variable pour la vitesse instantannées de l'oiseau
-- une constant pour la gravité
-- à chaque itération, mettez en jour la vitesse et la position de l'oiseau avant de l'afficher
-
-Vous devriez obtenir quelque chose comme:
-
-![](media/tombe.gif)
-
-_il vous revient d'adapter les différentes constantes pour avoir une "sensation" de jeu agréable_
-
-L'étape suivant est de définir une interraction avec l'oiseau. Le fonctionnement proposé est simple:
-- quand l'utilisateur clique sur espace, l'oiseau reçoit une "impulsion" vers le haut qui va combattre la gravité
-- et on anime l'oiseau en conséquence
-
-Le résultat doit être semblable à:
-
-![](media/hophop.gif)

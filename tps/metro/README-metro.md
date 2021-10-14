@@ -1,6 +1,6 @@
 ---
 jupytext:
-  cell_metadata_filter: all, -hidden, -heading_collapsed, -run_control, -trusted
+  cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
   cell_metadata_json: true
   encoding: '# -*- coding: utf-8 -*-'
   notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version, -jupytext.text_representation.format_version,
@@ -15,8 +15,9 @@ kernelspec:
   name: python3
 language_info:
   name: python
+  nbconvert_exporter: python
   pygments_lexer: ipython3
-nbhosting: 
+nbhosting:
   title: "m\xE9tro parisien"
 version: '1.0'
 ---

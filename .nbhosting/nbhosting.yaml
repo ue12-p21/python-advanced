@@ -8,7 +8,7 @@ tracks:
   - name: '1/9: jeux'
     notebooks:
     - notebooks/1-01-snake.md
-    - tps/games/README.md
+    - tps/games/README-snake.md
   - name: '2/9: types de base'
     notebooks:
     - quiz/2-snake.md

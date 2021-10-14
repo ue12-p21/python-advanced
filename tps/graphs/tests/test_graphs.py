@@ -1,8 +1,10 @@
 from unittest import TestCase
 
-from dijkstra import parse_graph1, parse_graph2
-from dijkstra import number_vertices1, reachables1
-from dijkstra import shortest_distance1, shortest_path1
+import requests
+
+from graphs import parse_graph1, parse_graph2
+from graphs import number_vertices1, reachables1
+from graphs import shortest_distance1, shortest_path1
 
 def fetch_thrones():
     url = "https://raw.githubusercontent.com/pupimvictor/NetworkOfThrones/master/stormofswords.csv"

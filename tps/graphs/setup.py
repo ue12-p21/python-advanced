@@ -1,4 +1,4 @@
 from setuptools import setup
 
 
-setup(name="dijkstra") 
+setup(name="graphs") 

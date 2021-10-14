@@ -1,7 +1,7 @@
 ---
 jupyter:
   jupytext:
-    cell_metadata_filter: all, -hidden, -heading_collapsed, -run_control, -trusted
+    cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
     main_language: python
     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
@@ -12,6 +12,7 @@ jupyter:
       format_name: markdown
   language_info:
     name: python
+    nbconvert_exporter: python
     pygments_lexer: ipython3
 ---
 

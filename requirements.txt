@@ -7,6 +7,9 @@ bokeh
 k3d
 autograd
 
+requests
+pytest
+
 # tooling
 jupyter
 jupytext
