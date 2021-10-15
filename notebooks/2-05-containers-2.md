@@ -9,7 +9,7 @@ jupytext:
     extension: .md
     format_name: myst
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 language_info:
@@ -40,28 +40,6 @@ version: '1.0'
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-## problème avec les séquences
-
-```{code-cell} ipython3
-a = range(30000000)
-'x' in a      # c’est long !
-```
-
-```{code-cell} ipython3
-a[3]          # on peut utiliser un indice entier
-```
-
-```{code-cell} ipython3
-a = []
-# on ne peut pas indexer avec un nom ou autre chose qu'un entier
-try:
-    a['alice'] = 10
-except TypeError as e:
-    print("OOPS", e)
-```
-
-+++ {"slideshow": {"slide_type": "slide"}}
-
 ### problème avec les séquences...
 
 +++
@@ -75,6 +53,32 @@ except TypeError as e:
 * on voudrait
   * une insertion, effacement et recherche en *O(1)*
   * une indexation par clef quelconque
+
+```{code-cell} ipython3
+---
+slideshow:
+  slide_type: slide
+---
+# 1. recherche et appartenance
+
+a = range(30000000)
+'x' in a      # c’est long !
+```
+
+```{code-cell} ipython3
+a[3]          # on peut utiliser un indice entier
+```
+
+```{code-cell} ipython3
+# 2. indexation par une chaine
+
+a = []
+# on ne peut pas indexer avec un nom ou autre chose qu'un entier
+try:
+    a['alice'] = 10
+except TypeError as e:
+    print("OOPS", e)
+```
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -101,9 +105,10 @@ except TypeError as e:
 
 +++
 
-* la fonction de hash *f()* choisie de façon à ce que
+* la fonction de hash *f()* est choisie de façon à ce que
   * *f(key, size)* retourne toujours la même valeur 
-  * *key* doit être **immutable**
+  * *key* doit être **immutable**  
+    (sinon, après une modification, *f(key, size)* va renvoyer autre chose)
 * minimise le risque de collision
   * *f(key1, size)* == *f(key2, size)*
 * une bonne façon de minimiser les collisions  
@@ -125,9 +130,17 @@ except TypeError as e:
 
 * l'ensemble `set` est une table de hash  
   qui utilise comme clef un **objet immutable**  
-  et qui n’associe pas la clef à une valeur
+  et qui n’associe **pas de valeur** à une clé
 
   * notion d’ensemble mathématique
+
++++
+
+<div class=note>
+    
+on reviendra sur les conditions que doit remplir un objet pour être utilisé comme clé    
+    
+</div>
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -625,3 +638,130 @@ clefs
   * mais peut être déroutant pour les débutants, - et les autres aussi parfois...
 * depuis 3.6, l'**ordre de création** est préservé
   * i.e. c'est dans cet ordre que se font les itérations
+
++++ {"slideshow": {"slide_type": "slide"}}
+
+## les objets qui peuvent servir de clé
+
+précisons un peu mieux les objets qu'on peut utiliser  
+comme clé dans un dictionnaire (ou qu'on peut insérer dans un ensemble)
+
++++
+
+### parmi les objets *builtin* de Python
+
+seuls les objets immutables "en profondeur" - on peut dire aussi "globalement immutables"  
+peuvent convenir; c'est-à-dire qu'ils doivent
+* être d'un type immutable
+* et tous leurs composants doivent être globalement immutables
+
+par exemple
+
+| objet | clé ? |
+|-|-|
+| 100 | oui |
+| 3.14 | oui |
+| True | oui |
+| 'une chaine' | oui |
+| [1, 2, 3] | non |
+| (1, 2) | oui |
+| (1, [1, 2]) | non |
+
+
+```{code-cell} ipython3
+---
+slideshow:
+  slide_type: slide
+---
+# un objet peut être une clé si on peut calculer son hash()
+
+# ici OUI
+hash(100), hash(True), hash((1, 2))
+```
+
+```{code-cell} ipython3
+:cell_style: split
+
+# ici NON
+# une liste est mutable
+
+obj = [1, 2]
+
+try:
+    hash(obj)
+except Exception as exc:
+    print(f"OOPS {type(exc)} -> {exc}")
+```
+
+```{code-cell} ipython3
+:cell_style: split
+
+# ici NON PLUS
+# la liste contamine le tuple
+
+obj = (1, [1, 2])
+
+try:
+    hash(obj)
+except Exception as exc:
+    print(f"OOPS {type(exc)} -> {exc}")
+```
+
++++ {"slideshow": {"slide_type": "slide"}, "tags": ["level_intermediate"]}
+
+### parmi les instances de classe
+
+* par défaut, une instance de classe **peut être utilisée** comme clé
+* le comportement par défaut reproduit la notion d'identité  
+  i.e. deux objets dont égaux au sens de l'ensemble  
+  ssi ce sont **les mêmes objets** (`obj1 is obj2`)
+  
+* on peut redéfinir ce comportement en redéfinissant  
+  les dunder methods `__hash__` et `__eq__`
+
+```{code-cell} ipython3
+---
+cell_style: split
+slideshow:
+  slide_type: slide
+tags: [level_intermediate]
+---
+class Person:
+    """
+    le numéro de sécu fait foi
+    pour l'égalité, et donc pour le hachage
+    """
+    def __init__(self, ssid, name, age):
+        self.ssid = ssid
+        self.name = name
+        self.age = age
+    
+    # égaux ssi leur ssid est le même
+    def __eq__(self, other):
+        return self.ssid == other.ssid
+    # du coup on peut se baser sur le ssid
+    # pour hacher
+    def __hash__ (self):
+        return hash(self.ssid)
+```
+
+```{code-cell} ipython3
+---
+cell_style: split
+slideshow:
+  slide_type: ''
+tags: [level_intermediate]
+---
+p1 = Person('123456', "John Doe", 32)
+p2 = Person('123456', "John Doe", 33)
+
+p1 == p2
+```
+
+```{code-cell} ipython3
+:cell_style: split
+:tags: [level_intermediate]
+
+s = {p1, p2}
+len(s)
+```

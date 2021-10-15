@@ -9,7 +9,7 @@ jupytext:
     extension: .md
     format_name: myst
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 language_info:
@@ -36,7 +36,7 @@ version: '1.0'
 
 # les containers (1/2)
 
-+++ {"slideshow": {"slide_type": "slide"}, "tags": []}
++++ {"slideshow": {"slide_type": "slide"}}
 
 ## les listes
 
