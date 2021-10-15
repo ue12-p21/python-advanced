@@ -44,6 +44,7 @@ un exercice qui demande
 * d'ouvrir des fichiers en lecture et en écriture
 * de faire diverses opérations sur les chaines
 
+en version auto-corrigée:
 
 https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w3/w3-s2-x1-comptage
 
