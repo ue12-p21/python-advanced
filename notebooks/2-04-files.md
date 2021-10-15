@@ -9,7 +9,7 @@ jupytext:
     extension: .md
     format_name: myst
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 language_info:
@@ -108,10 +108,16 @@ with open('temporaire.txt') as f:
         print(f"-- {line}") 
 ```
 
++++ {"cell_style": "split"}
+
+<div class="note">
+    
 **Précision**
 
 * `print(...)` ajoute une fin de ligne
 * `print(..., end="")` évite cet ajout automatique
+    
+</div>
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
