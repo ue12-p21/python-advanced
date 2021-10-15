@@ -8,7 +8,7 @@ jupytext:
     extension: .md
     format_name: myst
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 language_info:
@@ -47,7 +47,7 @@ un exercice qui demande
 
 en version auto-corrigée:
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w3/w3-s2-x1-comptage
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w3/w3-s2-x1-comptage
 
 +++
 
@@ -71,7 +71,7 @@ un exercice pour évaluer les expressions numériques du genre de
 
 en version auto-corrigée:
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x1b-postfix
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x1b-postfix
 
 seul le premier exo est obligatoire, les rapides peuvent s'attaquer au second
 

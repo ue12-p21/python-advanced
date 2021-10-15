@@ -43,7 +43,7 @@ rise:
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x4-primes
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x4-primes
 
 faire a minima les 3 premiers
 
@@ -59,6 +59,6 @@ et le dernier (prime_th_primes) si vous êtes inspiré
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x6-treescanner
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x6-treescanner
 
 pour un exemple réaliste où on a besoin de `yield from`

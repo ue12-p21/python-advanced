@@ -43,7 +43,7 @@ rise:
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w2/w2-s2-x1-expressions-regulieres
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w2/w2-s2-x1-expressions-regulieres
 
 faire a minima les 3 premiers
 

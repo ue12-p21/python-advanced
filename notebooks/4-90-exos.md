@@ -42,7 +42,7 @@ version: '1.0'
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w4/w4-s3-x2-taxes
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w4/w4-s3-x2-taxes
 
 **NB** : ne vous laissez pas influencer par le fait que le thème de la semaine est la boucle `for`…
 
@@ -68,4 +68,4 @@ https://www.codewars.com/kata/59fd6d2332b8b9955200005f/train/python
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w5/w5-s3-x2-vigenere
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w5/w5-s3-x2-vigenere

@@ -44,7 +44,7 @@ version: '1.0'
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x8-quaternion
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x8-quaternion
 
 +++ {"tags": []}
 
@@ -52,7 +52,7 @@ https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x8-quatern
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x2-polynomial
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x2-polynomial
 
 +++
 
@@ -60,4 +60,4 @@ https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x2-polynom
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w6/w6-s9-x7-roman
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x7-roman

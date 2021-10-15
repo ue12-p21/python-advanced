@@ -44,7 +44,7 @@ version: '1.0'
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w4/w4-s6-x1-passage-arguments
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w4/w4-s6-x1-passage-arguments
 
 +++ {"tags": []}
 
@@ -52,7 +52,7 @@ https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w4/w4-s6-x1-passage
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w5/w5-s2-x2-doubler-premier
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w5/w5-s2-x2-doubler-premier
 
 +++ {"tags": []}
 
@@ -60,4 +60,4 @@ https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w5/w5-s2-x2-doubler
 
 auto-corrigé sur nbhosting
 
-https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w5/w5-s2-x3-compare
+https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w5/w5-s2-x3-compare
