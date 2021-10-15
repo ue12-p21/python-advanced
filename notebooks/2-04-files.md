@@ -312,7 +312,7 @@ except Exception as e:
 
 +++ {"cell_style": "split"}
 
-j'ai créé un petite hiérarchie de fichiers dans un dossier `filepath-globbing` qui ressemble à ceci
+j'ai créé un petite hiérarchie de fichiers dans le dossier `filepath-globbing` qui ressemble à ceci
 
 +++ {"cell_style": "split"}
 
@@ -323,7 +323,7 @@ j'ai créé un petite hiérarchie de fichiers dans un dossier `filepath-globbing
 slideshow:
   slide_type: slide
 ---
-# voilà comment on peut d'abord trouver son chemin absolu
+# pour commencer, voilà comment on peut trouver son chemin absolu
 
 globbing = Path("filepath-globbing")
 absolute = globbing.absolute()
@@ -380,45 +380,51 @@ absolute.match("**/notebooks/*")
 absolute.match("**/*globbing*")
 ```
 
-+++ {"slideshow": {"slide_type": "slide"}}
++++ {"slideshow": {"slide_type": "slide"}, "cell_style": "split"}
 
-#### pattern-matching - suite
-
-+++ {"cell_style": "split"}
-
-recherche dans un répertoire
-
-```{code-cell} ipython3
-:cell_style: split
-
-# un répertoire qui contient quelques fichiers
-!ls filepath-globbing/**
-```
+#### pattern-matching - dans un dossier
+![](media/filepath-globbing.png)
 
 ```{code-cell} ipython3
 ---
+cell_style: split
 slideshow:
-  slide_type: slide
+  slide_type: ''
 ---
 # à présent c'est plus intéressant
 # avec des chemins relatifs
 globbing = Path("filepath-globbing")
 
+# tous les fichiers / répertoires 
+# qui sont immédiatement dans le dossier
 list(globbing.glob("*"))
 ```
 
 ```{code-cell} ipython3
+:cell_style: split
+
+# les fichiers/dossiers immédiatement dans le dossier
+# et dont le nom se termine par un chiffre
 list(globbing.glob("*[0-9]"))
 ```
 
++++ {"slideshow": {"slide_type": "slide"}, "cell_style": "split"}
+
+#### pattern-matching - dans tout l'arbre
+![](media/filepath-globbing.png)
+
 ```{code-cell} ipython3
+:cell_style: split
+
+# ce dossier, et les dossiers en dessous
+# à n'importe quel étage
 list(globbing.glob("**"))
 ```
 
 ```{code-cell} ipython3
-list(globbing.glob("**/*[0-9]"))
-```
+:cell_style: split
 
-```{code-cell} ipython3
-str(globbing)
+# tous les fichiers/dossiers 
+# dont le nom termine par un chiffre
+list(globbing.glob("**/*[0-9]"))
 ```
