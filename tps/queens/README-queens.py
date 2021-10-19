@@ -151,7 +151,7 @@ def queens():
 # on vous fournit un fichier de test pour valider votre code; c'est un exercice pour commencer à utiliser un framework de test (ici on va utiliser `pytest`)
 #
 # * téléchargez ce notebook au format .ipynb
-# * [téléchargez ce lien](https://github.com/ue12/python-advanced/blob/main/tps/queens/test_rooks_and_queens.py) et sauvez-le dans `test_rooks_and_queens.py`
+# * [téléchargez ce lien](https://github.com/ue12-p21/python-advanced/blob/main/tps/queens/test_rooks_and_queens.py) et sauvez-le dans `test_rooks_and_queens.py`
 # * dans le même dossier, écrivez votre code dans `rooks_and_queens.py`
 
 # %% [markdown]

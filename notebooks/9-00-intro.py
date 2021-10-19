@@ -56,7 +56,7 @@
 #
 # comme toujours dans 
 #
-# https://github.com/ue12/python-advanced-solutions
+# https://github.com/ue12-p21/python-advanced-solutions
 
 # %% [markdown]
 # ## les supports

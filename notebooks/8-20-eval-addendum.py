@@ -25,7 +25,7 @@
 # %% [markdown]
 # # rendus Python avancé - addendum
 #
-# quelques ajouts/précisions par rapport à l'[énoncé original](https://github.com/ue12/python-advanced-evaluation)
+# quelques ajouts/précisions par rapport à l'[énoncé original](https://github.com/ue12-p21/python-advanced-evaluation)
 #
 # ## vidéo
 #

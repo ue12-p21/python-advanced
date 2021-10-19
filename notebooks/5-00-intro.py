@@ -50,6 +50,6 @@
 #
 # vous trouverez dans
 #
-# https://github.com/ue12/python-advanced-solutions/blob/master/dijkstra.py
+# https://github.com/ue12-p21/python-advanced-solutions/blob/main/graphs.py
 #
 # les solutions pour le TP sur les parcours de graphe
