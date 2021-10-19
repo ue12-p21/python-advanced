@@ -9,6 +9,7 @@ tracks:
     notebooks:
     - notebooks/1-01-snake.py
     - tps/games/README-snake.py
+    - tps/games/README-flappybird.py
   - name: '2/9: types de base'
     notebooks:
     - quiz/2-snake.py

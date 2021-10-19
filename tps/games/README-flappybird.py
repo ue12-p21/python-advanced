@@ -22,10 +22,11 @@
 #     title: 'jeu: le flappybird'
 # ---
 
+# %% [markdown] tags=["level_intermediate"]
+# # Le flappy bird
+
 # %% [markdown]
-# # le flappy bird
-#
-# Ce second exemple va nous permettre de nous confronter à un cas plus compliqué de jeu vidéo:
+# Ce second exemple - pour les rapides - va nous permettre de nous confronter à un cas plus compliqué de jeu vidéo:
 # - l'espace de jeu n'est plus "discret": on n'avance plus case après case mais "continuement" à une vitesse donnée
 # - on va afficher des images et non des simples carrés de couleur
 # - on va devoir se poser la question de la collision entre l'oiseau et les éléments du décor
@@ -78,7 +79,7 @@ pg.quit()
 #   ```
 #
 # les images nécessaires sont disponibles ici
-# https://github.com/ue12/python-advanced/tree/main/tps/games/images
+# https://github.com/ue12-p21/python-advanced/tree/main/tps/games/images
 
 # %% [markdown]
 # vous devriez avoir un rendu semblable à celui-ci:
@@ -107,7 +108,8 @@ delta_ms = clock.tick(30)
 # ![](media/tombe.gif)
 #
 # _il vous revient d'adapter les différentes constantes pour avoir une "sensation" de jeu agréable_
-#
+
+# %% [markdown]
 # L'étape suivant est de définir une interraction avec l'oiseau. Le fonctionnement proposé est simple:
 # - quand l'utilisateur clique sur espace, l'oiseau reçoit une "impulsion" vers le haut qui va combattre la gravité
 # - et on anime l'oiseau en conséquence
@@ -115,3 +117,8 @@ delta_ms = clock.tick(30)
 # Le résultat doit être semblable à:
 #
 # ![](media/hophop.gif)
+
+# %% [markdown]
+# ## Lâchez-vous
+#
+# à partir de là vous pouvez définir le reste, on vous invite à imaginer la suite...
