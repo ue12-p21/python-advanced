@@ -53,6 +53,7 @@
 
 # %% [markdown]
 # * prenez l'habitude de **toujours utiliser un context manager**
+# * **pas besoin de fermer** le fichier ici
 
 # %%
 # on n'a pas encore étudié l'instruction with
@@ -61,7 +62,7 @@
 # avec with on n'a pas besoin de fermer le fichier
 with open('temporaire.txt', 'w') as f:
     for i in 10, 20, 30:
-        f.write(f'{i} {i**2}\n')
+        print(f"{i} {i**2}", file=f)
 
 # %%
 # on triche un peu pour regarder le contenu
@@ -75,13 +76,13 @@ with open('temporaire.txt', 'w') as f:
 # %% [markdown]
 # * l'objet fichier est un **itérable** lui-même
 # * on peut faire un `for` dessus
-# * **attention** toutefois, les lignes vont contenir un caractère `"\n"` de fin de ligne
+# * **attention** toutefois, chaque ligne  
+#   va contenir un caractère `"\n"` de fin de ligne
 
 # %% cell_style="split"
 # lire un fichier texte 
 # ligne par ligne
-# difficile de faire
-# plus compact et lisible !
+# c'est compact et lisible !
 
 # remarquez aussi:
 # open() sans le mode ⇔ open('r')
@@ -129,7 +130,7 @@ text = "noël en été\n"
 # j'encode mon str en un bytes
 binaire = text.encode(encoding="utf-8")
 
-binaire
+type(binaire), binaire
 
 # %% cell_style="center"
 # remarquez le 'b' dans le mode d'ouverture
@@ -153,8 +154,13 @@ with open('temporaire.bin', 'rb') as in_file:
 binaire2 == binaire
 
 # %%
-# on aurait pu aussi bien faire
-with open('temporaire.bin') as feed:
+# ça aurait été pareil 
+# si on avait ouvert le fichier en mode texte
+# puisque ce qu'on a écrit dans le fichier binaire,
+# c'est justement l'encodage en utf-8 d'un texte
+
+#             sans le b ici ↓↓↓
+with open('temporaire.bin', 'r') as feed:
     text2 = feed.read()
     
 text2 == text

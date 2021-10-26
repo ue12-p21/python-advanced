@@ -52,6 +52,9 @@
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w3/w3-s2-x1-comptage
 
 # %% [markdown]
+# ***
+
+# %% [markdown]
 # ## la calculette postfix
 #
 # un exercice pour évaluer les expressions numériques du genre de 
@@ -75,6 +78,9 @@
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x1b-postfix
 #
 # seul le premier exo est obligatoire, les rapides peuvent s'attaquer au second
+
+# %% [markdown]
+# ***
 
 # %% [markdown]
 # ## le palindrome
@@ -126,11 +132,67 @@
 # pour cette variante on suppose que le mot ne contient pas de ponctuation
 
 # %% [markdown]
+# ***
+
+# %% [markdown]
 # ## gravity flip
 #
 # https://www.codewars.com/kata/5f70c883e10f9e0001c89673
 
 # %% [markdown]
+# ***
+
+# %% [markdown]
 # ## les files de supermarché
 #
 # https://www.codewars.com/kata/57b06f90e298a7b53d000a86
+
+# %% [markdown]
+# ***
+
+# %% [markdown]
+# ## le mot le plus long
+
+# %% [markdown]
+# ### chercher un des plus longs mots
+#
+# écrire une fonction qui prend en paramètre un nom de fichier, et retourne le mot le plus long trouvé dans le fichier
+#
+# on prendra soin de se débarrasser de la ponctuation, et pour cela un indice:
+
+# %%
+from string import punctuation
+punctuation
+
+# %% [markdown]
+# ### variante
+#
+# écrire une variante qui retourne la liste de tous les mots les plus longs dans le fichier
+
+# %% [markdown]
+# ### fichiers d'entrée
+#
+# vous pouvez utiliser par exemple les 3 fichiers `hhgg-1.txt` .. `hhgg-3.txt`
+#
+# dans le troisième les mots les plus longs sont
+# ```python
+# ['Rickmansworth',
+#  'controversial',
+#  'philosophical',
+#  'civilizations',
+#  'extraordinary']
+# ```
+
+# %% [markdown]
+# ***
+
+# %% [markdown]
+# ## scanner de fichiers
+#
+# écrivez une fonction qui, en partant d'un dossier de votre ordinateur, calcule la profondeur maximale des fichiers qui s'y trouvent
+#
+# exemple de session:
+# ```bash
+# python filescanner.py /Users/tparment/git
+# depth 22 found with /Users/tparment/git/ue22-p21-web-intro/microapps/microexpo/node_modules/react-native/ReactAndroid/src/main/libraries/fbcore/src/main/java/com/facebook/common/logging/BUCK
+# ```

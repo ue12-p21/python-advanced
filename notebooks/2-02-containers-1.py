@@ -65,13 +65,14 @@ L
 L[2]
 
 # %% cell_style="split"
+# remplacer un slot
 L[0] = 10
 
 # %% cell_style="split"
 L
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### modification des listes
+# ### slicing des listes
 
 # %% cell_style="split"
 L
@@ -116,7 +117,7 @@ L
 # %load_ext ipythontutor
 
 # %% slideshow={"slide_type": ""}
-# %%ipythontutor curInstr=1 width=800
+# %%ipythontutor curInstr=1 width=900
 L = [1, 2, 3, 4, 5]
 L[2:4] = [10, 11, 12]
 L[3] = [3, 4]
@@ -126,7 +127,7 @@ L[3] = [3, 4]
 
 # %% [markdown]
 # * toutes les méthodes sur les séquences
-# * optimisé pour les ajouts **à la fin** de la liste
+# * optimisées pour les ajouts **à la fin** de la liste
 
 # %% cell_style="split"
 L = []
@@ -255,7 +256,8 @@ print(L2)
 # * **mais** parfois (souvent) pas nécessaire
 # * car nécessite de la mémoire
 # * alors qu'on veut juste itérer sur le contenu
-# * dans ce cas, techniques + adaptées : itérateurs et autres générateurs
+# * dans ce cas, techniques + adaptées :  
+#   itérateurs et autres générateurs
 # * sujet avancé que l’on verra plus tard
 
 # %% [markdown] slideshow={"slide_type": "slide"}

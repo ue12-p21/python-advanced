@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -161,7 +161,7 @@ y ^ 15     # bitwise XOR de 0100 (4) et 1111 (15)
 # %% [markdown]
 # * rarement utile d’utiliser les opérations bitwise en Python
 # * mieux vaut utiliser les structures de données fournies
-# * parfois utile avec numpy toutefois
+# * **très utile** pour fabriquer les masques numpy/pandas
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### le module `math`
@@ -224,7 +224,8 @@ else:
 # ### booléens et tests (2)
 
 # %% cell_style="split"
-# mais aussi : avec n'importe quoi d'autre
+# mais aussi : avec 
+# n'importe quoi d'autre
 
 if a:
     print("pas faux")
@@ -242,11 +243,13 @@ if bool(a):
 # * c'est la **mécanique générale** pour convertir entre types de données:
 
 # %% cell_style="split"
-# si on appelle int() on convertit en entier
+# si on appelle int() 
+# on convertit en entier
 int(3.4)
 
 # %% cell_style="split"
-# si on appelle bool() on convertit en booléen
+# si on appelle bool() 
+# on convertit en booléen
 
 bool(3.4)
 
@@ -265,11 +268,13 @@ bool("")
 
 # %% slideshow={"slide_type": "-"}
 a = True; b = True
-print("a", bool(a), "b", bool(b), "a^b", bool(a^b))
+print("a", bool(a), "b", bool(b), "a&b", bool(a&b))
 
 # %% slideshow={"slide_type": ""}
+# ici a et b sont tous individuellement interprétés comme True
+# du coup on pourrait penser obtenir la même chose que ci-dessus
 a = 1; b = 2
-print("a", bool(a), "b", bool(b), "a^b", bool(a^b))
+print("a", bool(a), "b", bool(b), "a&b", bool(a&b))
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## l'encodage des flottants
@@ -278,7 +283,7 @@ print("a", bool(a), "b", bool(b), "a^b", bool(a^b))
 # * représentés en machine comme des fractions en base 2
 # * le plus souvent une **approximation**
 #   * quand pas une fraction binaire exacte
-# * pas une spécificité de Python
+# * ce n'est pas une spécificité de Python
 #   * IEE-754: [WikiPedia](https://en.wikipedia.org/wiki/IEEE_754) - [interactif **64bits**](http://www.binaryconvert.com/convert_double.html)
 
 # %% cell_style="split" slideshow={"slide_type": "-"}

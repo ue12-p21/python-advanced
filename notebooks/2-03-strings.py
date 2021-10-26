@@ -81,9 +81,12 @@
 # #### opérations sur les séquences...
 
 # %% [markdown] slideshow={"slide_type": ""} cell_style="split"
-# * `x in S`; selon les types:
-#  * `True` si un élément de S est égal à x (e.g. `list`)
-#  * `True` si S contient x (e.g. `str`)
+# * `x in S` - selon les types:
+#  * `True` si un élément de S  
+#    est égal à x (e.g. `list`)
+#  * **`True` si S contient x**  
+#    c'est le cas pour `str`  
+#    on cherche *une sous-chaine*
 
 # %% [markdown] slideshow={"slide_type": ""} cell_style="split"
 # * `S.index(a)`
@@ -244,8 +247,8 @@ s[::-1]
 #   * `bytes` pour manipuler **de la donnée brute** (des octets)
 #   
 # * **ATTENTION**
-#   * les caractères alphanumériques (sans accent)  
-#     et la ponctuation tiennent sur 1 octet
+#   * les caractères alphanumériques sans accent  
+#     et la ponctuation tiennent sur 1 octet (ASCII)  
 #   * mais **ce n'est pas le cas** en général
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -298,7 +301,6 @@ len(s1)
 # %% cell_style="split"
 # concaténation
 s1 + s2
-'abcdefbob'
 
 # %% cell_style="split"
 s1[-1::-2]
@@ -382,8 +384,30 @@ y = 769876.11434
 f'{y:e} | {y:f} | {y:g} | {y:010.2f} | {y:.2f}'
 
 # %% [markdown]
-# Voir aussi pour plus de détails:  
+# voir aussi pour plus de détails:  
 # https://mkaz.blog/code/python-string-format-cookbook/
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# #### `f"{x=}"` dans Python 3.9
+
+# %% [markdown]
+# depuis la version 3.9, on peut utiliser cette astuce  
+# qui est assez pratique pour le debugging:
+#
+# pour ne pas avoir à répéter l'expression deux fois  
+# il suffit de terminer la partie *expression*  
+# dans le f-string par le signe `=`
+
+# %% cell_style="split"
+# avec 3.8 on écrirait ceci
+print(f"math.pi={math.pi}")
+
+# %% cell_style="split"
+# en 3.9 plus besoin de répéter
+# en ajoutant   ↓   
+print(f"{math.pi=}")
+# on obtient en sortie le texte
+#↓↓↓↓↓↓
 
 # %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
 # #### formats pour f-string : justification
@@ -496,7 +520,7 @@ s2.split('_')
 # %% [markdown]
 # * ***une*** liste des caractères 
 #   * avec **chacun un *codepoint*** - un nombre entier unique (*)
-#   * de l'ordre de 137.000 + en Juin 2018 (*and counting*)
+#   * de l'ordre de 145.000 en sep. 2021 (v14.0) *and counting...*
 #   * limite théorique 1,114,112 caractères
 #
 # * ***trois*** encodages:
@@ -513,7 +537,7 @@ s2.split('_')
 #
 # * c'est l'encodage le plus répandu aujourd'hui 
 #   * la famille des ISO-latin et autres cp1252  
-#     sont à proscrire absolument
+#     sont **à proscrire absolument**
 #   * en 2021, c'est de moins en moins un souci
 #
 # * avec UTF-8, les caractères usuels (dits ASCII),   
@@ -531,7 +555,7 @@ s2.split('_')
 # ### UTF-8 illustré
 
 # %% [markdown] slideshow={"slide_type": ""}
-# le codepoint du caractère `é` est `0xe8` c'est-à-dire `232` 
+# le codepoint du caractère `è` est `0xe8` c'est-à-dire `232` 
 #
 # ![](media/unicode-table.png)
 
@@ -566,15 +590,15 @@ type(text)
 len(text)
 
 # %% cell_style="split"
-octets = text.encode(encoding="utf-8")
-for b in octets:
+binaire = text.encode(encoding="utf-8")
+for b in binaire:
     print(f"{b:02x}", end=" ")
 
 # %% cell_style="split"
 # ici par contre on
 # compte les octets
 
-len(octets)
+len(binaire)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Unicode et Python: `chr` et `ord`
@@ -588,10 +612,20 @@ codepoint = 0xe9
 codepoint
 
 # %% cell_style="split"
-chr(codepoint)
+character = chr(codepoint)
+character
 
 # %% cell_style="split"
-ord('é')
+# dans l'autre sens
+ord(character)
+
+# %% cell_style="split"
+# toujours vrai
+ord(chr(codepoint)) == codepoint
+
+# %% cell_style="split"
+# toujours vrai
+chr(ord(character)) == character
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## pourquoi l’encodage c’est souvent un souci ?
@@ -600,9 +634,9 @@ ord('é')
 # * chaque fois qu'une application écrit du texte dans un fichier
 #   * elle utilise un encodage
 # * cette information (quel encodage?) est **parfois** disponible
-#   * dans ou avec le fichier
-#   * ex. `# -*- coding: utf-8 -*-`
-#   * HTTP headers
+#   * dans ou avec le fichier (ex. `# -*- coding: utf-8 -*-`)
+#   * HTTP headers pour le web
+#   * MIME extensions pour le mail
 # * mais le plus souvent on ne peut pas sauver cette information
 #   * pas prévu dans le format
 #   * il faudrait des **métadata**
@@ -630,7 +664,8 @@ binaire = envoyé.encode(encoding="utf-8")
 
 # %% slideshow={"slide_type": ""}
 # Pierre reçoit le binaire
-# mais le décode mais se trompe d'encodage
+# mais se trompe d'encodage 
+# au moment de le décoder
 reçu = binaire.decode(encoding="cp1252")
 
 # %% slideshow={"slide_type": ""}
