@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -49,6 +49,12 @@
 #   * containers 1/2 : listes et tuples (18 slides)
 #   * chaines (37 slides) 
 #   * fichiers (16 slides)
-#   * containers 2/2 : dictionnaires et ensembles (28 slides)
 #   
-# pour pratiquer tout cela, on fera des exercices, et si on y arrive un TP sur des algorithmes simples sur les graphes (sinon la semaine prochaine)
+# * et bien sûr des exercices pour pratiquer tout cela
+#
+# ## la suite
+#
+# on laissera sans doute pour la semaine prochaine l'étude des structures de données basées sur les tables de hachage
+#
+# * [containers 2/2 : dictionnaires et ensembles (28 slides)](2-05-containers-2.py)
+#
