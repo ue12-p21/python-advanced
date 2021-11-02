@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -39,7 +39,7 @@
 # %% [markdown]
 # # Cours 3/9
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## objectifs
 #
 # le programme pour aujourd'hui
@@ -48,4 +48,5 @@
 # * voir la deuxième famille de **containers**, basés sur les **hash-tables**,
 #   i.e. dictionnaires et ensembles
 # * parler un peu de **présentation du code**
-# * faire un gros TP sur quelques algorithmes de base des graphes
+# * faire un gros TP sur quelques algorithmes de base des graphes  
+#   en option on pourra parler un peu de *profiling*

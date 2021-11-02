@@ -18,14 +18,14 @@ tracks:
     - notebooks/2-03-strings.py
     - notebooks/2-04-files.py
     - notebooks/2-09-exos.py
-#  - name: '3/9: hash tables'
-#    notebooks:
-#    - notebooks/3-00-intro.py
-#    - notebooks/2-09-exos.py
-#    - notebooks/2-05-containers-2.py
-#    - notebooks/3-11-pep008.py
-#    - tps/graphs/README-graphs.py
-#    - notebooks/3-90-exos.py
+  - name: '3/9: hash tables'
+    notebooks:
+    - notebooks/3-00-intro.py
+    - notebooks/2-09-exos.py
+    - notebooks/2-05-containers-2.py
+    - notebooks/3-11-pep008.py
+    - tps/graphs/README-graphs.py
+    - notebooks/3-90-exos.py
 #  - name: "4/9: it\xE9rations"
 #    notebooks:
 #    - notebooks/4-00-intro.py
