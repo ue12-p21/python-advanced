@@ -203,9 +203,24 @@ def to_graphviz(graph, engine='dot'):
     into a graphviz object that can be automatically
     displayed in the notebook
     """
-    import graphviz
-    gv = graphviz.Digraph(engine=engine)
-    for s, adj in graph.items():
-        for d, w in adj.items():
-            gv.edge(s, d, label=str(w))
-    return gv
+    try:
+        import graphviz
+        gv = graphviz.Digraph(engine=engine)
+        for s, adj in graph.items():
+            for d, w in adj.items():
+                gv.edge(s, d, label=str(w))
+        return gv
+    except Exception as exc:
+        print("oops:", exc)
+
+###
+def planar1(n):
+    G = {}
+    for i in range(1, n+1):
+        for j in range(1, n+1):
+            G[(i, j)] = {}
+            if i < n:
+                G[(i, j)][(i+1, j)] = i
+            if j < n:
+                G[(i, j)][(i, j+1)] = j
+    return G

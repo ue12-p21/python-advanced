@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -76,7 +76,7 @@
 # %% [markdown]
 # ### liste de listes
 
-# %% cell_style="split" tags=[]
+# %% cell_style="split"
 # par exemple
 graph_as_list = [
   ['a', 14, 'c'],
@@ -103,7 +103,7 @@ graph_as_list = [
 #
 # si on veut coder le graphe comme une matrice, on a besoin aussi de garder les noms des sommets
 
-# %% cell_style="split" tags=[]
+# %% cell_style="split"
 # par exemple
 import numpy as np
 graph_as_matrix = (
@@ -130,7 +130,7 @@ graph_as_matrix = (
 # %% [markdown]
 # ### autres idées ?
 
-# %% cell_style="split" tags=[]
+# %% cell_style="split"
 # comment feriez-vous ?
 my_graph = ...
 
@@ -288,7 +288,7 @@ number_vertices(G) == 6
 #
 # **attention** la deuxième cellule (qui appelle `to_graphviz`) peut ne pas fonctionner si vous utilisez votre ordi perso et que vous n'avez pas installé le module `graphviz`
 
-# %% cell_style="split"
+# %% cell_style="center"
 from graphs import parse_graph1
 
 # un graphe voisin de notre graphe témoin
@@ -297,8 +297,11 @@ from graphs import parse_graph1
 
 reach = parse_graph1("data/reach.csv")
 
-# %% cell_style="split"
+# %% cell_style="center"
 # pour le visualiser
+# installer graphviz avec 
+# conda install graphviz
+# (sinon ce n'est pas du tout critique)
 from graphs import to_graphviz
 to_graphviz(reach, "neato")
 
@@ -776,17 +779,22 @@ len(thrones)
 # %% [markdown] cell_style="split"
 # mais attention, comme on l'a vu plus haut ça signifie qu'il y a **au moins** 71 personnages, mais ça peut être plus en fait...
 
-# %% cell_style="split" tags=[]
+# %% cell_style="split"
 # exercice optionnel
 # écrivez une fonction qui calcule le 
 # nombre réel de sommets dans le graphe
 
 # %%
 # on peut maintenant voir un peu à quoi il ressemble
+# enfin, si on a graphviz installé
+# et sinon, eh bien ce n'est pas grave !
 
-visual_thrones = to_graphviz(thrones)
-visual_thrones.attr(size='28')
-visual_thrones
+try:
+    visual_thrones = to_graphviz(thrones)
+    visual_thrones.attr(size='28')
+    visual_thrones
+except Exception as exc:
+    print("too bad:", exc)
 
 # %% [markdown]
 # et maintenant on peut faire des calculs dans ce graphe
@@ -825,3 +833,136 @@ shortest_path1(thrones, 'Margaery', 'Eddard') is None
 
 # %%
 shortest_path1(thrones, 'Daenerys', 'Karl')
+
+# %% [markdown] tags=["level_intermediate"]
+# ## optimisation (optionnel / avancé)
+
+# %% [markdown]
+# ### quelque chose de louche
+#
+# l'algorithme de plus court chemin que nous avons écrit jusqu'ici  
+# a surtout des **avantages pédagogiques**  
+# l'intérêt est de montrer un code qui s'écrit et se lit facilement
+#
+# par contre, le lecteur affuté aura remarqué la chose suivante :  
+# * à chaque itération de la boucle, on **recalcule de zéro** la frontière   
+#   entre les sommets explorés et les autres  
+# * or, d'un tour de boucle à l'autre, cette frontière **change très peu**  
+#   et uniquement autour du noeud que l'on vient d'explorer  
+#
+# ce qui peut nous laisser penser que, dans le cas de graphes plus substanciels que nos exemples jusqu'ici, l'algorithme risque d'avoir des performances sous-optimales
+
+# %% [markdown]
+# ### un graphe plus gros
+#
+# **exercice**: pour un entier $n$, écrire une fonction `planar(n)`  
+# qui construit un graphe:  
+# * qui contient $n^2$ sommets  
+#   chacun étiqueté par un couple $(i, j), i\in[1..n], j\in[1..n]$
+# * où chaque sommet est connecté à ses voisins immédiats  
+#   * $(i, j) \xrightarrow{i} (i+1, j)$ si $i<n$
+#   * $(i, j) \xrightarrow{j} (i, j+1)$ si $j<n$
+
+# %% [markdown]
+# ***
+
+# %%
+from graphs import planar1
+planar1(4)
+
+# %% [markdown]
+# ***
+
+# %% [markdown]
+# ### `%timeit` 
+
+# %% [markdown]
+# on va utiliser la *magic* `timeit`:
+# * une *magic* est une instruction pour IPython (pas reconnu par Python standard)
+# * qui commence par un ou deux `%`
+#   * un seul `%`: s'applique à cette ligne
+#   * deux `%%`: s'applique à la cellule
+#
+# en l'occurrence, `timeit` nous permet de mesurer le temps que prend une instruction  
+# celle-ci est exécutée plusieurs fois, on prend ensuite la moyenne
+#
+# pour faire la même chose en Python pur, voyez .. le module `timeit`
+
+# %% [markdown]
+# ### mesurons: `n=10` et plus
+
+# %%
+# ça passe pas trop mal
+# mais 3ms c'est quand même beaucoup pour 100 sommets
+N = 10
+P = planar1(N)
+# %timeit shortest_path1(P, (1, 1), (N, N))
+
+# %%
+# 4 fois plus de sommets,
+# trajet environ deux fois plus long
+# de l'ordre de 45 ms
+# et c'est de l'ordre de 16 fois plus..
+N = 20
+P = planar1(N)
+# %timeit shortest_path1(P, (1, 1), (N, N))
+
+# %%
+# encore *2 
+# del'ordre de 11s !
+# bref c'est inutilisable en vrai !
+N = 80
+P = planar1(N)
+# #%timeit shortest_path1(P, (1, 1), (N, N))
+
+# %% [markdown]
+# ### la notion de *profiling*
+#
+# ce qui nous donne l'occasion de parler un peu de *profiling*  
+# de quoi s'agit-il ? principalement:
+# * on dispose d'un **outil automatique**
+# * qui échantillonne régulièrement le code qui tourne
+# * pour nous donner une idée de **où on passe le plus de temps**
+#
+# la doc de référence est ici  
+# https://docs.python.org/3/library/profile.html  
+# cherchez la phrase  
+# > The files cProfile and profile can also be invoked as a script to profile another script. For example:
+#
+# '
+
+# %% [markdown]
+# ### profilons
+#
+# il existe aussi des *magic* pour cela, mais par expérience elles sont d'un abord plus aride (un comble!)
+#
+# aussi on va avoir recours au terminal et à l'interpréteur;  
+# on écrit un script `slow.py` qui contient ceci
+
+# %%
+with open('slow.py') as f:
+    for line in f:
+        print(line, end='')
+
+# %% [markdown]
+# et maintenant on peut lancer le profiler avec cette phrase
+#
+# ```bash
+# python -m cProfile slow.py
+# ```
+#
+# je vous invite à lire la documentation du profiler (lien ci-dessus) pour comprendre la signification des différentes colonnes
+#
+# si on veut trier le résultat selon un critère particulier on fera par exemple
+#
+# ```bash
+# python -m cProfile -s tottime slow.py
+# ```
+
+# %% [markdown] tags=["level_advanced"]
+# ### challenge
+#
+# une fois qu'on a vu ça, voyez-vous une façon de récrire `shortest_path` pour ne plus tomber dans cet inconvénient ?
+#
+# **indice**  
+# la librairie https://docs.python.org/3/library/heapq.html peut s'avérer très utile !
