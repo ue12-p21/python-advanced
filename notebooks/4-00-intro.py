@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -39,7 +39,7 @@
 # %% [markdown]
 # # Cours 4/9
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## objectifs
 #
 # le programme pour aujourd'hui
@@ -59,8 +59,8 @@
 # %% [markdown]
 # ## les solutions
 #
-# vous trouverez avec un peu de retard les solutions aux exercices des semaines passées ici
+# comme annoncé, vous trouverez les solutions aux exercices
+# des semaines passées ici
 #
 # https://github.com/ue12-p21/python-advanced-solutions
 #
-# donc aujourd'hui vous y trouverez les solutions (en tous cas de la plupart) des exercices des cours #1 et #2

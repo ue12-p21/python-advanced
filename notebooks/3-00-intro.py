@@ -44,9 +44,20 @@
 #
 # le programme pour aujourd'hui
 #
-# * corriger les exos de la semaine dernière 
+# * corriger les exos de la semaine dernière
 # * voir la deuxième famille de **containers**, basés sur les **hash-tables**,
 #   i.e. dictionnaires et ensembles
 # * parler un peu de **présentation du code**
 # * faire un gros TP sur quelques algorithmes de base des graphes  
 #   en option on pourra parler un peu de *profiling*
+
+# %% [markdown]
+# ## les solutions
+#
+# vous trouverez les solutions aux exercices des semaines passées ici
+#
+# https://github.com/ue12-p21/python-advanced-solutions
+#
+# elles sont publiées au fur et à mesure,
+# donc aujourd'hui vous y trouverez les solutions
+# du cours #1 (le snake)
