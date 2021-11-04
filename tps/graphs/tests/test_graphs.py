@@ -4,7 +4,8 @@ import requests
 
 from graphs import parse_graph1, parse_graph2
 from graphs import number_vertices1, reachables1
-from graphs import shortest_distance1, shortest_path1
+from graphs import (shortest_distance1, shortest_distance2,
+                    shortest_path1, shortest_path2)
 
 def fetch_thrones():
     url = "https://raw.githubusercontent.com/pupimvictor/NetworkOfThrones/master/stormofswords.csv"
@@ -53,11 +54,16 @@ class Tests(TestCase):
         assert shortest_distance1(G, 'a', 'f') == 23
         assert shortest_distance1(G, 'a', 'e') == 20
         assert shortest_distance1(G, 'c', 'b') is None
+        assert shortest_distance2(G, 'a', 'f') == 23
+        assert shortest_distance2(G, 'a', 'e') == 20
+        assert shortest_distance2(G, 'c', 'b') is None
 
         G2 = parse_graph1("data/graph2.csv")
 
         assert shortest_distance1(G2, 'v1', 'v6') == 5
         assert shortest_distance1(G2, 'v6', 'v1') is None
+        assert shortest_distance2(G2, 'v1', 'v6') == 5
+        assert shortest_distance2(G2, 'v6', 'v1') is None
 
     def test_path(self):
         G = parse_graph1("data/graph.csv")
@@ -65,10 +71,15 @@ class Tests(TestCase):
         assert shortest_path1(G, 'a', 'f') == (23, ['a', 'c', 'f'])
         assert shortest_path1(G, 'a', 'e') == (20, ['a', 'd', 'e'])
 
+        assert shortest_path2(G, 'a', 'f') == (23, ['a', 'c', 'f'])
+        assert shortest_path2(G, 'a', 'e') == (20, ['a', 'd', 'e'])
+
         G2 = parse_graph1("data/graph2.csv")
 
         assert shortest_distance1(G2, 'v1', 'v6') == 5
         assert shortest_distance1(G2, 'v6', 'v1') is None
+        assert shortest_distance2(G2, 'v1', 'v6') == 5
+        assert shortest_distance2(G2, 'v6', 'v1') is None
 
     def test_thrones(self):
         cache = fetch_thrones()
@@ -76,3 +87,4 @@ class Tests(TestCase):
 
         self.assertEqual(number_vertices1(thrones), 107)
         self.assertEqual(shortest_distance1(thrones, 'Daenerys', 'Karl'), 38)
+        self.assertEqual(shortest_distance2(thrones, 'Daenerys', 'Karl'), 38)

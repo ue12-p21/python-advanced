@@ -112,8 +112,6 @@ def shortest_distance1(graph, v1, v2):
 
     visited = {v1: 0}
 
-    running = True
-
     while True:
         edges = {(s, d)
                  for s, adj in graph.items()
@@ -153,8 +151,6 @@ def shortest_path1(graph, v1, v2):
 
     visited = {v1: (0, None)}
 
-    running = True
-
     while True:
         edges = set()
         for (s, adj) in graph.items():
@@ -192,6 +188,79 @@ def shortest_path1(graph, v1, v2):
                 previous = visited[previous][1]
             return shortest_length, path
 
+
+
+def shortest_path2(graph, v1, v2):
+    """
+    like shortest_path1, but more efficient
+    as it maintains the border incrementally
+    """
+
+    # keep track of what has been visited
+    # with what distance, and from what vertex
+    visited = {v1: (0, None)}
+    # the edges at the border between
+    # the visited and unvisited parts
+    border_edges = set()
+    # the vertex that was just selected
+    selected_vertex = v1
+
+    while True:
+        # add to the border the edges that
+        # go out of the last selected vertex
+        # to unvisited
+        # print(f"{selected_vertex=}")
+        adj = graph.get(selected_vertex, {})
+        for (dest, weight) in adj.items():
+            if dest not in visited:
+                border_edges.add((selected_vertex, dest))
+        # remove from the border any edge that would
+        # end at the newly_elected vertex
+        border_edges = {
+            (s, d) for (s, d) in border_edges
+            if d != selected_vertex
+        }
+        # print(f"{border_edges=}")
+
+        # out of luck, no path can be found
+        if not border_edges:
+            print("no edges")
+            return None
+
+        # find the best tuple (edge, distance)
+        shortest_length = math.inf
+        shortest_edge = None
+        for (s, d) in border_edges:
+            w = graph[s][d]
+            past_distance, _ = visited[s]
+            dist = past_distance + w
+            if dist <= shortest_length:
+                shortest_length = dist
+                shortest_edge = (s, d)
+
+        # mark newly selected vertex
+        best_src, best_dst = shortest_edge
+        visited[best_dst] = (shortest_length, best_src)
+        selected_vertex = best_dst
+
+        # are we done ?
+        if best_dst == v2:
+            path = [v2]
+            previous = best_src
+            while previous:
+                # print(f"inserting {previous}")
+                path.insert(0, previous)
+                previous = visited[previous][1]
+            return shortest_length, path
+
+
+# for tests
+def shortest_distance2(*args):
+    try:
+        d, path = shortest_path2(*args)
+        return d
+    except TypeError:
+        return None
 
 #
 # utility

@@ -963,6 +963,36 @@ with open('slow.py') as f:
 # ### challenge
 #
 # une fois qu'on a vu ça, voyez-vous une façon de récrire `shortest_path` pour ne plus tomber dans cet inconvénient ?
-#
-# **indice**  
-# la librairie https://docs.python.org/3/library/heapq.html peut s'avérer très utile !
+
+# %% [markdown]
+# voici les résultats que j'obtiens à présent avec une implémentation alternative et plus efficace:
+
+# %%
+# on va voir que cette version 2 est bien plus efficace
+from graphs import shortest_path2
+
+# %%
+# environ 500 µs, vs 3ms
+N = 10
+P = planar1(N)
+# %timeit shortest_path2(P, (1, 1), (N, N))
+
+# %%
+# 3ms vs 45 ms
+N = 20
+P = planar1(N)
+# %timeit shortest_path2(P, (1, 1), (N, N))
+
+# %%
+# 250 ms vs 11s !
+# ça devient utilisable
+N = 80
+P = planar1(N)
+# %timeit shortest_path2(P, (1, 1), (N, N))
+
+# %%
+# 1.5s pour un graphe de 22500 noeuds
+# c'est long, mais mieux que la v1 en tous cas
+N = 150
+P = planar1(N)
+# %timeit shortest_path2(P, (1, 1), (N, N))
