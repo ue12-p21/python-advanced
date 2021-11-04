@@ -56,6 +56,12 @@
 # comme nous n'avons pas encore étudié les classes, nous allons nous restreindre à utiliser uniquement les types de base de Python - listes, tuples, dictionnaires et ensembles
 
 # %% [markdown]
+# ## *disclaimer*
+
+# %% [markdown]
+# les problèmes abordés dans ce TP, et notamment le calcul du plus court chemin, sont trés classiques; notre objectif ici est juste de **découvrir le sujet**, et de prendre ce prétexte pour utiliser les dictionnaires et ensembles dans un contexte moins factice que les exercices, **sans essayer de produire une implémentation optimale** - loin s'en faut, comme on le verra bien dans la dernière partie d'ailleurs.
+
+# %% [markdown]
 # ## formalisation
 #
 # nous nous intéressons aux graphes **valués**, qu'on peut définir formellement comme un triplet $G =(V, E, W)$, où
