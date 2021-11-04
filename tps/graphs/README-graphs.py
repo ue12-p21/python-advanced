@@ -209,7 +209,7 @@ int('12 ')
 
 
 # %% [markdown]
-# ### exo #2
+# ### exo #1
 
 # %%
 # à vous d'écrire cette fonction
