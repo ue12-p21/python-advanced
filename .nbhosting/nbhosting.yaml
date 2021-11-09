@@ -26,12 +26,12 @@ tracks:
     - notebooks/3-11-pep008.py
     - tps/graphs/README-graphs.py
     - notebooks/3-90-exos.py
-#  - name: "4/9: it\xE9rations"
-#    notebooks:
-#    - notebooks/4-00-intro.py
-#    - tps/graphs/README-graphs.py
-#    - notebooks/4-11-iterations-1.py
-#    - notebooks/4-90-exos.py
+  - name: "4/9: it\xE9rations"
+    notebooks:
+    - notebooks/4-00-intro.py
+    - tps/graphs/README-graphs.py
+    - notebooks/4-11-iterations-1.py
+    - notebooks/4-90-exos.py
 #  - name: "5/9: it\xE9rations et classes"
 #    notebooks:
 #    - notebooks/5-00-intro.py
