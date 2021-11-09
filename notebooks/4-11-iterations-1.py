@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -48,12 +48,17 @@
 #   * on peut faire un `for` sur n'importe quel itérable
 #   * ce n'est pas le cas pour le `while`
 #   * avec `for` c'est l'itérable qui se charge de la logique
-# * de nombreuses techniques pour itérer de manière optimisée
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# **les itérations en Python (suite)**
+#
+# * **et aussi** de nombreuses techniques  
+#   pour itérer **de manière optimisée**
 #   * compréhensions
 #   * itérateurs
 #   * expressions génératrices
 #   * générateurs (encore appelées fonctions génératrices)
-#   * (rappel : avec numpy, pas de `for`, programmation vectorielle)
+# * rappel : avec numpy, pas de `for`, programmation vectorielle
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## la boucle `for`
@@ -75,10 +80,10 @@
 # comme dans beaucoup d'autres langages :
 #
 # * `break` sort complètement de la boucle
-# * `continue` termine abruptement l'itération courante et passe à la suivante
+# * `continue` termine abruptement  
+#   l'itération courante et passe à la suivante
 # * on parle toujours de la boucle **la plus imbriquée**
 #
-# l'instruction `else` attachée à un `for` est d'un usage plutôt rare en pratique
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### `for .. else`
@@ -96,7 +101,10 @@
 #     aligné   # c'est-à-dire pas avec un break
 # ```
 #
-# mais c'est d'un usage assez rare
+# <div class=note>
+#     
+# l'instruction `else` attachée à un `for` est d'un usage plutôt rare en pratique
+# </div>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### ~~`for i in range(len(truc))`~~
@@ -117,22 +125,16 @@ for i in range(len(liste)):
     item = liste[i]
     print(item, end=" ")
 
-# %% [markdown] cell_style="center" tags=["level_advanced"]
-# * voir [une revue de code intéressante ici](http://sametmax.com/revue-de-code-publique/)
-
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### boucle `for` sur un dictionnaire
 
 # %% [markdown]
-# * on peut facilement itérer sur un dictionnaire
+# * *rappel*: on peut facilement itérer sur un dictionnaire
 # * mais il faut choisir si on veut le faire 
-#   * sur les clés,
-#   * sur les valeurs,
-#   * ou sur les deux
-# * c'est à ça que servent les méthodes
-#   * `keys()`
-#   * `values()`
-#   * `items()`
+#   * sur les clés: `for k in d.keys():`
+#   * sur les valeurs: `for v in d.values():`
+#   * ou sur les deux: `for k, v in d.items():`
+#
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # #### boucle `for` sur un dictionnaire
@@ -155,7 +157,8 @@ for key, value in agenda.items():
 
 # %% cell_style="split"
 # un raccourci
-for key in agenda:      # ou agenda.keys()
+for key in agenda: 
+# ou for key in agenda.keys()
     print(key, end=" ")
 
 # %% cell_style="split"
@@ -186,25 +189,30 @@ for p in range(2, 10):
 # %% [markdown]
 # * **règle très importante:** à l'intérieur d'une boucle
 # * il ne faut **pas modifier l’objet** sur lequel on itère
-# * on peut, par contre, en faire une copie
+#
 
-# %% [markdown] cell_style="split"
-# ce code-ci provoquerait une boucle infinie
-# ```
-# L = ['a', 'b', 'c']
-# for i in L:
-#     if i == 'c':
-#         L.append(i)
-# ```
+# %% cell_style="center"
+s = {1, 2, 3}
 
-# %% cell_style="split"
-# il suffit de prendre la précaution
-# de faire une (shallow) copie
-L = ['a', 'b' , 'c']
-for i in L[:]:
-    if i == 'c':
-        L.append(i)
-L
+# on essaie de modifier l'objet itéré
+try:
+    for x in s:
+        if x == 1:
+            s.remove(x)
+except Exception as exc:
+    print(f"OOPS {type(exc)} {exc}")
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# la technique usuelle consiste à utiliser une copie
+
+# %% cell_style="center"
+s = {1, 2, 3}
+
+for x in s.copy():
+    if x == 1:
+        s.remove(x)
+
+s
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### boucles pythoniques ou pas
@@ -258,7 +266,7 @@ for element in ensemble:
 
 # %% [markdown] cell_style="split"
 # * on a défini les itérables par rapport à la boucle `for` 
-# * mais plusieurs fonctions acceptent en argument des itérables
+# * plusieurs fonctions acceptent en argument des itérables
 # * `sum`, `max`, `min`
 # * `map`, `filter`
 # * etc...
@@ -305,7 +313,11 @@ sys.getsizeof(L)
 # ```
 
 # %% [markdown] slideshow={"slide_type": ""}
-# on ne veut **pas devoir allouer** une liste de 100.000 éléments  
+# ce qui montre qu'on peut s'en sortir  
+# avec **seulement un entier** comme mémoire
+#
+# donc on ne veut **pas devoir allouer**  
+# une liste de 100.000 éléments  
 # juste pour pouvoir faire cette boucle
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -369,7 +381,8 @@ for item in iterateur:
 # list(range(1, 11))
 # ```
 #
-# où le type `list` se comporte, comme tous les types, comme une usine à fabriquer des listes
+# où le type `list` se comporte, (comme tous les types)  
+# comme **une usine** à fabriquer des listes
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### `count` : un itérateur infini
@@ -424,7 +437,8 @@ for i, item in enumerate(L):
 # %% [markdown]
 # * typiquement utile sur un fichier
 # * pour avoir le numéro de ligne 
-# * remarquez le deuxième argument de `enumerate` pour commencer à 1
+# * remarquez le deuxième argument de `enumerate`  
+#   ici pour commencer à 1
 
 # %%
 with open("data/une-charogne.txt") as feed:
@@ -454,7 +468,7 @@ for a, b in zip(liste1, liste2):
 # **NOTES**: 
 #
 # * `zip` fonctionne avec autant d'arguments qu'on veut
-# * elle s'arrête dès que l'entrée la plus courte est épuisée
+# * elle s'arrête dès que l'entrée **la plus courte** est épuisée
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### `enumerate = zip + count`
@@ -480,8 +494,14 @@ for index, item in zip(count(), L):
 #
 # * une fois que l'itérateur est arrivé à sa fin
 # * il est "épuisé" et on ne peut plus boucler dessus
+#
+# <div class=note>
+#     
+# (*) à cet égard, les `range()` sont spéciaux
+# </div>
 
 # %% cell_style="split"
+# avec une liste, pas de souci
 L = [1, 2]
 
 print('pass 1')
@@ -496,6 +516,7 @@ for i in L:
 # %% cell_style="split"
 # iter() permet de construire
 # un itérateur sur un itérable
+
 R = iter(L)
 
 print('pass 1')
@@ -549,28 +570,51 @@ for a, b in E:
 # * `zip_longest` fonctionne comme `zip` mais s'arrête au morceau le plus long
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### `chain`, `cycle` et `repeat`
+# ### `chain`
+#
+# ![](media/iter-chain.png)
 
 # %% cell_style="center" slideshow={"slide_type": ""}
-from itertools import chain, cycle, repeat
+from itertools import chain
 data1 = (10, 20, 30)
 data2 = (100, 200, 300)
 
 # %% cell_style="center"
 # chain()
+for d in chain(data1, data2):
+    print(f"{d}", end=" ")
+
+# %% cell_style="center"
+# c'est comme un lego, on peut combiner toutes ces fonctions
 for i, d in enumerate(chain(data1, data2)):
     print(f"{i}x{d}", end=" ")
 
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### `cycle`
+#
+# ![](media/iter-cycle.png)
+
 # %%
 # cycle() ne termine jamais non plus
+
+from itertools import cycle
+data1 = (10, 20, 30)
 
 for i, d in enumerate(cycle(data1)):
     print(f"{i}x{d}", end=" ")
     if i >= 10:
         break
 
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### `repeat`
+
 # %%
 # repeat()
+from itertools import repeat
+data1 = (10, 20, 30)
+data2 = (100, 200, 300)
+
+# pour peut répéter le même élément plusieurs fois
 padding = repeat(1000, 3)
 
 for i, d in enumerate(chain(data1, padding, data2)):
@@ -578,6 +622,8 @@ for i, d in enumerate(chain(data1, padding, data2)):
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### `islice`
+#
+# fonctionne comme le slicing, mais sur n'importe quel itérable
 
 # %% cell_style="split"
 # avec islice on peut par exemple 
@@ -597,6 +643,7 @@ from itertools import islice
 with Path('islice.txt').open() as f:
     for line in islice(f, 0, None, 2):
         print(line, end="")
+        
 
 # %% cell_style="split"
 # ou zapper les 3 premières
@@ -616,8 +663,11 @@ with Path('islice.txt').open() as f:
     for line in islice(f, 3):
         print(line, end="")
 
-# %% [raw] slideshow={"slide_type": "slide"}
+# %% [markdown] slideshow={"slide_type": "slide"}
 # ### `zip_longest()`
+#
+# comme `zip`, mais s'arrête à l'entrée la plus longue  
+# du coup il faut dire par quoi remplacer les données manquantes
 
 # %% cell_style="split"
 from itertools import zip_longest
@@ -731,8 +781,14 @@ def is_iterator(obj):
 # * un fichier **est** son propre itérateur
 
 # %% cell_style="split" slideshow={"slide_type": "slide"}
-# un fichier est son propre itérateur
-with open("data/une-charogne.txt") as F:
+# créons un fichier
+with open("tmp.txt", 'w') as F:
+    for i in range(6):
+        print(f"{i=} {i**2=}", file=F)
+
+# pour voir qu'un fichier ouvert en
+# lecture est son propre itérateur
+with open("tmp.txt") as F:
     print(f"{is_iterator(F)=}")
 
 # %% cell_style="split"
@@ -751,6 +807,6 @@ Z = zip(L, L)
 print(f"{is_iterator(Z)=}")
 
 # %% [markdown]
-# * Bien se souvenir : **un itérateur s'épuise**  
+# * bien se souvenir : **un itérateur s'épuise**  
 #   de manière générale, un objet qui est un itérateur  
 #   ne peut être itéré qu'une seule fois

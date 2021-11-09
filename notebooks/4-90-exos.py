@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -45,8 +45,6 @@
 # auto-corrigé sur nbhosting
 #
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w4/w4-s3-x2-taxes
-#
-# **NB** : ne vous laissez pas influencer par le fait que le thème de la semaine est la boucle `for`…
 
 # %% [markdown]
 # ## playing with digits
