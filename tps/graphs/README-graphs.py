@@ -661,7 +661,7 @@ to_graphviz(G2, "dot")
 shortest_distance1(G2, 'v1', 'v6')
 
 # %% [markdown] tags=["level_basic"]
-# ### amélioration
+# ### exo #5 : amélioration
 #
 # comment pourriez-vous adapter cet algorithme pour retourner aussi le chemin ?
 
@@ -966,7 +966,7 @@ with open('slow.py') as f:
 # ```
 
 # %% [markdown] tags=["level_advanced"]
-# ### challenge
+# ### exo #6 : challenge
 #
 # une fois qu'on a vu ça, voyez-vous une façon de récrire `shortest_path` pour ne plus tomber dans cet inconvénient ?
 

@@ -12,6 +12,14 @@ def parse_graph1(filename: str):
     Returns:
       corresonding graph implemented as a dictionary of
       adjacency dictionaries
+
+    Notes:
+      - we strip all tokens to support for a loose syntax
+        with additional spaces in the input
+      - we do not ensure all the nodes present
+        have a key in the dict
+        although that would be a great idea
+        search for --xx-- below for comments on this matter
     """
     g = dict()
     with open(filename) as feed:
@@ -25,6 +33,10 @@ def parse_graph1(filename: str):
             if src not in g:
                 g[src] = {}
             g[src][dst] = weight
+            # --xx-- to ensure all nodes are present,
+            # we would need to add these lines
+            # if dst not in g:
+            #     g[dst] = {}
     return g
 
 
@@ -42,6 +54,9 @@ def parse_graph2(filename):
             dst = dst.strip()
             weight = int(weight.strip())
             g[src][dst] = weight
+            # --xx-- in this version, ensuring all destination nodes
+            # are in the graph would be achieved with simply this line
+            # g[dst]
     return g
 
 
@@ -53,6 +68,10 @@ def number_vertices1(graph):
     vertices = set()
     for s, adj in graph.items():
         vertices.add(s)
+        # --xx-- these 2 lines would be useless
+        # if we had a complete dictionary
+        # (and BTW in that case we could even
+        #  build vertices by a set comprehension)
         for d, w in adj.items():
             vertices.add(d)
     return len(vertices)
@@ -78,15 +97,19 @@ def reachables1(graph, s):
         news = set()
         for v in reached:
             # beware that not all vertices have a key in the dict
-            if not v in graph:
+            # --xx-- with a complete graph,
+            # these 2 would not be necessary either
+            if  v not in graph:
                 continue
             adj = graph[v]
-            for next, _ in adj.items():
+            for next in adj:
                 if next not in reached:
                     news.add(next)
+        # nothing new: we're done
         if not news:
             return reached
         else:
+            # accumulate all new nodes in the result
             reached.update(news)
 
 
@@ -113,19 +136,20 @@ def shortest_distance1(graph, v1, v2):
     visited = {v1: 0}
 
     while True:
-        edges = {(s, d)
-                 for s, adj in graph.items()
-                 for (d, w) in adj.items()
-                 if s in visited and d not in visited}
+        border_edges = set()
+        for (s, adj) in graph.items():
+            for (d, w) in adj.items():
+                if s in visited and d not in visited:
+                    border_edges.add((s, d))
 
         # out of luck, no path can be found
-        if not edges:
+        if not border_edges:
             return None
 
         # find the best tuple (edge, distance)
         shortest_length = math.inf
         shortest_edge = None
-        for (s, d) in edges:
+        for (s, d) in border_edges:
             w = graph[s][d]
             dist = visited[s] + w
             if dist <= shortest_length:
@@ -140,6 +164,11 @@ def shortest_distance1(graph, v1, v2):
         if best_dst == v2:
             return shortest_length
 
+
+#
+# shortest distance
+#
+
 def shortest_path1(graph, v1, v2):
     """
     same, but also computes shortest path
@@ -152,21 +181,21 @@ def shortest_path1(graph, v1, v2):
     visited = {v1: (0, None)}
 
     while True:
-        edges = set()
-        for (s, adj) in graph.items():
-            for (d, w) in adj.items():
-                if s in visited and d not in visited:
-                    edges.add((s, d))
-        # print(f"{edges=}")
+        border_edges = {(s, d)
+                 for s, adj in graph.items()
+                 for (d, w) in adj.items()
+                 if s in visited and d not in visited}
+
+        # print(f"{border_edges=}")
 
         # out of luck, no path can be found
-        if not edges:
+        if not border_edges:
             return None
 
         # find the best tuple (edge, distance)
         shortest_length = math.inf
         shortest_edge = None
-        for (s, d) in edges:
+        for (s, d) in border_edges:
             w = graph[s][d]
             past_distance, _ = visited[s]
             dist = past_distance + w
@@ -189,6 +218,9 @@ def shortest_path1(graph, v1, v2):
             return shortest_length, path
 
 
+#
+# shortest distance but a little more optimized
+#
 
 def shortest_path2(graph, v1, v2):
     """
