@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -38,9 +38,9 @@
 # </div>
 
 # %% [markdown] slideshow={"slide_type": ""}
-# # classes : rappels (2)
+# # classes : méthodes spéciales
 #
-# les méthodes spéciales (aussi appelées *dunder methods*)
+# aussi appelées *dunder methods*
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## méthodes spéciales / *dunder methods*
@@ -106,7 +106,7 @@ if classe2:
 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## opérateurs
+# ## opérateurs: `obj1 + obj2`
 
 # %% cell_style="split"
 class Classe:
@@ -129,7 +129,7 @@ classe1 + classe2
 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## itérations
+# ## itérations: `for item in obj:`
 
 # %% cell_style="split"
 class Classe:
@@ -138,6 +138,9 @@ class Classe:
         self.students = students
 
     def __iter__(self):
+        """
+        iterate on self as if it was self.students
+        """
         return iter(self.students)
 
 
@@ -147,9 +150,14 @@ classe = Classe(['jean', 'laurent', 'benoit'])
 for s in classe:
     print(s)
 
+# %% cell_style="split"
+# et même d'ailleurs
+x, y, z = classe
+y
+
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## appartenance
+# ## appartenance: `x in obj`
 
 # %% cell_style="split"
 class Classe:
@@ -168,7 +176,7 @@ classe = Classe(['jean', 'laurent', 'benoit'])
 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## indexations
+# ## indexations: `obj[x]`
 
 # %% cell_style="split"
 class Classe:
@@ -199,7 +207,7 @@ classe['pierre'] is None
 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## appel
+# ## appel: `obj(x)`
 #
 # on peut même donner du sens à `obj(x)`
 
@@ -217,7 +225,7 @@ class Line:
         return self.a * x + self.b
 
 
-# %% cell_style="split" tags=[]
+# %% cell_style="split"
 # cet objet se comporte
 # comme une fonction
 

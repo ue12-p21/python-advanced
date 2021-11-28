@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -89,7 +89,7 @@
 # * DRY *don't repeat yourself*
 #   * *cut'n paste is evil*
 # * code générique
-#   * ex: un simulateur fait "avancer" une collection d'objets
+#   * ex: un jeu fait "avancer" une collection d'objets
 #   * dès qu'un objet explique comment il avance
 #   * il peut faire partie de la simulation
 # * c'est là qu'intervient l'héritage
@@ -169,118 +169,32 @@
 #
 # * la variable `a` est identifiée lexicalement  
 #   (variable locale, paramètre de fonction,  
-#    souvenez-vous par exemple des clôtures)
+#    voir par exemple le cas des clôtures)
 # * la variable référence un objet
 # * `b` est cherché comme un attribut à partir de cet objet
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## résolution d'attribut
+# ## résolution d'attribut pour la lecture
 
-# %% [markdown] slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} cell_style="center"
 # * la **résolution des attributs**
 # * fournit la **mécanique de base** de la POO
 # * et sous-tend notamment (mais pas que)  
 #   la mécanique de l'héritage
 
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ### ex: une classe et une instance
-
-# %% cell_style="split"
-# une classe sans heritage
-# et juste un constructeur
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-
-# %% cell_style="split"
-# comme toujours, la classe 
-# est une usine à objets
-
-point = Point(2, 3)
-point.x
-
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ### 2 espaces de nommage
-
-# %% [markdown] cell_style="split"
-# **à ce stade nous avons deux espaces de nom**
-#
-# * la classe `Point`
-#   * `Point.__init__` : la méthode
-# * l'instance
-#   * `point.x` : 2 pour cette instance
-#   * `point.y`
-
-# %% cell_style="split"
-# on va voir ça
-# dans pythontutor
-# %load_ext ipythontutor
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# **la classe et l'instance: deux espaces de nom distinct**
-
-# %%
-# %%ipythontutor width=1000 height=450
-
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-point = Point(2, 3)
-
-# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
-# ### digression : l'attribut spécial `__dict__`
-
-# %% [markdown] slideshow={"slide_type": ""} tags=["level_intermediate"] cell_style="split"
-# les (objets qui sont des) espaces de nom
-#
-# * ont un **attribut spécial**
-# * qui s'appelle `__dict__`
-# * qui permet d'inspecter un espace de nom
-#
-# ce n'est pas une notion à retenir,  
-# mais on va s'en servir dans la suite  
-# pour regarder le contenu des espaces de nom
-
-# %% cell_style="split" tags=["level_intermediate"]
-# quand on n'a pas pythontutor
-# on peut simplement regarder __dict__
-
-point.__dict__
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ### deux espaces de nom (classe et instance) - fin
-
 # %% [markdown]
-# on l'a bien vu sous pythontutor, mais redisons les choses
+# ### lecture ou écriture des attributs
 
-# %% cell_style="split" slideshow={"slide_type": ""}
-# la classe possède
-# l'attribut '__init__'
-'__init__' in Point.__dict__
-
-# %% cell_style="split"
-# c'est la méthode
-# qu'on a définie
-type(Point.__init__)
-
-# %% cell_style="split"
-# par contre elle ne possède
-# pas d'attribut x
-'x' in Point.__dict__
-
-# %% cell_style="split"
-# l'attribut x se trouve
-# bien dans l'espace de nom
-# de l'instance
-'x' in point.__dict__
+# %% [markdown] cell_style="center"
+# on distingue deux cas
+# * attribut en écriture  
+#    `obj.attribute = ...`  
+#    (i.e. à gauche d'une affectation)
+# * résolution des attributs en lecture  
+#     `obj.attribute` 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### recherche de bas en haut
+# ### lecture: recherche de bas en haut
 
 # %% [markdown]
 # **pour la lecture :**  
@@ -288,11 +202,11 @@ type(Point.__init__)
 #
 # * le chercher dans l'espace de nom de l'objet lui-même
 # * sinon dans l'espace de nom de sa classe
-# * sinon dans les super-classes
-# * on verra les détails plus loin
+# * sinon dans les super-classes  
+#   (on verra les détails plus loin)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## ex. de résolution d'attribut
+# ## ex1. de résolution d'attribut
 
 # %% cell_style="split"
 # cas simple sans héritage
@@ -318,11 +232,13 @@ class Vector:
 vector = Vector(3, 4)
 vector.length()
 
-# %% [markdown] cell_style="split"
-# voyons ça en détail..
+# %% cell_style="split"
+# on va voir ça en détail 
+# dans pythontutor
+# %load_ext ipythontutor
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### espaces de nom
+# ### 2 espaces de nom distincts
 
 # %% [markdown] cell_style="split" slideshow={"slide_type": ""}
 # * la classe `Vector` a les attributs
@@ -347,24 +263,62 @@ class Vector:
 vector = Vector(2, 2)
 
 # %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
-# pour visualiser la même chose à base d'introspection dans le code
+# ### digression : l'attribut spécial `__dict__`
+
+# %% [markdown] slideshow={"slide_type": ""} cell_style="split" tags=["level_intermediate"]
+# pour visualiser la même chose sans ipythontutor  
+# sachez que les (objets qui sont des) espaces de nom
 #
-# (rappel : tous les espaces de nom ont un attribut `__dict__`)
+# * ont un **attribut spécial**
+# * qui s'appelle `__dict__`
+# * qui permet d'inspecter un espace de nom
+#
+# ce n'est pas une notion à retenir,  
+# mais on va s'en servir dans la suite  
+# pour regarder le contenu des espaces de nom
+
+# %% tags=["level_intermediate"]
+# dans l'instance
+list(vector.__dict__)
 
 # %% slideshow={"slide_type": ""} tags=["level_intermediate"]
 # les attributs 'intéressants' de Vector
 [att for att in Vector.__dict__ if '__' not in att or att == '__init__']
 
-# %% tags=["level_intermediate"]
-# et dans l'instance
-list(vector.__dict__)
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### la  fonction `dir()`
+#
+# * avec la fonction *builtin* `dir(x)`, on peut accéder  
+#   à l'ensemble des attributs qui sont disponibles sur `x`
+# * c'est donc la somme des attributs trouvés:
+#   * dans l'espace de nom de `x`
+#   * dans l'espace de nom de sa classe
+#   * et de ses super-classes
+
+# %% cell_style="split"
+# sur l'instance
+
+# (on enlève le bruit)
+[x for x in dir(vector) if '__' not in x]
+
+# %% cell_style="split"
+# sur la classe
+
+[x for x in dir(Vector) if '__' not in x]
 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### exemple avec héritage
+# ### conclusion
+#
+# dans ce cas simple de la classe `Vector` et de l'instance `vector`:
+# * `vector.x` fait référence à l'attribut posé **directement sur l'instance**
+# * `vector.length` fit référence à la méthode qui est **dans la classe**
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## ex2. résolution d'attribut avec héritage
 
 # %% [markdown] slideshow={"slide_type": ""}
-# * jusqu'ici on n'a pas encore de l'héritage  
+# * jusqu'ici on n'a pas d'héritage  
 #   puisque pour l'instant on n'a qu'une classe
 # * mais l'héritage  
 #   est une **simple prolongation** de cette logique
@@ -395,19 +349,24 @@ subvector = SubVector(6, 8)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # * c'est exactement le même mécanisme qui est à l'oeuvre :
-# * quand on va vouloir appeler `subvector.length()`
-#   * on cherche l'attribut `length` dans l'instance : non
-#   * dans la classe : non
-#   * dans la super-classe : ok, on prend ça
+# * quand on va vouloir appeler `subvector.length()`  
+#   on cherche l'attribut `length` 
+#   * dans l'instance `subvector` : non
+#   * dans sa classe `SubVector` : non
+#   * dans la super-classe `Vector` : ok, on prend ça
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## **remarque importante** : lecture ≠ écriture
+# ## écriture d'attribut: pas de recherche
 
 # %% [markdown] slideshow={"slide_type": ""}
-# * le mécanisme de recherche d'attribut qu'on vient de voir
-# * ne fonctionne que **pour la lecture des attributs**
+# * le mécanisme de résolution d'attribut qu'on vient de voir  
+#   ne fonctionne que **pour la lecture des attributs**
 # * quand on **écrit** un attribut dans un objet,  
-#   c'est un mécanisme différent (slide suivant)
+#   le mécanisme est beaucoup plus simple:  
+#   on écrit **directement dans l'espace de nom** de l'objet
+# * on considère que c'est une écriture  
+#   si le terme `obj.attribute` est **à gauche** d'une affectation  
+# * typiquement `self.name = name` dans le constructeur
 
 # %% cell_style="split"
 # quand on évalue un attribut en lecture
@@ -424,31 +383,10 @@ subvector.foo = 12
 
 'foo' in subvector.__dict__
 
+# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
+# ### lecture *vs* écriture - cas limites
 
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ### lecture ≠ écriture - discussion
-#
-# * mais attention lorsqu'on **écrit** un attribut
-#   * *i.e.* si l'expression `foo.bar` est **à gauche** d'une affectation
-# * alors l'attribut `bar` est créé/écrit **dans l'objet `foo`**
-# * il n'y a **pas de recherche** dans ce cas !
-# * et heureusement d'ailleurs :  
-#   c'est le cas notamment à chaque fois qu'un constructeur fait  
-#   `self.name = name`
-
-# %% [markdown] slideshow={"slide_type": ""}
-# <div class=smaller>
-#
-# * cela ne se remarque pas avec les méthodes
-#   * car c'est très rare d'écrire `instance.methode = ...`
-# * mais du coup, se souvenir que lire et écrire un attribut ne **sont pas symétriques**
-#
-# </div>
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ### lecture *vs* écriture
-
-# %% [markdown] cell_style="split"
+# %% [markdown] cell_style="split" tags=["level_intermediate"]
 # * il y a écriture si  
 #   et seulement si il y a **affectation**
 # * dans 1. il y a
@@ -458,7 +396,7 @@ subvector.foo = 12
 #   * **écriture de l'attribut**
 #   * donc écrit dans (l'espace de nom) `obj`
 
-# %% [markdown] cell_style="split"
+# %% [markdown] cell_style="split" tags=["level_intermediate"]
 # * 1. lecture !
 #
 # ```python
@@ -475,33 +413,158 @@ subvector.foo = 12
 # ## héritage
 
 # %% [markdown] slideshow={"slide_type": ""} cell_style="split"
-# * une classe peut hériter d’une (ou plusieurs) autre classes
-# * si A hérite de B
-#   * on dit que A est la sous-classe de B
-#   * et B est la super-classe de A
-# * la sous-classe hérite des attributs de sa super-classe
-# * l’instance hérite de la classe qui la crée
+# une classe peut hériter d’une  
+#   (ou plusieurs) autre classes
+#   
+# ```python
+# # la syntaxe est
+# class Class(Super):
+#     pass
+#
+# # ou 
+# class Class(Super1, Super2):
+#     pass
+# ```
 
-# %% cell_style="split" tags=["raises-exception"]
-# la syntaxe est
-class Class(Super):
-    pass
+# %% [markdown] slideshow={"slide_type": ""} cell_style="split"
+# * si A hérite de B, ont dit que
+#   * A est une **sous-classe** de B
+#   * et B est la **super-classe** de A
+# * de ce qui précède:
+#   * la sous-classe hérite  
+#     (des attributs)  
+#     de sa (ses) super-classe(s)
+#   * l’instance hérite de la  
+#     classe qui la crée
 
-# ou 
-class Class(Super1, Super2):
-    pass
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## `isinstance()` et `issubclass()`
+
+# %% [markdown]
+# * `isinstance(x, class1)` retourne `True` si `x` est une instance de `class1` **ou d’une super classe**
+# * `issubclass(class1, class2)` retourne `True` si `class1` est une sous-classe de `class2`
+
+# %% cell_style="split"
+# A est la superclasse de B
+a, b = A(), B()
+
+# %% cell_style="split" slideshow={"slide_type": ""}
+isinstance(a, A), issubclass(B, A)
+
+# %% cell_style="split"
+isinstance(a, B)
+
+# %% cell_style="split"
+# accepte plusieurs types/classes
+isinstance(a, (A, B))
+
+
+# %% [markdown]
+# <div class=note>
+#    
+# * on peut aussi passer à `isinstance` un tuple de classes/types
+# * ces fonctions *builtin* sont à privilégier par rapport à l'utilisation de `type()`
+#     
+#
+# </div>
+#     
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## `super()`
+
+# %% [markdown]
+# * utile lorsque la spécialisation  
+#   consiste à ajouter ou modifier  
+#   par rapport à la classe mère
+#
+# * le cas typique est d'ailleurs le constructeur  
+#   dès qu'on ajoute un attribut de donnée
+#
+# * permet de ne pas mentionner explicitement  
+#   le nom de la classe mère (code + générique)
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### `super()` dans le constructeur
+
+# %% cell_style="split" slideshow={"slide_type": ""}
+# illustration de super() 
+# dans le constructeur
+
+class C:
+    def __init__(self, x):
+        print("init x par superclasse")
+        self.x = x
+
+class D(C):
+    def __init__(self, x, y):
+        # initialiser : la classe C
+        super().__init__(x)
+        print("init y par classe")
+        self.y = y
+
+
+# %% cell_style="split"
+c = C(10)
+
+# %% cell_style="split"
+d = D(100, 200)
 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
+# ### `super()` dans une méthode standard
+
+# %% cell_style="split" slideshow={"slide_type": ""}
+# super() est souvent rencontrée
+# dans __init__ mais s'applique
+# partout
+class C:
+    def f(self):
+        print('f dans C')
+
+
+# %% cell_style="split" slideshow={"slide_type": ""}
+class D(C):
+    def f(self):
+        # remarquez l'absence
+        # de self !
+        super().f()
+        print('f dans D')
+
+
+# %% cell_style="split"
+c = C(); c.f()
+
+# %% cell_style="split"
+d = D(); d.f()
+
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## résumé
+#
+# * les instances et classes sont des objets mutables (sauf classes *builtin*)
+# * on utilise `isinstance()` pour tester le type d'un objet
+# * chaque instance et chaque classe est un espace de nom
+# * lorsqu'on écrit un attribut, on écrit directement dans l'espace de nom de cet objet
+# * en lecture, on résoud la référence d'un attribut de bas en haut
+# * une méthode peut faire référence à la super-classe avec `super()`
+# * en général
+#   * les classes ont des attributs de type méthode
+#   * les objets ont des attributs de type donnée
+#   * mais le modèle est flexible
+
+# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
+# ## anx1: MRO & graphe d’héritage
+
+# %% [markdown] slideshow={"slide_type": ""} tags=["level_intermediate"]
 # ### graphe d'héritage
 #
 # * on peut donc construire un graphe d’héritage
 # * allant des super-classes aux instances
 
-# %% [markdown] cell_style="split"
+# %% [markdown] cell_style="split" tags=["level_intermediate"]
 # ![arbre de classes](media/classes.png)
 
-# %% cell_style="split"
+# %% cell_style="split" tags=["level_intermediate"]
 class C1:
     pass
 class C2:
@@ -514,7 +577,7 @@ o2 = C()
 
 
 # %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
-# ### recherche dans l’arbre d’héritage
+# ### MRO: *method resolution order*
 
 # %% [markdown] tags=["level_intermediate"]
 # * MRO : method resolution order
@@ -539,40 +602,10 @@ class D(B, C): pass
 # * parcours DFLR: `D`, `B`, `A`, `object`, `C`, `A`, `object`
 # * suppressions : `D`, `B`, ~~`A`~~, ~~`object`~~, `C`, `A`, `object`
 
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## `isinstance()` et `issubclass()`
+# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
+# ## anx2: attributs de classe
 
-# %% [markdown]
-# * `isinstance(x, class1)` retourne `True` si `x` est une instance de `class1` ou d’une super classe
-# * `issubclass(class1, class2)` retourne `True` si `class1` est une sous-classe de `class2`
-# * ces fonctions *builtin* sont à privilégier par rapport à l'utilisation de `type()`
-
-# %% cell_style="split"
-# A est la superclasse de B
-a, b = A(), B()
-
-# %% cell_style="split" slideshow={"slide_type": ""}
-isinstance(a, A), isinstance(b, B)
-
-# %% cell_style="split"
-# bien sûr NON
-isinstance(a, B)
-
-# %% cell_style="split"
-# OUI, et NON
-isinstance(b, A), type(b) is A
-
-# %% cell_style="split"
-issubclass(B, A)
-
-# %% cell_style="split"
-isinstance(B, A)
-
-
-# %% [markdown] tags=[] slideshow={"slide_type": "slide"}
-# ## attributs de classe
-
-# %% [markdown]
+# %% [markdown] tags=["level_intermediate"]
 # dans (l'espace de nom d')une classe, on peut mettre 
 #
 # * des méthodes (on le savait) 
@@ -585,7 +618,7 @@ isinstance(B, A)
 #
 # voyons cela sur un exemple
 
-# %% cell_style="split" slideshow={"slide_type": "slide"} tags=[]
+# %% cell_style="split" slideshow={"slide_type": "slide"} tags=["level_intermediate"]
 class Factory:
     # un compteur global à la classe
     # dans lequel on va pouvoir mémoriser 
@@ -597,124 +630,18 @@ class Factory:
         Factory.all_labels.append(label)
         # on aurait pu écrire
         # self.all_labels.append(label)
-        # mais c'est dangereux (voir suite)
-
+        # mais c'est dangereux !
 
 Factory.all_labels
 
-# %% cell_style="split" slideshow={"slide_type": ""} tags=[]
+# %% cell_style="split" slideshow={"slide_type": ""} tags=["level_intermediate"]
 f1 = Factory('premier')
 Factory.all_labels
 
-# %% cell_style="split" slideshow={"slide_type": ""} tags=[]
+# %% cell_style="split" slideshow={"slide_type": ""} tags=["level_intermediate"]
 f2 = Factory('second')
 Factory.all_labels
 
-# %%
+# %% tags=["level_intermediate"]
 # on trouve le même objet quel que soit l'endroit d'où on part
 f1.all_labels is f2.all_labels is Factory.all_labels
-
-
-# %% cell_style="center" slideshow={"slide_type": "slide"} tags=["level_advanced"]
-# %%ipythontutor width=1000 height=400
-class Factory:
-    all_labels = []
-    def __init__(self, label):
-        self.label = label
-        # ça marche aussi, mais ATTENTION
-        self.all_labels.append(label)
-f1 = Factory('premier')
-f2 = Factory('second')
-
-
-# %% slideshow={"slide_type": "slide"} tags=["level_advanced"]
-# %%ipythontutor width=1000 height=400 curInstr=1
-class Factory:
-    all_labels = []
-
-    def __init__(self, label):
-        self.label = label
-        # cette forme ne fonctionne pas comme attendu
-        # parce que à droite d'une affectation
-        self.all_labels = self.all_labels + [label]
-
-f1 = Factory('premier')
-f2 = Factory('second')
-
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## `super()`
-
-# %% [markdown]
-# * utile lorsque la spécialisation  
-#   consiste à ajouter ou modifier  
-#   par rapport à la classe mère
-#
-# * le cas typique est d'ailleurs le constructeur  
-#   dès qu'on ajoute un attribut de donnée
-#
-# * permet de ne pas mentionner explicitement
-#   le nom de la classe mère (code + générique)
-
-# %% cell_style="split" slideshow={"slide_type": "slide"}
-# illustration de super() 
-# dans le constructeur
-
-class C:
-    def __init__(self, x):
-        print("init x par superclasse")
-        self.x = x
-
-class D(C):
-
-    def __init__(self, x, y):
-        # initialiser : la classe C
-        super().__init__(x)
-        print("init y par classe")
-        self.y = y
-
-
-# %% cell_style="split"
-c = C(10)
-
-# %% cell_style="split"
-d = D(100, 200)
-
-
-# %% cell_style="split" slideshow={"slide_type": "slide"}
-# super() est souvent rencontrée
-# dans __init__ mais s'applique
-# partout
-class C:
-    def f(self):
-        print('spam')
-
-
-# %% cell_style="split" slideshow={"slide_type": ""}
-class D(C):
-    def f(self):
-        # remarquez l'absence
-        # de self !
-        super().f()
-        print('beans')
-
-
-# %% cell_style="split"
-c = C(); c.f()
-
-# %% cell_style="split"
-d = D(); d.f()
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## résumé
-#
-# * les instances et classes sont des objets mutables (sauf classes *builtin*)
-# * on utilise `isinstance()` pour tester le type d'un objet
-# * chaque instance et chaque classe est un espace de nom
-# * lorsqu'on écrit un attribut, on écrit directement dans l'espace de nom de cet objet
-# * en lecture, on résoud la référence d'un attribut de bas en haut
-# * en général
-#   * les classes ont des attributs de type méthode
-#   * les objets ont des attributs de type donnée
-#   * mais le modèle est flexible
-# * une méthode peut faire référence à la super-classe avec `super()`

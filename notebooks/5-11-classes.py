@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -38,13 +38,16 @@
 # </div>
 
 # %% [markdown] slideshow={"slide_type": ""}
-# # classes : rappels (1)
+# # classes : exemples
 
 # %% [markdown] slideshow={"slide_type": ""}
 # les classes servent à définir **de nouveau types**  
 #
 # * en sus des types prédéfinis `str`, `list`, `set`, `dict`, ...
 # * plus adaptés à l'application
+#
+# <div class="note">cette section contient surtout des rappels    
+# </div>    
 
 # %% [markdown] cell_style="center" slideshow={"slide_type": "slide"}
 # ## `class` 
@@ -53,20 +56,12 @@
 # * une classe définit des **méthodes spéciales**  
 #   ici **`__init__`** et **`__repr__`**
 
-# %% cell_style="split"
-class User:
-
-    # le constructeur
-    def __init__(self, name, age):
-        # un objet User a deux attributs
-        # name et age
-        self.name = name
-        self.age = age
+         # %% cell_style="split"
+         self.age = age
 
     # l'afficheur
     def __repr__(self):
         return f"{self.name}, {self.age} ans"
-
 
 # %% cell_style="split"
 # une fois qu'on a défini une classe, 
@@ -88,13 +83,19 @@ user1
 #   * rangées dans des **attributs** de l'objet
 #   * ici `name` et `age`
 
-# %% [markdown] slideshow={"slide_type": "slide"}
+# %% [markdown] slideshow={"slide_type": "slide"} cell_style="split"
 # ## affichage
 #
 # * la méthode spéciale `__repr__(self)` doit renvoyer une chaine  
 # * elle est utilisée pour
 #   * imprimer l'objet avec `print()`
 #   * convertir un objet en chaine
+
+# %% [markdown] cell_style="split"
+# sans quoi on obtient ceci
+#
+# <img src="media/class-without-repr.png"
+#      width=500px>
 
 # %% cell_style="center"
 print(f"je viens de voir {user1}")
@@ -112,7 +113,9 @@ str(user1)
 # * `__repr__(self)` et
 # * `__str__(self)` 
 #
-# cela dit pour commencer on peut se contenter de ne définir que `__repr__()` qui est alors utilisée pour tous les usages
+# cela dit, pour commencer on peut se contenter  
+# de définir seulement `__repr__()`   
+# qui est alors utilisée pour tous les usages
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## méthodes
@@ -129,16 +132,16 @@ str(user1)
 class Stack:
     
     def __init__(self):
-        self.frames = [] 
+        self._frames = [] 
         
     def __repr__(self):
-        return " > ".join(self.frames)            
+        return " > ".join(self._frames)            
     
     def push(self, item):
-        self.frames.append(item)
+        self._frames.append(item)
         
     def pop(self):
-        return self.frames.pop()
+        return self._frames.pop()
 
 
 # %% cell_style="split"
@@ -159,15 +162,16 @@ stack
 
 # %% [markdown] cell_style="center" slideshow={"slide_type": "slide"}
 # ## méthodes et paramètres
-#
+
+# %% [markdown] cell_style="center" slideshow={"slide_type": ""}
 # remarquez qu'ici 
 #
-# * on a défini la méthode `push` avec **2** paramètres  
+# * on a **défini** la méthode `push` avec **2 paramètres**  
 # ```
 # def push(self, item):
 # ```
 #
-# * ce qui fait qu'on peut l'appeler sur un objet avec **1** paramètre 
+# * ce qui fait qu'on peut l'**appeler** sur un objet avec **1 paramètre** 
 # ```
 # stack.push(some_item)
 # ```
@@ -201,6 +205,29 @@ stack
 #   * `if obj:`
 #   * `for item in obj:`
 #   * ...
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## méthodes et encapsulation
+
+# %% [markdown]
+# avec la `Stack`, on est censé utiliser **seulement** `stack.push()` et `stack.pop()`  
+# et **pas directement** `stack._frames` (d'où le `_` au début de l'attribut)
+#
+# cette technique permet de séparer :
+# * l'**interface** (ici `push()` et `pop()`)
+# * de l'**implémentation** (ici une liste pour `_frames`)
+#
+# de façon à pouvoir changer l'implémentation **sans changer l'interface**  
+# et ainsi e.g. améliorer le comportement **sans changer le code utilisateur**
+
+# %% [markdown]
+# <div class=note>
+#
+# cette séparation n'est pas toujours sous-titrée de manière explicite   
+# comme ici où nous avons mis un `_` au début du nom de l'attribut  
+# il faut parfois faire appel à son bon sens
+#
+# </div>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## exemples
@@ -243,7 +270,7 @@ a.distance(b)
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### exemple : `class Circle` (1)
 
-# %% slideshow={"slide_type": ""} tags=[]
+# %% slideshow={"slide_type": ""}
 class Circle1:
 
     def __init__(self, center: Point, radius: float):
@@ -269,7 +296,7 @@ c1.contains(a)
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### exemple : `class Circle` (2)
 
-# %% slideshow={"slide_type": ""} tags=[]
+# %% slideshow={"slide_type": ""}
 class Circle2:
 
     def __init__(self, center: Point, radius: float):
@@ -297,11 +324,6 @@ a in c2
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### exemple : `class datetime.date` etc..
-#
-# * bien sûr il y a des classes dans la bibliothèque standard
-# * voyez par exemple [le module `datetime`](https://docs.python.org/3/library/datetime.html)
-# * et notamment `datetime.date` (une date)  
-#   et `datetime.timedelta` (une durée)
 
 # %% [markdown]
 # * bien sûr il y a des classes dans la bibliothèque standard
@@ -328,8 +350,9 @@ three_weeks = 3 * TimeDelta(weeks=1)
 today - three_weeks
 
 
-# %% tags=[]
-def timedelta_as_year_month(age):
+# %%
+# pour afficher une durée avec un format qui nous convient
+def timedelta_as_year_month(age) -> str:
     """
     convert a duration in years and months (as a str)
     """
@@ -340,33 +363,36 @@ def timedelta_as_year_month(age):
     return f"{years} ans, {months} mois"
 
 
+# %% [markdown] tags=["level_advanced"]
+# <div class=note>
+#
+# en pratique on irait même jusqu'à spécialiser `TimeDelta`  
+# de façon à redéfinir son `repr()` avec ce format `year+month`  
+# toutefois c'est un peu scabreux à faire...
+#    
+#     
+# </div>    
+
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### exemple : `class Student`
 
-# %% tags=[]
+# %%
 class Student:
     
     def __init__(self, first_name, last_name, 
                  birth_year, birth_month, birth_day):
         self.first_name = first_name
         self.last_name = last_name
-        self.birth_year = birth_year
-        self.birth_month = birth_month
-        self.birth_day = birth_day
+        self.birth_date = Date(birth_year, birth_month, birth_day)
         
     def __repr__(self):
         return f"{self.first_name} {self.last_name}"
     
-    def age(self):
-        """
-        retourne un TimeDelta
-        """
-        birth = Date(self.birth_year, self.birth_month, self.birth_day)
-        now = Date.today()
-        # la différence entre 2 Dates c'est une 
-        return now - birth
+    def age(self) -> TimeDelta:
+        # the différence between 2 Dates is a TimeDelta
+        return Date.today() - self.birth_date
     
-    def repr_age(self):
+    def repr_age(self) -> str:
         return timedelta_as_year_month(self.age())
 
 
@@ -445,21 +471,25 @@ timedelta_as_year_month(cls.average_age())
 #
 # * avec `class` on peut définir un **nouveau type** 
 #   * qui nous permet de **créer des objets**
-#   * qui représentent mieux que les types de base les données de notre application
+#   * qui représentent, mieux que les types de base,  
+#     les données de notre application
 #   
 # * pas de différence entre un type prédéfini et une classe :  
 #   un objet créé par une classe s'utilise *normalement*
 #   * une variable peut désigner un objet
 #   * un objet peut être dans une liste (ou autre type) *builtin*  
-#     (attention pour les clés de `dict` qui doivent être immutables)
+#     (attention pour les clés de `dict` qui doivent être hashables)
 #   * ou passé en paramètre à une fonction,
 #   * etc, etc...
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### résumé (2/2)
 #   
-# * une classe peut définir des **méthodes**
+# * généralement une instance contient  
+#   des données rangées dans des **attributs**
+# * une classe peut définir aussi des **méthodes**
 #   * qui travaillent sur un objet (souvent appelé `self`)
 #   * souvent on ne modifie les objets  
 #     qu'au travers des méthodes fournies par la classe
 #   * ce qui permet de garantir certains invariants
+#
