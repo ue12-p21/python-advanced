@@ -32,23 +32,25 @@ tracks:
     - tps/graphs/README-graphs.py
     - notebooks/4-11-iterations-1.py
     - notebooks/4-90-exos.py
-#  - name: "5/9: it\xE9rations et classes"
+  - name: "5/9: it\xE9rations et classes (1)"
+    notebooks:
+    - notebooks/5-00-intro.py
+    - notebooks/4-90-exos.py
+    - notebooks/4-12-iterations-2.py
+    - notebooks/4-91-exos2.py
+    - notebooks/5-11-classes.py
+    - notebooks/5-12-dunder-specials.py
+    - tps/students/README-students.py
+#  - name: "6/9: classes (2)"
 #    notebooks:
-#    - notebooks/5-00-intro.py
-#    - notebooks/4-90-exos.py
-#    - notebooks/4-12-iterations-2.py
-#    - notebooks/4-91-exos2.py
-#    - notebooks/5-11-classes.py
-#    - notebooks/5-12-dunder-specials.py
-#    - tps/students/README-students.py
 #    - notebooks/5-13-inheritance.py
 #    - tps/auctions/README-auctions.py
 #    - notebooks/5-90-exos.py
-#  - name: '6/9: fonctions'
+#  - name: '7/9: fonctions'
 #    notebooks:
 #    - notebooks/6-00-intro.py
 #    - notebooks/6-90-exos.py
-#  - name: '7/9: approfondissements'
+#  - name: '8/9: approfondissements'
 #    notebooks:
 #    - notebooks/7-00-intro.py
 #    - notebooks/6-90-exos.py
@@ -57,8 +59,6 @@ tracks:
 #    - notebooks/7-20-generators.py
 #    - notebooks/7-21-exos-generators.py
 #    - tps/queens/README-queens.py
-#  - name: '8/9: imports & organisation du code'
-#    notebooks:
 #    - notebooks/8-00-intro.py
 #    - notebooks/8-20-eval-addendum.py
 #  - name: "9/9: \xE9pilogue"
