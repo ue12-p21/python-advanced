@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -85,7 +85,8 @@
 # ajouter un test de filtre:
 #
 # ```python
-# [expr(x) for x in iterable if condition(x)]
+# [expr(x) for x in iterable 
+#      if condition(x)]
 # ```
 
 # %% [markdown] cell_style="split"
@@ -101,6 +102,9 @@
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # #### compréhensions de liste - exemple 1
+
+# %% [markdown]
+# sans filtre
 
 # %% cell_style="split"
 # la liste des carrés 
@@ -120,6 +124,9 @@ result
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # #### compréhensions de liste - exemple 2
+
+# %% [markdown]
+# avec filtre
 
 # %% cell_style="split"
 # la liste des cubes
@@ -155,7 +162,7 @@ result
 # #### compréhensions imbriquées - exemple
 
 # %% [markdown] cell_style="center"
-# l'ordre dans lequel se lisent les compréhensions imbriquées:
+# l'ordre dans lequel se lisent les compréhensions imbriquées:  
 # il faut imaginer des for imbriqués **dans le même ordre**
 
 # %% cell_style="split"
@@ -189,8 +196,7 @@ L
     if x % 2 == 0}
 
 # %% cell_style="split"
-# ATTENTION, rappelez-vous
-# que {} est un dict !
+# rappelez-vous que {} est un dict
 result = set()
 
 for x in range(-6, 7):
@@ -221,9 +227,9 @@ result
 # %% [markdown]
 # un idiome classique :
 #
-# * on a une liste d'éléments (beaucoup, genre $10^6$)
-# * on veut pouvoir accéder **en temps constant** à un élément  
-#   à partir d'un id
+# * on a une liste d'éléments - beaucoup, genre $10^6$
+# * on veut pouvoir accéder **en temps constant**  
+#   à un élément à partir d'un id
 # * solution: créer un dictionnaire - qu'on appelle un *index*  
 #   (comme dans les bases de données)
 
@@ -275,7 +281,7 @@ data = [0, 1]
 # %% cell_style="split"
 # compréhension
 
-C = [x**2+y**2 for x in data for y in data]
+C = [x+10*y for x in data for y in data]
 
 for y in C:
     print(y)
@@ -283,7 +289,7 @@ for y in C:
 # %% cell_style="split"
 # genexpr
 
-G = (x**2+y**2 for x in data for y in data)
+G = (x+10*y for x in data for y in data)
 
 for y in G:
     print(y)
@@ -292,22 +298,23 @@ for y in G:
 # ### les genexprs sont des itérateurs
 
 # %% [markdown]
-# * les objets construits avec une expression génératrice sont de type `generator`
-# * en particulier ce sont des itérateurs
+# * même "contenu" que la compréhension
+# * mais pas la même implémentation: les genexps sont de  
+#   type `generator` (en particulier ce sont des **itérateurs**)
 
 # %% cell_style="split"
 # compréhension
 
 C = [x**2 for x in range(4)]
 
-C
+type(C), C
 
 # %% cell_style="split"
 # genexpr
 
 G = (x**2 for x in range(4))
 
-G
+type(G), G
 
 # %% cell_style="split"
 # une compréhension est une vraie liste
@@ -344,8 +351,6 @@ sys.getsizeof(G2)
 #
 # * qui souvent revient à remplacer `[]` par `()`  
 #   (ou même juste enlever les `[]`)
-#
-# * exemple...
 
 # %% [markdown] cell_style="split" slideshow={"slide_type": "slide"}
 # apprenez à bien choisir entre  
@@ -381,4 +386,7 @@ sum((notes_eleve['maths'] for notes_eleve in notes_classe)) / len(notes_classe)
 sum(notes_eleve['maths'] for notes_eleve in notes_classe) / len(notes_classe)
 
 # %% [markdown] slideshow={"slide_type": "slide"} tags=["level_advanced"]
-# la partie sur les fonction génératrices a été déplacée dans le cours #7
+# # épilogue
+#
+# pour terminer le tour des concepts Python qui contribuent aux itérations,
+# il nous restera à voir la notion de **fonction génératrice** que l'on verra dans le cours #7

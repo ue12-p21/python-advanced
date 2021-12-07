@@ -88,7 +88,7 @@ len(classe)
 # %% cell_style="split"
 class Classe:
     
-    def __init__(self, students):
+    def __init__(self, students: list):
         self.students = students
         
     def __bool__(self):
@@ -214,7 +214,7 @@ classe['pierre'] is None
 # %% cell_style="split"
 class Line:
     """
-    modelling the line of equation
+    the line of equation
     y = ax + b
     """
     def __init__(self, a, b):
@@ -222,6 +222,10 @@ class Line:
         self.b = b
         
     def __call__(self, x):
+        """
+        can be used as function that
+        computes y = ax+b given x
+        """
         return self.a * x + self.b
 
 
@@ -238,13 +242,6 @@ line = Line(2, 2)
 line(1)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## pour en savoir plus
-#
-# la liste exhaustive des méthodes spéciales est donnée dans la documentation officielle ici
-#
-# https://docs.python.org/3/reference/datamodel.html#special-method-names
-
-# %% [markdown] slideshow={"slide_type": "slide"}
 # ## résumé
 #   
 # une classe peut définir des **méthodes spéciales**
@@ -254,3 +251,11 @@ line(1)
 # * optionnellement d'autres pour donner du sens à  
 #   des constructions du langage sur ces objets
 # * ces méthodes ont toutes un nom en `__truc__` (*dunder methods*)
+
+# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
+# ## pour en savoir plus
+#
+# la (longue) liste exhaustive des méthodes spéciales  
+# est donnée dans la documentation officielle ici
+#
+# https://docs.python.org/3/reference/datamodel.html#special-method-names

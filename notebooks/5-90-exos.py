@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -29,7 +29,7 @@
 #   version: '1.0'
 # ---
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # <div class="licence">
 # <span>Licence CC BY-NC-ND</span>
 # <span>Thierry Parmentelat</span>
@@ -39,14 +39,14 @@
 # %% [markdown]
 # # exercices sur les classes
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## les quaternions
 #
 # auto-corrigé sur nbhosting
 #
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x8-quaternion
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## une classe de polynômes
 #
 # auto-corrigé sur nbhosting

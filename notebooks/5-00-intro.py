@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -32,7 +32,7 @@
 # %% [markdown]
 # # Cours 5/9
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## objectifs
 #
 # le programme pour aujourd'hui

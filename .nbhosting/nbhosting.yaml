@@ -39,13 +39,13 @@ tracks:
     - notebooks/4-12-iterations-2.py
     - notebooks/4-91-exos2.py
     - notebooks/5-11-classes.py
-    - notebooks/5-12-dunder-specials.py
     - tps/students/README-students.py
+    - notebooks/5-12-dunder-specials.py
+    - notebooks/5-90-exos.py
 #  - name: "6/9: classes (2)"
 #    notebooks:
 #    - notebooks/5-13-inheritance.py
 #    - tps/auctions/README-auctions.py
-#    - notebooks/5-90-exos.py
 #  - name: '7/9: fonctions'
 #    notebooks:
 #    - notebooks/6-00-intro.py

@@ -56,8 +56,15 @@
 # * une classe définit des **méthodes spéciales**  
 #   ici **`__init__`** et **`__repr__`**
 
-         # %% cell_style="split"
-         self.age = age
+# %% cell_style="split"
+class User:
+
+    # le constructeur
+    def __init__(self, name, age):
+        # un objet User a deux attributs
+        # name et age
+        self.name = name
+        self.age = age
 
     # l'afficheur
     def __repr__(self):
@@ -190,14 +197,15 @@ stack
 # * définir vos propres types de données
 # * grouper les données qui vont ensemble dans un  
 #   objet unique, facile à passer à d'autres fonctions
-# * invariants: garantir de bonnes propriétés 
+# * **invariants**: garantir de bonnes propriétés  
 #   si on utilise les objets au travers des méthodes 
+
+# %% [markdown]
+# <div class="note">et aussi (sera vu ultérieurement) :</div>
+
+# %% [markdown] cell_style="split"
+# <div class="note">
 #
-# et aussi (sera vu ultérieurement)
-#
-# * héritage 
-#   * réutiliser une classe en modifiant  
-#     seulement quelques aspects
 # * intégrer les objets dans le langage  
 #   i.e. donner un sens à des constructions comme  
 #   * `x in obj`
@@ -205,6 +213,17 @@ stack
 #   * `if obj:`
 #   * `for item in obj:`
 #   * ...
+#     
+#  </div>
+
+# %% [markdown] cell_style="split"
+# <div class="note">
+#    
+# * héritage 
+#   * réutiliser une classe en modifiant  
+#     seulement quelques aspects
+#     
+# </div>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## méthodes et encapsulation
@@ -230,7 +249,7 @@ stack
 # </div>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## exemples
+# ## exemples de classes
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### exemple : `np.ndarray`
@@ -278,7 +297,7 @@ class Circle1:
         self.radius = radius
         
     def __repr__(self):
-        return f"[{self.center} ⟷ {self.radius:.2f}]"
+        return f"[Circle: {self.center} ⟷ {self.radius:.2f}]"
     
     def contains(self, point: Point):
         """
@@ -288,8 +307,11 @@ class Circle1:
         return math.isclose(self.center.distance(point), self.radius)
 
 
-# %%
+# %% cell_style="split"
 c1 = Circle1(Point(0, 0), 5)
+c1
+
+# %% cell_style="split"
 c1.contains(a)
 
 
@@ -352,7 +374,7 @@ today - three_weeks
 
 # %%
 # pour afficher une durée avec un format qui nous convient
-def timedelta_as_year_month(age) -> str:
+def timedelta_as_year_month(age: TimeDelta) -> str:
     """
     convert a duration in years and months (as a str)
     """

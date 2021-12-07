@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -52,15 +52,3 @@
 # sur codewars (5-kyu)
 #
 # https://www.codewars.com/kata/523a86aa4230ebb5420001e1/train/python
-
-# %% [markdown] tags=["level_intermediate"]
-# ## générateurs de nombres premiers
-#
-# auto-corrigé sur nbhosting
-#
-# https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x4-primes
-
-# %% [markdown] tags=["level_advanced"]
-# ## un générateur pour parcourir un arbre
-#
-# https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x6-treescanner
