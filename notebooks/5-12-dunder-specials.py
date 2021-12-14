@@ -20,7 +20,7 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: classes et objets
+#     title: dunder methods
 #   rise:
 #     autolaunch: true
 #     slideNumber: c/t

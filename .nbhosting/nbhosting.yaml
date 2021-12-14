@@ -40,14 +40,16 @@ tracks:
     - notebooks/4-91-exos2.py
     - notebooks/5-11-classes.py
     - tps/students/README-students.py
-    - notebooks/5-12-dunder-specials.py
-    - notebooks/5-90-exos.py
   - name: "6/9: classes (2)"
     notebooks:
+    - notebooks/5-01-intro.py
+    - notebooks/5-12-dunder-specials.py
     - notebooks/5-13-inheritance.py
+    - notebooks/5-14-class-attributes.py
     - tps/auctions/README-auctions.py
     - tps/boids/README-boids.md
-    - tps/expressions-lang/README-explang.py
+    - notebooks/5-90-exos.py
+#    - tps/expressions-lang/README-explang.py
 #  - name: '7/9: fonctions'
 #    notebooks:
 #    - notebooks/6-00-intro.py
