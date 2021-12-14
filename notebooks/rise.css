@@ -28,3 +28,9 @@ body.rise-enabled .reveal ol, body.rise-enabled .reveal dl, body.rise-enabled .r
     font-size: 75%;
     font-style: italic;
 }
+
+.micro-note {
+    margin-top: 15px;
+    font-size: 50%;
+    font-style: italic;
+}    
