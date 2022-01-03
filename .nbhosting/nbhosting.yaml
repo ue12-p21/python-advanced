@@ -44,12 +44,14 @@ tracks:
     notebooks:
     - notebooks/5-01-intro.py
     - notebooks/5-12-dunder-specials.py
+    - notebooks/5-90-exos.py
+  - name: "7/9 classes (3)"
+    notebooks:
     - notebooks/5-13-inheritance.py
     - notebooks/5-14-class-attributes.py
-    - tps/auctions/README-auctions.py
     - tps/boids/README-boids.md
-    - notebooks/5-90-exos.py
-#    - tps/expressions-lang/README-explang.py
+    - tps/auctions/README-auctions.py
+    - tps/expressions-lang/README-explang.py
 #  - name: '7/9: fonctions'
 #    notebooks:
 #    - notebooks/6-00-intro.py
