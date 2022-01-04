@@ -70,7 +70,11 @@ s = Student('jean')
 print(f"after step 1 we have {len(Student.all_students)} students")
 
 # %% cell_style="center"
-# et comme on le voit on peut ainsi agréger des choses relatives
+# est-ce que ceci va fonctionner aussi ?
+print(f"after step 1 we have {len(s.all_students)} students")
+
+# %% cell_style="center"
+# du coup on peut comme cela agréger des choses relatives
 # à tous les objets de la classe
 s = Student('pierre')
 print(f"after step 1 we have {len(Student.all_students)} students")

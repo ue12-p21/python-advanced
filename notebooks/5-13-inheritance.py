@@ -99,7 +99,6 @@
 
 # %% [markdown]
 # * tous les objets qui sont
-#   * un package
 #   * un module
 #   * une classe
 #   * une instance (sauf des classes *builtin*)
@@ -116,7 +115,7 @@
 # * les espaces de nom sont imbriqués (*nested*)
 #   * ex. `package.module.classe.methode`
 # * on peut accéder à tous les objets
-#   * dès qu'on sait le faire partir d'une variable
+#   * dès qu'on sait le faire à partir d'une variable
 #   * par exemple un module importé
 # * l'héritage rend cela dynamique
 #   * i.e. la résolution des attributs **est faite à *runtime***
@@ -137,19 +136,16 @@
 # * apprenez à bien lire
 
 # %% [markdown]
-# typiquement dans une expression comme `a.b.c.d`
+# typiquement dans une expression comme `a.b.c`
 
 # %% [markdown] cell_style="split"
 # * `a` est une **variable**
 
 # %% [markdown] cell_style="split"
-# * `b`, `c` et `d` sont des **attributs**
+# * `b`, et `c` sont des **attributs**
 
-# %% [markdown] slideshow={"slide_type": "slide"}
-# #### variables statiques / attributs dynamiques
-
-# %% [markdown] cell_style="split" slideshow={"slide_type": ""}
-# ##### résolution des **variables**
+# %% [markdown] cell_style="split" slideshow={"slide_type": "slide"}
+# ##### résolution des **variables** : statique
 #
 # * entièrement **lexical**
 # * en remontant dans le code
@@ -157,7 +153,7 @@
 #   local, englobant, global, *builtin*
 
 # %% [markdown] cell_style="split" slideshow={"slide_type": ""}
-# ##### résolution des **attributs**
+# ##### résolution des **attributs** : dynamique
 #
 # * dans le monde des **objets**
 # * en remontant les espaces de nom
@@ -165,13 +161,13 @@
 #   *i.e.* à *runtime*
 
 # %% [markdown] cell_style="center" slideshow={"slide_type": ""}
-# *par ex* dans `a.b.c.d`
+# *par ex* dans `a.b.c`
 #
 # * la variable `a` est identifiée lexicalement  
 #   (variable locale, paramètre de fonction,  
 #    voir par exemple le cas des clôtures)
-# * la variable référence un objet
-# * `b` est cherché comme un attribut à partir de cet objet
+# * la variable référence un objet  
+#   et `b` est cherché comme un attribut à partir de cet objet
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## résolution d'attribut pour la lecture
@@ -312,7 +308,7 @@ list(vector.__dict__)
 #
 # dans ce cas simple de la classe `Vector` et de l'instance `vector`:
 # * `vector.x` fait référence à l'attribut posé **directement sur l'instance**
-# * `vector.length` fit référence à la méthode qui est **dans la classe**
+# * `vector.length` fait référence à la méthode qui est **dans la classe**
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## ex2. résolution d'attribut avec héritage
@@ -383,6 +379,7 @@ subvector.foo = 12
 
 'foo' in subvector.__dict__
 
+
 # %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
 # ### lecture *vs* écriture - cas limites
 
@@ -441,18 +438,28 @@ subvector.foo = 12
 # ## `isinstance()` et `issubclass()`
 
 # %% [markdown]
-# * `isinstance(x, class1)` retourne `True` si `x` est une instance de `class1` **ou d’une super classe**
-# * `issubclass(class1, class2)` retourne `True` si `class1` est une sous-classe de `class2`
+# * `isinstance(x, class1)` retourne `True` si   
+#   `x` est une instance de `class1` **ou d’une super classe**
+# * `issubclass(class1, class2)` retourne `True` si  
+#   `class1` est une sous-classe de `class2`
 
 # %% cell_style="split"
-# A est la superclasse de B
+# A est la super-classe
+class A:
+    pass
+
+
+class B(A):
+    pass
+
+
 a, b = A(), B()
 
 # %% cell_style="split" slideshow={"slide_type": ""}
 isinstance(a, A), issubclass(B, A)
 
 # %% cell_style="split"
-isinstance(a, B)
+isinstance(b, A), isinstance(a, B)
 
 # %% cell_style="split"
 # accepte plusieurs types/classes
