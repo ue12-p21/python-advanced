@@ -52,10 +52,10 @@ tracks:
     - tps/boids/README-boids.md
     - tps/auctions/README-auctions.py
     - tps/expressions-lang/README-explang.py
-#  - name: '7/9: fonctions'
-#    notebooks:
-#    - notebooks/6-00-intro.py
-#    - notebooks/6-90-exos.py
+  - name: '8/9: fonctions'
+    notebooks:
+    - notebooks/6-00-intro.py
+    - notebooks/6-90-exos.py
 #  - name: '8/9: approfondissements'
 #    notebooks:
 #    - notebooks/7-00-intro.py

@@ -19,7 +19,7 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: intro cours 6/9
+#     title: intro cours 8/9
 #   rise:
 #     autolaunch: true
 #     slideNumber: c/t
@@ -30,16 +30,12 @@
 # ---
 
 # %% [markdown]
-# # cours 6/9 : fonctions
+# # cours 8/9 : fonctions
 
 # %% [markdown] tags=[]
 # ## objectifs
 #
 # le programme pour aujourd'hui
-#
-# * corriger les exercices sur les classes
-#   * le TP sur les classes `Student` et `Class`
-#   * les exercices `Roman`, `Polynomial` et `Quaternion`
 #
 # * étudier les objets de type fonction
 #   * le passage de paramètre
@@ -79,6 +75,6 @@
 # %% [markdown]
 # ## les solutions
 #
-# comme toujours dans 
+# comme toujours dans
 #
 # https://github.com/ue12-p21/python-advanced-solutions
