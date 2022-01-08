@@ -19,7 +19,7 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: intro cours 8/9
+#     title: 'cours 8/9: les fonctions'
 #   rise:
 #     autolaunch: true
 #     slideNumber: c/t
@@ -52,10 +52,10 @@
 # %% hide_input=false
 # les vidéos sur youtube
 parts = (
-    ("le passage des arguments", "8hLlyUbXZ3U"),
-    ("les clôtures", "msoWN4wSplM"),
-    ("la syntaxe lambda", "Rsu9O1soTsA"),
-    ("les générateurs", "DqYM_XMVtKw"),
+    ("le passage des arguments", "8hLlyUbXZ3U", "12:53"),
+    ("les clôtures", "msoWN4wSplM", "5:45"),
+    ("la syntaxe lambda", "Rsu9O1soTsA", "2:32"),
+    ("les générateurs", "DqYM_XMVtKw", "7:22"),
 )
 
 # %% [markdown]
@@ -65,8 +65,8 @@ parts = (
 from IPython.display import display, HTML, IFrame
 
 def index_as_embedded():
-    for index, (title, stem) in enumerate(parts, 1):
-        display(HTML(f"<h3>{index}. {title}</h3>"))
+    for index, (title, stem, duration) in enumerate(parts, 1):
+        display(HTML(f"<h3>{index}. {title} ({duration})</h3>"))
         display(IFrame(f"https://www.youtube.com/embed/{stem}", width=800, height=450))
 
 index_as_embedded()
