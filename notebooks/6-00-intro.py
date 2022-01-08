@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -32,7 +32,7 @@
 # %% [markdown]
 # # cours 8/9 : fonctions
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## objectifs
 #
 # le programme pour aujourd'hui
@@ -44,33 +44,32 @@
 # %% [markdown]
 # ## support PDF
 #
-# une [présentation de type slides au format pdf](media/les-fonctions.pdf)
+# une [présentation en slides au format pdf](media/les-fonctions.pdf)
 
 # %% [markdown]
 # ## vidéos
-#
-# 1. une vidéo sur le passage de paramètres
-#
-# <video width="800px" controls src="media/les-arguments-des-fonctions.mp4" type="video/mp4"></video>
+
+# %% hide_input=false
+# les vidéos sur youtube
+parts = (
+    ("le passage des arguments", "8hLlyUbXZ3U"),
+    ("les clôtures", "msoWN4wSplM"),
+    ("la syntaxe lambda", "Rsu9O1soTsA"),
+    ("les générateurs", "DqYM_XMVtKw"),
+)
 
 # %% [markdown]
-# 1. [Les arguments](https://youtu.be/8hLlyUbXZ3U)
-# 1. [Les clôtures](https://youtu.be/msoWN4wSplM)
-# 1. [La syntaxe lambda](https://youtu.be/Rsu9O1soTsA)
-# 1. [Les générateurs](https://youtu.be/DqYM_XMVtKw)
-#
-# <!-- bien sûr ça marche pas car la page est une vraie page web
-#      mais même avec /embed ajouté non plus
-#      on dirait bien que YT fait tout pour qu'on ne puisse pas faire comme ça
-#
-# <video width="800px" controls src="https://youtu.be/8hLlyUbXZ3U" type="video/mp4"></video>
-#
-# <video width="800px" controls src="https://youtu.be/msoWN4wSplM" type="video/mp4"></video>
-#
-# <video width="800px" controls src="https://youtu.be/Rsu9O1soTsA" type="video/mp4"></video>
-#
-# <video width="800px" controls src="https://youtu.be/DqYM_XMVtKw" type="video/mp4"></video>
-# -->
+# ***évaluez la cellule suivante*** pour faire apparaitre le sommaire des vidéos, en 4 parties
+
+# %% hide_input=true scrolled=false
+from IPython.display import display, HTML, IFrame
+
+def index_as_embedded():
+    for index, (title, stem) in enumerate(parts, 1):
+        display(HTML(f"<h3>{index}. {title}</h3>"))
+        display(IFrame(f"https://www.youtube.com/embed/{stem}", width=800, height=450))
+
+index_as_embedded()
 
 # %% [markdown]
 # ## les solutions
