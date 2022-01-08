@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -29,7 +29,7 @@
 #   version: '1.0'
 # ---
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # <div class="licence">
 # <span>Licence CC BY-NC-ND</span>
 # <span>Thierry Parmentelat</span>
@@ -39,23 +39,30 @@
 # %% [markdown]
 # # exercices sur les fonctions
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## distance et numbers
 #
 # auto-corrigé sur nbhosting
 #
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w4/w4-s6-x1-passage-arguments
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## doubler_premier
 #
 # auto-corrigé sur nbhosting
 #
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w5/w5-s2-x2-doubler-premier
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## compare
 #
 # auto-corrigé sur nbhosting
 #
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w5/w5-s2-x3-compare
+
+# %% [markdown]
+# ## tris
+#
+# auto-corrigé sur nbhosting, surtout le dernier exercice `tri_custom`
+#
+# https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w5/w5-s2-x1-multi-tri
