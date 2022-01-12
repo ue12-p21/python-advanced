@@ -61,6 +61,13 @@ parts = (
 # %% [markdown]
 # ***évaluez la cellule suivante*** pour faire apparaitre le sommaire des vidéos, en 4 parties
 
+# %% [markdown]
+# ## en version longue
+#
+# pour plus de détails
+#
+# https://nbhosting.inria.fr/auditor/notebook/python-slides:slides/slides/4-1-functions-arguments
+
 # %% hide_input=true scrolled=false
 from IPython.display import display, HTML, IFrame
 
