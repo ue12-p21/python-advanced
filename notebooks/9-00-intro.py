@@ -34,27 +34,23 @@
 # %% [markdown] tags=[]
 # ## objectifs
 #
-# * correction des exercices et TPs du cours précédent
-#   * vente aux enchères
-#
-# * un TP sur l'héritage
-#   * langage d'expressions
-#   
-# * un cours sur 
+# * pratiquer les générateurs
+# * voir les expressions régulières
+# * un cours sur
 #   * les imports de modules et packages
 #   * les bonnes pratiques pour organiser les sources de son projet
-#   
-# * un temps de tutorat sur le sujet de l'évaluation
 #
 # * matériel optionnel
 #   * un cours sur le passage de paramètres depuis le terminal avec à `argparse`
 #   * un cours d'introduction aux *properties*
+#   * un cours sur les décorateurs
 #   * un TP récréatif sur le métro parisien
+#   * un TP sur un langage d'expressions
 
 # %% [markdown]
 # ## les solutions
 #
-# comme toujours dans 
+# comme toujours dans
 #
 # https://github.com/ue12-p21/python-advanced-solutions
 
@@ -63,4 +59,4 @@
 #
 # je vous rappelle aussi que vous avez les supports en ligne ici
 #
-# https://ue12-python-advanced.readthedocs.io/en/latest/index.html
+# https://nbhosting.inria.fr/builds/ue12-p21-python-advanced/handouts/latest/
