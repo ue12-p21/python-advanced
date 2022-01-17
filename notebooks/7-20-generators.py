@@ -99,7 +99,7 @@ for square in squares(data):
 #   des objets qui sont **tous de type `generator`**
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### expression génératrice *vs* fonction génératrice
+# ## expression génératrice *vs* fonction génératrice
 
 # %% cell_style="split"
 # ces deux objets sont équivalents
@@ -122,7 +122,7 @@ for x in gen2:
     print(x)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# #### expression génératrice *vs* fonction génératrice
+# ### expression génératrice *vs* fonction génératrice
 
 # %% [markdown]
 # * les deux formes de générateur (expression et fonction)  
@@ -146,12 +146,12 @@ type(gen2)
 #   sous la forme de variables locales
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### exercice
+# ## exercice
 #
 # implémenter un générateur qui parcourt tous les nombres premiers
 
 # %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
-# ### `yield from`
+# ## `yield from`
 
 # %% [markdown]
 # * une fonction génératrice est une fonction
@@ -194,7 +194,7 @@ for d1 in divs(n):
 # mais sous forme de fonction génératrice
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# #### `yield from`
+# ### essayons (1)
 
 # %% [markdown]
 # pour énumérer les diviseurs des diviseurs, on pourrait penser écrire
@@ -225,7 +225,7 @@ for d in divsdivs1(12):
 # * **et c'est ça qu'on retourne** de suite
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# **deuxième idée**  
+# ### essayons (deuxième idée)
 # pour énumérer les diviseurs des diviseurs, on pourrait penser écrire
 
 # %% cell_style="split"
@@ -251,9 +251,27 @@ for d in divsdivs2(12):
 # * c'est pourquoi ils se retrouvent imprimés tels quels
 
 # %% [markdown] slideshow={"slide_type": "slide"}
+# ### essayons (troisième idée)
+# pour y arriver il nous faire ceci
+#
+
+# %% cell_style="split"
+def divsdivs3(n):
+    for d in divs(n):
+        for dd in divs(d):
+            yield dd
+
+
+# %% cell_style="split"
+for d in divsdivs3(12):
+    print(d)
+
+
+# %% [markdown] slideshow={"slide_type": "slide"}
 # #### `yield from`
 
 # %% [markdown]
+# * pour rendre cela plus lisible
 # * on voit que lorsqu'une fonction génératrice en appelle une autre
 # * il y a nécessité pour une syntaxe spéciale: `yield from`
 
@@ -268,7 +286,7 @@ for div in divdivs(12):
     print(div)
 
 
-# %% [markdown] slideshow={"slide_type": "slide"}
+# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_advanced"]
 # ## itérateurs à base d'une classe
 
 # %% [markdown]

@@ -60,4 +60,4 @@
 #
 # https://nbhosting.inria.fr/auditor/notebook/exos-mooc:exos/w6/w6-s9-x6-treescanner
 #
-# pour un exemple réaliste où on a besoin de `yield from`
+# pour un exemple réaliste où on découvre l'intérêt de `yield from`
