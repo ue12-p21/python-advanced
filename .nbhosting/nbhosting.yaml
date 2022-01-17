@@ -71,7 +71,6 @@ tracks:
     - notebooks/9-11-properties.py
     - notebooks/9-12-decorators.py
     - tps/metro/README-metro.py
-    - tps/expressions-lang/README-explang.py
 # - description: "Cours du S2"
 #   id: s2
 #   name: "S2"
