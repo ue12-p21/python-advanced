@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -19,7 +19,7 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: exos regexps
+#     title: "exos g\xE9n\xE9rateurs"
 #   rise:
 #     autolaunch: true
 #     slideNumber: c/t
@@ -28,7 +28,7 @@
 #     transition: cube
 # ---
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # <div class="licence">
 # <span>Licence CC BY-NC-ND</span>
 # <span>Thierry Parmentelat</span>
@@ -38,7 +38,7 @@
 # %% [markdown]
 # # exercices sur les générateurs
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## nombres premiers
 #
 # auto-corrigé sur nbhosting
@@ -53,7 +53,7 @@
 #
 # et le dernier (prime_th_primes) si vous êtes inspiré
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## parcours d'arbre récursif
 #
 # auto-corrigé sur nbhosting

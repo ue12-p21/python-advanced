@@ -23,6 +23,7 @@ parts:
   - file: 5-11-classes
   - file: 5-12-dunder-specials
   - file: 5-13-inheritance
+  - file: 5-14-class-attributes
 - caption: "fonctions"
   chapters:
   - file: 6-00-intro
@@ -34,29 +35,31 @@ parts:
   - file: 7-20-generators
 - caption: "organisation des sources"
   chapters:
-  - file: 8-10-imports-sources
+  - file: 8-10-import-basics
+  - file: 8-11-imports-sources
 - caption: "divers"
   chapters:
   - file: 9-10-argparse
   - file: 9-11-properties
-- caption: "notebooks interactifs"
-  chapters:
-  - file: a-a1-profiling
-  - file: a-b1-linting
-  - file: a-c3-notebooks-interactifs
-  - file: a-c4-animations-matplotlib
-  - file: a-c5-bokeh-et-al
-  - file: a-c6-fourier-k3d
-  - file: a-x1-taylor
-  - file: a-x2-coronavirus
-  - file: a-x3-potentials
-- caption: "Python asynchrone"
-  chapters:
-  - file: b-01-os-basics
-  - file: b-s1-programmation-asynchrone
-  - file: b-s1-z1-thread-safety
-  - file: b-s2-examples
-  - file: b-s3-ecosysteme
-  - file: b-s4-async-with-for
-  - file: b-s6-av-event-loops
-  - file: b-s7-libraries
+  - file: 9-12-decorators
+# - caption: "notebooks interactifs"
+#   chapters:
+#   - file: a-a1-profiling
+#   - file: a-b1-linting
+#   - file: a-c3-notebooks-interactifs
+#   - file: a-c4-animations-matplotlib
+#   - file: a-c5-bokeh-et-al
+#   - file: a-c6-fourier-k3d
+#   - file: a-x1-taylor
+#   - file: a-x2-coronavirus
+#   - file: a-x3-potentials
+# - caption: "Python asynchrone"
+#   chapters:
+#   - file: b-01-os-basics
+#   - file: b-s1-programmation-asynchrone
+#   - file: b-s1-z1-thread-safety
+#   - file: b-s2-examples
+#   - file: b-s3-ecosysteme
+#   - file: b-s4-async-with-for
+#   - file: b-s6-av-event-loops
+#   - file: b-s7-libraries

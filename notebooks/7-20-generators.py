@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -268,7 +268,7 @@ for div in divdivs(12):
     print(div)
 
 
-# %% [markdown] tags=[] slideshow={"slide_type": "slide"}
+# %% [markdown] slideshow={"slide_type": "slide"}
 # ## itérateurs à base d'une classe
 
 # %% [markdown]
