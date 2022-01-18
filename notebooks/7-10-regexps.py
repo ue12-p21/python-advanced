@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -120,10 +120,14 @@ match.end()
 # %% cell_style="center"
 # match répond non car seulement LE DÉBUT de la chaine est essayé
 
-re.match('abzz', 'ababzzz')
+re.match('abzz', 'ababzzz'))
 
 # %% cell_style="center"
-re.search('abzz', 'ababzzz')
+# un use case pour le "walrus operator"
+# i.e. une affectation mais qui est aussi une expression
+
+if (match := re.search('abzz', 'ababzzz')):
+    print(f"{match.start()=}, {match.end()=}")
 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -236,7 +240,7 @@ match_all('(ab)*', ['', 'ab', 'abab'])
 match_all('[a-z]+', ['', 'cba', 'xyz9'])
 
 # %% cell_style="split"
-match_all('(ab)+', ['', 'ab', 'abab'])
+match_all('(ab)+', ['', 'ab', 'abab', 'ababba9'])
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### concaténation
@@ -265,8 +269,7 @@ pattern = "([a-z]+)=([a-z0-9]+)"
 
 string = "foo=barbar99"
 
-match = re.match(pattern, string)
-match
+(match := re.match(pattern, string))
 
 # %% cell_style="split"
 # dans l'ordre où ils apparaissent
@@ -282,9 +285,11 @@ match.groups()
 match_all('ab|cd', ['ab', 'cd', 'abcd'])
 
 # %% cell_style="split"
+# si besoin, mettez des parenthèses
 match_all('ab|cd*', ['ab', 'c', 'cd', 'cdd'])
 
 # %% cell_style="split"
+# comme ceci par exemple
 match_all('ab|(cd)*', ['ab', 'c', 'cd', 'cdd'])
 
 # %% cell_style="split"
@@ -301,11 +306,15 @@ match_all('[a-z]?', ['', 'b', 'xy'])
 
 # %% [markdown]
 # * `a{3}` : exactement 3 occurrences de `a`
+# * `a{3,6}` : entre 3 et 6 occurrences (inclusivement)
 # * `a{3,}` : au moins 3 occurrences
-# * `a{3,6}` : entre 3 et 6 occurrences
+# * `a{,3}` : au plus 3 occurrences
 
 # %% cell_style="center"
 match_all('(ab){1,3}', ['', 'ab', 'abab', 'ababab', 'ababababababab'])
+
+# %% cell_style="center"
+match_all('(ab){,3}', ['', 'ab', 'abab', 'ababab', 'ababababababab'])
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### classes de caractères
@@ -329,7 +338,7 @@ match_all('\s?\w+', ['eFç0', 'été', ' ta98'])
 # ### groupe nommé : `(?P<name>..)`
 
 # %% [markdown] slideshow={"slide_type": ""}
-# * le même effet que les groupes anonymes,
+# * le même effet que les groupes anonymes créés avec les `()`
 # * mais on peut retrouver le contenu depuis le nom du groupe
 # * plutôt que le rang (numéro) du groupe
 #   * qui peut rapidement devenir une notion fragile / peu maintenable
@@ -350,22 +359,6 @@ match.group('variable')
 match.group('valeur')
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### plusieurs occurrences du même groupe : `(?P=name)`
-
-# %% [markdown] slideshow={"slide_type": ""}
-# on peut spécifier qu'un groupe doit apparaître plusieurs fois
-
-# %% tags=[]
-# la deuxième occurrence de <nom> doit être la même que la première
-pattern = '(?P<nom>\w+).*(?P=nom)'
-
-string1 = 'Jean again Jean'
-string2 = 'Jean nope Pierre'
-string3 = 'assez comme ça'
-
-match_all(pattern, [string1, string2, string3])
-
-# %% [markdown] slideshow={"slide_type": "slide"}
 # ### début et fin de chaine : `^` et `$`
 
 # %% cell_style="center"
@@ -375,6 +368,22 @@ match_all('ab|cd', ['ab', 'abcd'])
 # pour forcer la chaine à matcher jusqu'au bout
 # on ajoute un $ 
 match_all('(ab|cd)$', ['ab', 'abcd'])
+
+# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
+# ### plusieurs occurrences du même groupe : `(?P=name)`
+
+# %% [markdown] slideshow={"slide_type": ""} tags=["level_intermediate"]
+# on peut spécifier qu'un groupe doit apparaître plusieurs fois
+
+# %% tags=["level_intermediate"]
+# la deuxième occurrence de <nom> doit être la même que la première
+pattern = '(?P<nom>\w+).*(?P=nom)'
+
+string1 = 'Jean again Jean'
+string2 = 'Jean nope Pierre'
+string3 = 'assez comme ça'
+
+match_all(pattern, [string1, string2, string3])
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## pour aller plus loin
