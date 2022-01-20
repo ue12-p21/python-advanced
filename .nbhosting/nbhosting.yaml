@@ -8,8 +8,8 @@ tracks:
   - name: '1/9: jeux'
     notebooks:
     - notebooks/1-01-snake.py
-    - tps/games/README-snake.py
-    - tps/games/README-flappybird.py
+    - tps/games/README-snake.md
+    - tps/games/README-flappybird.md
   - name: '2/9: types de base'
     notebooks:
     - notebooks/2-00-intro.py
@@ -24,12 +24,12 @@ tracks:
     - notebooks/2-09-exos.py
     - notebooks/2-05-containers-2.py
     - notebooks/3-11-pep008.py
-    - tps/graphs/README-graphs.py
+    - tps/graphs/README-graphs.md
     - notebooks/3-90-exos.py
   - name: "4/9: it\xE9rations"
     notebooks:
     - notebooks/4-00-intro.py
-    - tps/graphs/README-graphs.py
+    - tps/graphs/README-graphs.md
     - notebooks/4-11-iterations-1.py
     - notebooks/4-90-exos.py
   - name: "5/9: it\xE9rations et classes (1)"
@@ -39,7 +39,7 @@ tracks:
     - notebooks/4-12-iterations-2.py
     - notebooks/4-91-exos2.py
     - notebooks/5-11-classes.py
-    - tps/students/README-students.py
+    - tps/students/README-students.md
   - name: "6/9: classes (2)"
     notebooks:
     - notebooks/5-01-intro.py
@@ -50,13 +50,13 @@ tracks:
     - notebooks/5-13-inheritance.py
     - notebooks/5-14-class-attributes.py
     - tps/boids/README-boids.md
-    - tps/auctions/README-auctions.py
-    - tps/expressions-lang/README-explang.py
+    - tps/auctions/README-auctions.md
+    - tps/expressions-lang/README-explang.md
   - name: '8/9: fonctions'
     notebooks:
     - notebooks/6-00-intro.py
     - notebooks/6-90-exos.py
-    - tps/queens/README-queens.py
+    - tps/queens/README-queens.md
   - name: "9/9: \xE9pilogue"
     notebooks:
     - notebooks/9-00-intro.py
@@ -71,7 +71,7 @@ tracks:
     - notebooks/9-10-argparse.py
     - notebooks/9-11-properties.py
     - notebooks/9-12-decorators.py
-    - tps/metro/README-metro.py
+    - tps/metro/README-metro.md
 # - description: "Cours du S2"
 #   id: s2
 #   name: "S2"
