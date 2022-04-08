@@ -24,19 +24,14 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
-#   livereveal:
-#     auto_select: code
-#     auto_select_fragment: true
-#     autolaunch: false
-#     backimage: media/nologo.png
-#     height: 100%
+#   rise:
+#     autolaunch: true
+#     slideNumber: c/t
 #     start_slideshow_at: selected
-#     theme: simple
-#     transition: fade
-#     width: 100%
+#     theme: sky
+#     transition: cube
 #   nbhosting:
 #     title: Autres librairies
-#   version: '3.0'
 # ---
 
 # %% [markdown]

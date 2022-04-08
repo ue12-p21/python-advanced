@@ -27,7 +27,6 @@
 #     start_slideshow_at: selected
 #     theme: sky
 #     transition: cube
-#   version: '1.0'
 # ---
 
 # %% [markdown]
