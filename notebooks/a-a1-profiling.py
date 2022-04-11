@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -163,7 +163,7 @@
 #
 #   pour ça on utilise des outils comme `pytest`; l'objectif ici étant de donner **une synthèse** sur le plus grand nombre possible de tests, ces outils sont *mal adaptés* au debugging; dit autrement, lorsqu'un test échoue on est censé retourner à la case *debug*
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## *see also*
 
 # %% [markdown]

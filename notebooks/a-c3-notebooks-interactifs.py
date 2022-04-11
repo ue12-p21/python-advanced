@@ -17,93 +17,53 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: Notebooks interactifs
 #   rise:
-#     autolaunch: true
 #     slideNumber: c/t
 #     start_slideshow_at: selected
 #     theme: sky
 #     transition: cube
-#   nbhosting:
-#     title: Notebooks interactifs
 # ---
 
 # %% [markdown]
 # <div class="licence">
 # <span>Licence CC BY-NC-ND</span>
-# <span>Thierry Parmentelat &amp; Arnaud Legout</span>
-# <span><img src="media/both-logos-small-alpha.png" /></span>
+# <span>Thierry Parmentelat</span>
+# <span><img src="media/inria-25-alpha.png"/></span>
 # </div>
 
 # %% [markdown]
 # # Notebooks interactifs
 
 # %% [markdown]
-# ## Complément - niveau basique
+# Voyons quelques techniques qui permettent de rendre vos notebooks un peu plus interactifs
 
 # %% [markdown]
-# Pour conclure cette série sur les outils de visualisation, nous allons voir quelques fonctionnalités disponibles uniquement dans l'environnement des notebooks, et qui offrent des possibilités supplémentaires par rapport aux visualisations que l'on a vues jusqu'à maintenant.
-
-# %% [markdown]
-# ### installation
-
-# %% [markdown]
-# Pour exécuter ou créer un notebook depuis votre ordinateur, il vous faut installer Jupyter, ce que se fait bien sûr depuis le terminal :
-# ```bash
-# pip install jupyter
-# ```
-#
-# En 2020 il existe deux versions de l'interface Jupyter dites *classic* et *lab*, la seconde étant plus puissante en termes d'UI; pour installer le tout, faire plutôt
-#
-# ```bash
-# pip install jupyterlab
-# ```
-#
-# Pour lancer un serveur jupyter, faire selon le mode choisi
-# ```bash
-# jupyter notebook
-# # ou
-# jupyter lab
-# ```
-
-# %% [markdown]
-# ### Contenus
-
-# %% [markdown]
-# Pour le contenu des notebooks :
-#
-# * une cellule est marquée comme étant soit du code, soit du texte(markdown);
-# * pour les cellules de markdown, on peut très simplement :
-#   * insérer des formules mathématiques, en insérant un fragment de $\LaTeX$ entre deux simples `$`, comme $\forall x\in\mathbb{R}$, ou encore  
-#   sur une ligne séparée en entourant entre deux doubles dollars `$$`, comme 
-#   $$\forall \epsilon>0, \exists\alpha>0, \forall x, |x-x_0| < \epsilon \implies |f(x)-f(x_0|<\epsilon$$
-#
-#   * et bien sûr [toute la panoplie des effets markdown](https://daringfireball.net/projects/markdown/syntax), quoi qu'il faut se méfier car tout cela n'est pas très bien standardisé actuellement.
-# * un notebook choisit son *kernel* (en clair son langage); le mot Jupyter vient de Julia + Python + R, et aujourd'hui il y a moyen de faire tourner presque tous les langages, même `bash` et `C++` (mais en mode interprété bien sûr)
-
-# %% [markdown]
-# ### Courbes
+# ## `%matplotlib notebook`
 
 # %%
 import numpy as np
 import matplotlib.pyplot as plt
 
 # %% [markdown]
-# Comme on l'a déjà vu plein de fois, la bonne façon de créer un graphique matplotlib c'est avec la formule magique suivante :
+# La bonne façon de créer un graphique matplotlib c'est avec la formule magique suivante :
 
 # %%
-# ça c'est pour choisir la sortie 'notebook' 
+# il y a plusieurs sorties possibles pour matplotlib
+# et du coup pour choisir la sortie 'notebook':
 # %matplotlib notebook
 
 # et ça c'est pour dire 'interactive on'
-# pour éviter de devoir plt.show() tout le temps
-plt.ion()
+# pour éviter de devoir faire plt.show() tout le temps
+plt.ion();
 
 # %% [markdown]
 # Avec ces réglages - enfin surtout le premier - il y a pas mal de possibilités qui sont très pratiques :
@@ -112,7 +72,9 @@ plt.ion()
 # * les courbes apparaissent avec un barre d'outils en dessous; entraînez-vous à utiliser par exemple **l'outil de zoom**, pour agrandir et vous déplacer dans la courbe ![](media/matplotlib-navigate.png)
 
 # %% [markdown]
-# À titre d'exercice, sur cette courbe le nombre d'or correspond à une des racines du polynôme, à vous de trouver sa valeur avec une précision de
+# À titre d'exercice, sur cette courbe le **nombre d'or** correspond à une des racines du polynôme  
+# à vous de trouver sa valeur avec une précision de, disons, $10^{-5}$
+#
 
 # %%
 plt.figure(figsize=(2, 2))
@@ -124,29 +86,25 @@ plt.plot(X, golden(X));
 plt.plot(X, ZERO);
 
 # %% [markdown]
-# Voici à quoi je suis arrivé de mon côté (je ne dis pas que c'est forcément la méthode la plus rapide pour trouver le nombre d'or ;-):  
-# Mais tous les outils de visualisation décents vons proposer des mécanismes analogues, soyez-y attentifs car ça fait parfois gagner beaucoup de temps.
+# **attention piège**
 #
+# * confirmez la précision de votre résultat en le réinjectant dans `golden()`
+# * comparez avec la valeur exacte du nombre d'or qui est de $\frac{1+\sqrt{5}}{2}$
+# * la méthode est-elle satisfaisante, et sinon que faire pour l'améliorer ?
+# * **indice**: revoyez le comportement de `np.linspace`
+
+# %% [markdown]
+# ## Une visualisation interactive simple : `interact`
+
+# %% [markdown]
+# Lorsqu'on explore un sujet, bien souvent on commence par une visualisation un peu grossière, puis ensuite on fait bouger un peu les paramètres.
 #
-# <img src="media/matplotlib-zoomed.png" width=600px>
+# Mais ça peut devenir rapidement fastidieux de créer des dizaines de visualisation, qui en plus prennent de la place.
 
 # %% [markdown]
-# ### Exemple de notebook interactif
-
-# %% [markdown]
-# Je vous signale enfin un [exemple de notebook publié par la célèbre revue *Nature*](http://www.nature.com/news/ipython-interactive-demo-7.21492), qui pourra vous donner une idée de ce qu'il est possible de faire avec un notebook interactif. Interactif dans le sens où on peut faire varier les paramètres d'une expérience et voir l'impact du changement se refléter immédiatement sur la visualisation.
+# Pour améliorer cela, on préfère créer une seule figure, avec des boutons ou autres gadgets interactifs pour faire varier nos paramètres. Ici nous allons commencer par animer la fonction sinus, avec par exemple un **bouton pour régler la fréquence**. 
 #
-# Comme il n'est malheureusement plus actif en ligne semble-t-il, 
-# je vous invite à le faire marcher localement à partir [de la version sur github ici](https://github.com/jupyter/nature-demo).
-
-# %% [markdown]
-# ## Complément - niveau intermédiaire
-
-# %% [markdown]
-# ### Une visualisation interactive simple : `interact`
-
-# %% [markdown]
-# Pour refaire de notre coté quelque chose d'analogue, nous allons commencer par animer la fonction sinus, avec un bouton pour régler la fréquence. Pour cela nous allons utiliser la fonction `interact` ; à nouveau c'est un utilitaire qui fait partie de l'écosystème des notebooks, et plus précisément du module `ipywidgets` :
+# Pour cela nous allons utiliser **la fonction `interact`** ; c'est un utilitaire qui fait partie de l'écosystème des notebooks, et plus précisément du module `ipywidgets` :
 
 # %%
 # dans cette partie on a besoin de 
@@ -166,6 +124,9 @@ def sinus(freq):
     Y = np.sin(freq*X)
     plt.plot(X, Y)
 
+
+# %% [markdown]
+# C'est ma brique de base; juste pour vérifier, je peux l'appeler plusieurs fois de suite avec des paramètres différents
 
 # %% cell_style="split"
 sinus(1)
@@ -189,10 +150,16 @@ interact(sinus, freq=(0.5, 10., 0.25));
 # %% [markdown]
 # La fonction `interact` s'attend à recevoir :
 #
-# * en premier argument : une fonction `f` ;
-# * et ensuite autant d'arguments nommés supplémentaires que de paramètres attendus par `f`.
+# * en **premier argument** : une fonction `f` ;
+# * et ensuite autant d'**arguments nommés** supplémentaires que de paramètres attendus par `f`.
+
+# %% [markdown]
+# Donc ici
 #
-# Comme dans mon cas la fonction `sinus` attend un paramètre nommé `freq`, le deuxième argument de `interact` lui est passé aussi avec le nom `freq`.
+# * comme la fonction `sinus` attend **un paramètre** nommé `freq`
+# * on appelle `interact` **avec deux paramètre**
+#   * le premier étant `sinus`
+#   * et le deuxième indiquant dans quel intervalle faire varier le paramètre `freq`
 
 # %% [markdown]
 # ### Les objets `Slider`
@@ -207,13 +174,14 @@ interact(sinus, freq=(0.5, 10., 0.25));
 from ipywidgets import FloatSlider
 
 # %%
-# exactement équivalent à la version ci-dessus
+# essentiellement équivalent à la version ci-dessus
+# sauf pour la valeur initiale de freq
 interact(sinus, freq=FloatSlider(min=0.5, max=10., step=0.25));
 
 # %% [markdown]
 # Mais en utilisant la forme bavarde, je peux choisir davantage d'options, comme notamment :
 #
-# * mettre `continuous_update = False` ; l'effet de ce réglage, c'est que l'on met à jour la figure seulement lorsque je lâche la réglette ; c'est utile lorsque les calculs sont un peu lents, comme ici avec l'infrastructure notebook qui est à distance ;
+# * mettre `continuous_update = False` ; l'effet de ce réglage, c'est que l'on met à jour la figure seulement lorsque je lâche la réglette (c'est utile lorsque les calculs sont un peu lents)
 # * mettre `value=1.` pour choisir la valeur initiale :
 
 # %%
@@ -229,7 +197,7 @@ interact(sinus, freq=FloatSlider(min=0.5, max=10.,
 # ### Plusieurs paramètres
 
 # %% [markdown]
-# Voyons tout de suite un exemple avec deux paramètres, je vais écrire maintenant une fonction qui me permet de changer aussi la phase :
+# Voyons tout de suite un exemple avec **deux paramètres**, je vais écrire maintenant une fonction qui me permet de changer aussi la phase :
 
 # %%
 def sinus2(freq, phase):
@@ -239,14 +207,13 @@ def sinus2(freq, phase):
 
 
 # %% [markdown]
-# Et donc maintenant je passe à `interact` un troisième paramètre :
+# Et donc maintenant je passe à `interact` un **troisième argument** :
 
 # %%
 interact(sinus2,
          freq=FloatSlider(min=0.5, max=10., step=0.5,
                           continuous_update=False),
-         phase=FloatSlider(min=0., max=2*np.pi, step=np.pi/6, 
-                           continuous_update=False),
+         phase=FloatSlider(min=0., max=2*np.pi, step=np.pi/6),
         );
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -259,12 +226,29 @@ interact(sinus2,
 from ipywidgets import fixed
 
 # %%
-# avec une fonction à deux argument,
+# avec une fonction à deux paramètres,
 # je peux en fixer un, et n'avoir qu'une réglette
 # pour fixer celui qui est libre
-interact(sinus2, freq=fixed(1.),
+interact(sinus2, 
+         freq=fixed(1.),
          phase=FloatSlider(min=0., max=2*np.pi, step=np.pi/6),
         );
+
+
+# %% [markdown] tags=["level_intermediate"]
+# ### `interact` comme un décorateur
+
+# %% [markdown] tags=["level_intermediate"]
+# Pour les geeks, signalons qu'on peut aussi utiliser `interact` **comme un décorateur**, c'est-à-dire écrire en une seule passe
+
+# %% tags=["level_intermediate"]
+@interact(freq=FloatSlider(min=0.5, max=10., step=0.5),
+          phase=FloatSlider(min=0., max=2*np.pi, step=np.pi/6))
+def anonymous(freq, phase):
+    X = np.linspace(0., 4*np.pi, 200)
+    Y = np.sin(freq*(X+phase))
+    plt.plot(X, Y)
+
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Widgets
@@ -283,36 +267,27 @@ interact(sinus2, freq=fixed(1.),
 # %% slideshow={"slide_type": "slide"}
 # de même qu'un tuple était ci-dessus un raccourci pour un FloatSlider
 # une liste ou un dictionnaire est transformé(e) en un Dropdown
-interact(sinus, freq={'rapide': 10., 'moyenne': 1., 'lente': 0.1});
+interact(sinus, 
+         freq={'rapide': 10., 'moyenne': 1., 'lente': 0.1});
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # Voyez la [liste complète des widgets ici](http://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html).
 
 # %% [markdown]
-# ### Dashboards
+# ### Dashboards et Layouts
 
 # %% [markdown]
 # Lorsqu'on a besoin de faire une interface un peu plus soignée, on peut créer sa propre disposition de boutons et autres réglages.
 
 # %% [markdown]
-# Voici un exemple de dashboard, uniquement pour vous donner une meilleure idée, qui pour changer agit sur une visualisation réalisée avec plot.ly plutôt que matplotlib :
-
-# %%
-import plotly
-plotly.__version__
-
-# %%
-# on importe la bibliothèque plot.ly
-import chart_studio.plotly as py
-import plotly.graph_objs as go
-
-# %%
-# il est impératif d'utiliser plot.ly en mode 'offline' 
-# pour in mode interactif, 
-# car sinon les affichages sont beaucoup trop lents
-import plotly.offline as pyoff
-
-pyoff.init_notebook_mode()
+# Pour cela on utilise plutôt la fonction `interactive_output()`, qui attend toujours **deux** paramètres:
+#
+# * d'abord la fonction principale, comme pour `interact`
+# * puis **un dictionnaire** qui associe à chaque nom de paramètre un widget interactif
+#
+# L'avantage est qu'avec cette API nous allons pouvoir agir sur la position des différents widgets
+#
+# Voyons cela tout de suite sur un exemple
 
 # %%
 # les widgets pour construire le tableau de bord
@@ -323,31 +298,22 @@ from IPython.display import display
 
 # %%
 # une fonction sinus à 4 réglages
-# qu'on réalise pour changer avec plot.ly
-# et non pas avec matplotlib
+
 def sinus4(freq, phase, amplitude, domain):
 
     X = np.linspace(0., domain*np.pi, 500)
     Y = amplitude * np.sin(freq*(X+phase))
-
-    data = [ go.Scatter(x=X, y=Y, mode='lines', name='sinus') ]
-    # je fixe l'amplitude à 10 pour que les animations
-    # soient plus parlantes
-    layout = go.Layout(
-        yaxis = {'range' : [-10, 10]},
-        title="Exemple de graphique interactif avec dashboard",
-        height=500,
-        width=500,
-    )
-    figure = go.Figure(data=data, layout=layout)
-    pyoff.iplot(figure)
+    # comme on va régler l'amplitude, on fixe l'échelle en Y
+    plt.ylim(-5, 5)
+    plt.plot(X, Y)
 
 
 # %% cell_style="center"
 def my_dashboard():
     """
     create and display a dashboard
-    return a dictionary name->widget suitable for interactive_output
+    return a dictionary name->widget 
+    suitable for interactive_output
     """
     # dashboard pieces as widgets
     l_75 = Layout(width='75%')
@@ -361,11 +327,11 @@ def my_dashboard():
     w_phase = FloatSlider(min=0., max = 2*np.pi, step=np.pi/12,
                           description="phase",
                           value=0., layout=l_75)
-    w_amplitude = Dropdown(options={"micro" : .1,
-                                    "mini" : .5,
-                                    "normal" : 1.,
+    w_amplitude = Dropdown(options={"micro" : .3,
+                                    "mini" : .1,
+                                    "normal" : 2.,
                                     "grand" : 3.,
-                                    "énorme" : 10.},
+                                    "énorme" : 5.},
                            value = 3.,
                            description = "amplitude",
                            layout = l_25)
@@ -390,3 +356,16 @@ def my_dashboard():
 # au tout début rien ne s'affiche,
 # il faut faire bouger au moins un réglage
 interactive_output(sinus4, my_dashboard())
+
+# %% [markdown]
+# ## Voir aussi
+#
+# pour davantage de détails sur le mode interactif de matplotlib, et sur les différentes sorties disponibles
+#
+# https://matplotlib.org/stable/users/explain/interactive.html#interactive-figures
+
+# %% [markdown]
+# Je vous signale enfin un [exemple de notebook publié par la célèbre revue *Nature*](http://www.nature.com/news/ipython-interactive-demo-7.21492), qui pourra vous donner une idée de ce qu'il est possible de faire avec un notebook interactif. Interactif dans le sens où on peut faire varier les paramètres d'une expérience et voir l'impact du changement se refléter immédiatement sur la visualisation.
+#
+# Comme il n'est malheureusement plus actif en ligne semble-t-il, 
+# je vous invite à le faire marcher localement à partir [de la version sur github ici](https://github.com/jupyter/nature-demo).

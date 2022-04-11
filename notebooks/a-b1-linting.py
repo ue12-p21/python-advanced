@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -118,7 +118,7 @@
 #
 # On peut ainsi avoir des conventions différentes en fonction des projets. Dans ce cas, `pylint` se débrouille comme un grand pour trouver le fichier de configuration qui doit se trouver à la racine du projet ou dans le répertoire `pylintrc` situé lui-même à la racine du projet.
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## *see also*
 
 # %% [markdown]

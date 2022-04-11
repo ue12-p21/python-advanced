@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -31,10 +31,12 @@
 # %% [markdown]
 # # Cours S2/1
 
-# %% [markdown] tags=[]
+# %% [markdown]
 # ## objectifs
 #
 # * amélioration des performances / profiling
+#
+# * bien utiliser le *linter* `pylint`
 #
 # * diverses techniques de visualisation dans les notebooks
 #
@@ -44,9 +46,7 @@
 # ## les supports
 #
 # * pour rappel, vous avez les supports en ligne ici  
-#   https://ue12-python-advanced.readthedocs.io/en/latest/index.html
+#   https://nbhosting.inria.fr/builds/ue12-p21-python-advanced/handouts/latest/
+#   et notamment le présent chapitre commence ici
+#   https://nbhosting.inria.fr/builds/ue12-p21-python-advanced/handouts/latest/a-a1-profiling.html
 #
-# * et aussi ici (c'est **nouveau**, c'est toujours le même contenu, mais présenté d'une autre façon)  
-#   https://nbhosting.inria.fr/builds/ue12-python-advanced/handouts/latest/
-#   
-# notez que ces deux variantes sont ***cherchables***
