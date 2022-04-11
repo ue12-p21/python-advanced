@@ -21,7 +21,6 @@
 #   nbhosting:
 #     title: intro cours S2/1
 #   rise:
-#     autolaunch: true
 #     slideNumber: c/t
 #     start_slideshow_at: selected
 #     theme: sky

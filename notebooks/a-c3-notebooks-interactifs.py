@@ -61,12 +61,8 @@ import matplotlib.pyplot as plt
 # et du coup pour choisir la sortie 'notebook':
 # %matplotlib notebook
 
-# et ça c'est pour dire 'interactive on'
-# pour éviter de devoir faire plt.show() tout le temps
-plt.ion();
-
 # %% [markdown]
-# Avec ces réglages - enfin surtout le premier - il y a pas mal de possibilités qui sont très pratiques :
+# Avec ce réglage, il y a pas mal de possibilités qui sont très pratiques :
 #
 # * pour commencer on peut changer la taille de la courbe en cliquant sur le petit coin visible en bas à droite de la figure ![](media/matplotlib-resize.png)
 # * les courbes apparaissent avec un barre d'outils en dessous; entraînez-vous à utiliser par exemple **l'outil de zoom**, pour agrandir et vous déplacer dans la courbe ![](media/matplotlib-navigate.png)
@@ -107,11 +103,6 @@ plt.plot(X, ZERO);
 # Pour cela nous allons utiliser **la fonction `interact`** ; c'est un utilitaire qui fait partie de l'écosystème des notebooks, et plus précisément du module `ipywidgets` :
 
 # %%
-# dans cette partie on a besoin de 
-# revenir dans un mode plus usuel
-# %matplotlib inline
-
-# %%
 from ipywidgets import interact
 
 
@@ -122,6 +113,9 @@ from ipywidgets import interact
 def sinus(freq):
     X = np.linspace(0., 4*np.pi, 200)
     Y = np.sin(freq*X)
+    # needed with %matplotlib notebook
+    # to avoid superposition with previous calls
+    plt.clf()
     plt.plot(X, Y)
 
 
@@ -129,9 +123,11 @@ def sinus(freq):
 # C'est ma brique de base; juste pour vérifier, je peux l'appeler plusieurs fois de suite avec des paramètres différents
 
 # %% cell_style="split"
+plt.figure(figsize=(3, 2))
 sinus(1)
 
 # %% cell_style="split"
+plt.figure(figsize=(3, 2))
 sinus(0.5)
 
 # %% [markdown]
@@ -139,9 +135,10 @@ sinus(0.5)
 
 # %%
 # je change maintenant la taille des visualisations
-plt.rcParams["figure.figsize"] = (12, 4)
+plt.rcParams["figure.figsize"] = (8, 4)
 
 # %%
+plt.figure()
 interact(sinus, freq=(0.5, 10., 0.25));
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -176,6 +173,7 @@ from ipywidgets import FloatSlider
 # %%
 # essentiellement équivalent à la version ci-dessus
 # sauf pour la valeur initiale de freq
+plt.figure()
 interact(sinus, freq=FloatSlider(min=0.5, max=10., step=0.25));
 
 # %% [markdown]
@@ -188,6 +186,7 @@ interact(sinus, freq=FloatSlider(min=0.5, max=10., step=0.25));
 # exactement équivalent à la version ci-dessus
 # sauf qu'on ne redessine que lorsque la réglette
 # est relâchée
+plt.figure()
 interact(sinus, freq=FloatSlider(min=0.5, max=10., 
                                  step=0.25, value=1.,
                                  continuous_update=False));
@@ -203,6 +202,7 @@ interact(sinus, freq=FloatSlider(min=0.5, max=10.,
 def sinus2(freq, phase):
     X = np.linspace(0., 4*np.pi, 200)
     Y = np.sin(freq*(X+phase))
+    plt.clf()
     plt.plot(X, Y)
 
 
@@ -210,6 +210,7 @@ def sinus2(freq, phase):
 # Et donc maintenant je passe à `interact` un **troisième argument** :
 
 # %%
+plt.figure()
 interact(sinus2,
          freq=FloatSlider(min=0.5, max=10., step=0.5,
                           continuous_update=False),
@@ -229,11 +230,11 @@ from ipywidgets import fixed
 # avec une fonction à deux paramètres,
 # je peux en fixer un, et n'avoir qu'une réglette
 # pour fixer celui qui est libre
+plt.figure()
 interact(sinus2, 
          freq=fixed(1.),
          phase=FloatSlider(min=0., max=2*np.pi, step=np.pi/6),
         );
-
 
 # %% [markdown] tags=["level_intermediate"]
 # ### `interact` comme un décorateur
@@ -242,11 +243,14 @@ interact(sinus2,
 # Pour les geeks, signalons qu'on peut aussi utiliser `interact` **comme un décorateur**, c'est-à-dire écrire en une seule passe
 
 # %% tags=["level_intermediate"]
+plt.figure()
+
 @interact(freq=FloatSlider(min=0.5, max=10., step=0.5),
           phase=FloatSlider(min=0., max=2*np.pi, step=np.pi/6))
 def anonymous(freq, phase):
     X = np.linspace(0., 4*np.pi, 200)
     Y = np.sin(freq*(X+phase))
+    plt.clf()
     plt.plot(X, Y)
 
 
@@ -267,6 +271,7 @@ def anonymous(freq, phase):
 # %% slideshow={"slide_type": "slide"}
 # de même qu'un tuple était ci-dessus un raccourci pour un FloatSlider
 # une liste ou un dictionnaire est transformé(e) en un Dropdown
+plt.figure()
 interact(sinus, 
          freq={'rapide': 10., 'moyenne': 1., 'lente': 0.1});
 
@@ -296,7 +301,7 @@ from ipywidgets import (interactive_output,
 from IPython.display import display
 
 
-# %%
+# %% slideshow={"slide_type": "subslide"}
 # une fonction sinus à 4 réglages
 
 def sinus4(freq, phase, amplitude, domain):
@@ -304,6 +309,7 @@ def sinus4(freq, phase, amplitude, domain):
     X = np.linspace(0., domain*np.pi, 500)
     Y = amplitude * np.sin(freq*(X+phase))
     # comme on va régler l'amplitude, on fixe l'échelle en Y
+    plt.clf()
     plt.ylim(-5, 5)
     plt.plot(X, Y)
 
@@ -355,12 +361,13 @@ def my_dashboard():
 # attention il reste un bug:
 # au tout début rien ne s'affiche,
 # il faut faire bouger au moins un réglage
+plt.figure()
 interactive_output(sinus4, my_dashboard())
 
 # %% [markdown]
 # ## Voir aussi
 #
-# pour davantage de détails sur le mode interactif de matplotlib, et sur les différentes sorties disponibles
+# pour davantage de détails sur sur les différentes sorties disponibles de matplotlib, et le mode dit 'interactif' avec `plt.ion()`, voir
 #
 # https://matplotlib.org/stable/users/explain/interactive.html#interactive-figures
 
