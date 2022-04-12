@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -26,7 +26,7 @@
 # # Le théorème de Taylor illustré
 
 # %% [markdown]
-# ## exercice : niveau avancé
+# ## exercice
 
 # %% [markdown]
 # En guise d'application de ce qu'on a vu jusqu'ici, je vous invite à réaliser une visualisation
@@ -55,6 +55,9 @@
 # Pour calculer les dérivées successives j'utilise la librairie `autograd`.
 #
 # Ce code est relativement générique, vous pouvez visualiser l'approximation de Taylor avec une fonction que vous passez en paramètre - qui doit avoir tout de même la bonne propriété d'être vectorisée, et d'utiliser la couche `numpy` exposée par `autograd` :
+
+# %% [markdown]
+# **ATTENTION** c'est crucial d'**importer `autograd.numpy`** et pas le `numpy` "de base"
 
 # %%
 # to compute derivatives
@@ -111,7 +114,8 @@ class Taylor:
         # create figure
         x_range = (self.domain[0], self.domain[-1])
         self.figure = figure(title=self.function.__name__,
-                             x_range=x_range, y_range=y_range)
+                             x_range=x_range, y_range=y_range,
+                            plot_width=900)
 
         # each of the 2 curves is a bokeh line object
         self.figure.line(self.domain, self.function(self.domain), color='green')
@@ -186,7 +190,7 @@ sinus_animator = Taylor(np.sin, DOMAIN)
 # **Remarquez bien** qu'ici la fonction que je passe au constructeur est **en réalité `autograd.numpy.sin`** et non pas `numpy.sin`, vu la façon dont on a défini notre symbole `np` lors des imports (et ça ne marcherait pas du tout avec `numpy.sin`).
 
 # %% [markdown]
-# Ensuite on crée un `ipywidget` qui va nous permettre de choisir le degré $n$; dans le cas de sinus, qui est impaire, les degrés intéressants sont impairs (vous pouvez vérifier que les coefficients de Taylor pairs sont nuls lorsque $f$ est impaire).
+# Ensuite on crée un `ipywidget` qui va nous permettre de choisir le degré $n$; dans le cas de **sinus**, qui est **impaire**, les degrés **intéressants** sont **impairs**.
 
 # %%
 # the widget to select a degree
@@ -233,7 +237,7 @@ exp_widget = IntSlider(min=0, max=17,
    layout=Layout(width='100%'))
 
 ### ready to go
-exp_animator = Taylor(np.exp, np.linspace(-5, 10, 200))
+exp_animator = Taylor(np.exp, np.linspace(-1, 10, 200))
 exp_animator.display((-15_000, 25000))
 exp_animator.interact(exp_widget)
 
