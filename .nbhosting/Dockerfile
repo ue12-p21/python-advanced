@@ -12,6 +12,7 @@ RUN true \
  && pip install -U ipythontutor \
  && pip install rise \
  && pip install numpy pandas matplotlib chart_studio bokeh k3d autograd \
+ && jupyter nbextension install --py k3d \
  && apt-get install -y graphviz && pip install graphviz \
  && pip install pylint \
  && pip install aiohttp \ 
