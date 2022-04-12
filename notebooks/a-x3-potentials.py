@@ -23,7 +23,7 @@
 # ---
 
 # %% [markdown]
-# # Tracés de champs de vitesses
+# # TP: Tracés de champs de vitesses
 #
 # On se propose dans ce notebook d'utiliser le mécanisme d'`interact` pour réprésenter des champs de vitesse dérivant de potentiels complexes. Pour rappel, on écrit un potentiel complexe comme suit : 
 #

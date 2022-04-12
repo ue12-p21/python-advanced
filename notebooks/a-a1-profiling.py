@@ -23,7 +23,7 @@
 # ---
 
 # %% [markdown]
-# # étude de performances
+# # Étude de performances
 
 # %% [markdown]
 # imaginons que vous venez d'écrire un code magnifique pour résoudre le Rubik's cube ou calculer la quadrature de la Tour Eiffel, ou peu importe

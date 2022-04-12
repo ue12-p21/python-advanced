@@ -44,14 +44,7 @@ parts:
   - file: 9-12-decorators
 - caption: "notebooks interactifs"
   chapters:
-  - file: a-a1-profiling
-  - file: a-b1-linting
-  - file: a-c3-notebooks-interactifs
-  - file: a-c4-animations-matplotlib
-  - file: a-c5-bokeh-et-al
-  - file: a-c6-fourier-k3d
-  - file: a-x1-taylor
-  - file: a-x3-potentials
+  - glob: a-[a-z]*
 # - caption: "Python asynchrone"
 #   chapters:
 #   - file: b-01-os-basics

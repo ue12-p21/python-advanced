@@ -23,7 +23,7 @@
 # ---
 
 # %% [markdown]
-# # Le théorème de Taylor illustré
+# # TP: Taylor illustré
 
 # %% [markdown]
 # ## exercice

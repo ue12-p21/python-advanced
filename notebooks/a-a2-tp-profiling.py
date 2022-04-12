@@ -23,7 +23,9 @@
 # ---
 
 # %% [markdown]
-# # Optimisation de code avec les outils de *profiling*
+# # TP: profiling
+#
+# ## Optimisation de code avec les outils de *profiling*
 #
 # Hubert, votre super co-stagiaire arrivant tout droit de Centrale Gif-Sur-Yvette, vient vous voir tout affolé. Il a écrit un petit script Python pour analyser un jeu de données qui met des plombes à tourner, d'après ses propres mots "plus long qu'un Saclay-Paris un jour de grève". Voilà à peu près ce qu'il vous explique :
 #
