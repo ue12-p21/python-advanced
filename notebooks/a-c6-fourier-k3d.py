@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -58,8 +58,11 @@ from ipywidgets import interact, fixed
 from ipywidgets import SelectionSlider, IntSlider
 
 # %%
-# ditto w/
+# pour installer k3d, it's a little more awkward
 # pip install k3d
+# jupyter nbextension install --py k3d
+# jupyter nbextension enable  --py k3d
+
 
 import k3d
 from k3d.plot import Plot
@@ -280,8 +283,8 @@ a3d.interact(full_spectrum())
 #
 # $$
 # \begin{array} {rcl}
-# \int_a^bF_{\phi}(t)dt & \approx & \sum rotating[i]*dt \\
-# & \approx & \sum \frac{rotating[i]*(b-a)}{N} \\
+# \int_a^bF_{\phi}(t)dt & \approx & \sum rotating[i]. dt \\
+# & \approx & \sum \frac{rotating[i].(b-a)}{N} \\
 # \end{array}
 # $$
 #
@@ -305,7 +308,7 @@ a3d.interact(full_spectrum())
 
 # %%
 DEFAULT_RANGE = (-6, 6)
-DEFAULT_DOMAIN = 100
+DEFAULT_DOMAIN = 1000
 
 class FourierAnimator2D:
     
