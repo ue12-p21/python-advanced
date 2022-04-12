@@ -23,7 +23,7 @@
 # ---
 
 # %% [markdown]
-# # Application à la transformée de Fourier
+# # K3D (app. à Fourier)
 
 # %% [markdown]
 # ## Complément - niveau avancé
