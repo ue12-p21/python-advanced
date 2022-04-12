@@ -17,28 +17,27 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: Autres librairies
 #   rise:
-#     autolaunch: true
 #     slideNumber: c/t
 #     start_slideshow_at: selected
 #     theme: sky
 #     transition: cube
-#   nbhosting:
-#     title: Autres librairies
 # ---
 
 # %% [markdown]
 # <div class="licence">
 # <span>Licence CC BY-NC-ND</span>
-# <span>Thierry Parmentelat &amp; Arnaud Legout</span>
-# <span><img src="media/both-logos-small-alpha.png" /></span>
+# <span>Thierry Parmentelat</span>
+# <span><img src="media/inria-25-alpha.png"/></span>
 # </div>
 
 # %% [markdown]
@@ -58,7 +57,7 @@
 #
 # * D'une part, `matplotlib` a choisi d'offrir une interface aussi proche que possible de ce qui existait préalablement en MatLab. C'est un choix tout à fait judicieux dans l'optique d'attirer la communauté MatLab à des outils open source basés sur Python et numpy. Mais en contrepartie, cela implique d'adopter tels quels des choix de conception.
 #
-# * Et notamment, en suivant cette approche on hérite d'un modèle mental qui est plus orienté vers la sortie vers du papier que vers la création de documents interactifs.
+# * Et notamment, en suivant cette approche on hérite d'un modèle mental qui est plus orienté vers la sortie **sur du papier**, que vers la création de **documents interactifs**.
 
 # %% [markdown]
 # Ceci, ajouté à l'explosion du domaine de l'analyse et de la visualisation de données, explique la largeur de l'offre en matière de bibliothèques de visualisation alternatives.
@@ -76,7 +75,7 @@
 # `bokeh` présente quelques bonnes propriétés qui nous semblent mériter d'être signalées.
 
 # %% [markdown]
-# Pour commencer cette bibliothèque utilise une architecture qui permet de *penser la visualisation comme quelque chose d'interactif* (disons une page html), et non pas de figé comme lorsqu'on pense en termes de feuille de papier. Notamment elle permet de faire collaborer du code Python avec du code JavaScript, qui offre immédiatement des possibilités bien plus pertinentes lorsqu'il s'agit de créer des interactions utilisateur qui soient attractives et efficaces. Signalons en passant, à cet égard, qu'elle utilise [la librairie JavaScript `d3.js`](https://d3js.org/), qui est devenu un standard de fait plus ou moins incontournable dans le domaine de la visualisation.
+# Pour commencer cette bibliothèque utilise une architecture qui permet de ***penser la visualisation comme quelque chose d'interactif*** (disons une page html), et non pas de figé comme lorsqu'on pense en termes de feuille de papier. Notamment elle permet de faire collaborer du code Python avec du code JavaScript, qui offre immédiatement des possibilités bien plus pertinentes lorsqu'il s'agit de créer des interactions utilisateur qui soient attractives et efficaces. Signalons en passant, à cet égard, qu'elle utilise [la librairie JavaScript `d3.js`](https://d3js.org/), qui est devenu un standard de fait plus ou moins incontournable dans le domaine de la visualisation.
 #
 # En tout état de cause, elle offre une interface de programmation qui tient compte d'environnements comme les notebooks, ce qui peut s'avérer un atout précieux si vous utilisez massivement ce support, comme on va le voir, précisément, dans ce notebook.
 
@@ -93,11 +92,10 @@
 # ### `bokeh` dans les notebooks
 
 # %% [markdown]
-# Nous allons rapidement illustrer ici comment `bokeh` s'interface avec l'environnement des notebooks pour créer une visualisation interactive. Vous remarquerez que dans le code qui suit, on n'a **pas eu besoin de mentionner** de *magic* ipython, comme lorsqu'on avait du faire dans le complément sur les notebooks interactifs :
+# Nous allons rapidement illustrer ici comment `bokeh` s'interface avec l'environnement des notebooks pour créer une visualisation interactive. Vous remarquerez que dans le code qui suit, on n'a **pas eu besoin de mentionner** le *magic* IPython `%matplotlib`, comme lorsqu'on avait du le faire dans le complément sur les notebooks interactifs ; c'est logique puisqu'en fait on n'utilise pas `matplotlib` ici :
 #
-# ```python
-# %matplotlib notebook
-# ```
+# ~~`%matplotlib notebook`~~   # ça n'est **pas utile** ici !
+#
 
 # %%
 import numpy as np
@@ -109,10 +107,11 @@ from ipywidgets import interact, fixed, FloatSlider, Dropdown
 # %%
 # les imports pour bokeh
 from bokeh.plotting import figure, show
+
 # dans la rubrique entrée-sortie, on trouve
 # les outils pour produire du html
 #  (le mode par défaut)
-# ou pour interactig avec un notebook
+# ou pour interagir avec un notebook
 from bokeh.io import push_notebook, output_notebook
 
 # %%
@@ -434,7 +433,7 @@ dist.interact()
 # On pourrait même considérer qu'une instance de notre classe `Animation` **est** une figure, et donc envisager de la faire hériter d'une classe `bokeh.figure`; sauf qu'en fait `bokeh.figure` n'est pas une classe mais une fonction (une *factory*, c'est-à-dire une fonction qui contruit des instances) :
 
 # %%
-# l'objet bokeh.figure est une factory, est pas une classe
+# l'objet bokeh.figure est une factory, et pas une classe
 # comme on le devine grâce aux minuscules
 type(figure)
 
