@@ -51,7 +51,6 @@ parts:
   - file: a-c5-bokeh-et-al
   - file: a-c6-fourier-k3d
   - file: a-x1-taylor
-  - file: a-x2-coronavirus
   - file: a-x3-potentials
 # - caption: "Python asynchrone"
 #   chapters:
