@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
@@ -64,7 +64,7 @@
 # `pylint` peut aussi être utilisé en ligne de commande comme suit :
 
 # %%
-# ! pylint fibo.py
+# ! pylint joke.py
 
 # %% [markdown]
 # En ligne de commande, l'utilitaire vous renvoie une note (parfois négative...). Les lignes se lisent comme suit :
@@ -77,12 +77,14 @@
 # ## **exercice**
 
 # %% [markdown]
-# Reprenez votre code de l'évaluation du S1 et calculez votre note globale en tapant : 
+# Modifiez le fichier `joke.py` pour atteindre une bonne note (positive, c'est facile, mais monter à plus de 9 peut prendre un peu de temps). 
+#
+# Vous pouvez aussi reprendre votre code de l'évaluation du S1 et calculez votre note globale en tapant : 
 # ```bash
-# pylint puzzle8/*.py
+# pylint notebook_v[0,1,2].py
 # ```
 # dans votre terminal. 
-# Prenez un peu de temps pour essayer d'améliorer votre note. :) Arriver à 10/10 peut prendre du temps.
+# Prenez un peu de temps pour essayer d'améliorer la qualité de votre code. :)
 
 # %% [markdown] tags=["level_intermediate"]
 # ## Avancé -- Génération d'un fichier de configuration
