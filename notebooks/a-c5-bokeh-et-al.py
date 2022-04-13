@@ -113,11 +113,13 @@ from bokeh.plotting import figure, show
 #  (le mode par défaut)
 # ou pour interagir avec un notebook
 from bokeh.io import push_notebook, output_notebook
+from bokeh.resources import INLINE
 
 # %%
 # c'est cette déclaration qui remplace
 # si on veut la magic  '%matplotlib notebook'
-output_notebook()
+output_notebook(INLINE)
+#output_notebook()
 
 # %% [markdown]
 # *****
