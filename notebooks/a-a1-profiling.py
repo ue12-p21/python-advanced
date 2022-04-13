@@ -133,18 +133,6 @@
 # dans un cas réel, ce n'est pas `ncalls` qui nous intéresse le plus, et souvent la découverte la plus intéressante est faite en triant selon la colonne `tottime`, la fonction qui mange le plus de CPU
 
 # %% [markdown]
-# ## **exercice**
-
-# %% [markdown]
-# reprenez un de vos codes - par exemple le taquin, sujet qui se prête particulièremente bien ici
-#
-# * utilisez le profiler pour trouver la fonction qui consomme le plus de CPU
-# * comparez ça par rapport au temps total d'exécution du programme
-# * si le gagnant consomme plus de 20% du temps total, il y a matière à agir
-#
-# faites une ou deux itérations d'optimisation, tout en utilisant le profiler
-
-# %% [markdown]
 # ## *right tool for the job*
 
 # %% [markdown]
