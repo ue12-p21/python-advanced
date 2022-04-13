@@ -76,9 +76,12 @@ tracks:
   id: s2
   name: "S2"
   sections:
+  - name: Profiling
+    notebooks:
+    - "notebooks/a-[ab]*.py"
   - name: Notebooks interactifs
     notebooks:
-    - "notebooks/a-*.py"
+    - "notebooks/a-[cx]*.py"
 #   - name: Python asynchrone
 #     notebooks:
 #     - "notebooks/b-*.py"
