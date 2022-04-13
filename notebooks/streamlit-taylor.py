@@ -69,7 +69,7 @@ degree = st.number_input(
     help="the degree of the approximating polynom; the higher the degree, the better the match")
 
 max_domain = st.number_input(
-    "enter max X (in &pi;)", value=4,
+    "enter max X (in π)", value=4,
     help="the figure will use a [0, MAX] domain in the X dimension"
 )
 
