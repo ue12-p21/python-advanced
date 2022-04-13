@@ -25,7 +25,7 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: Autres librairies
+#     title: bokeh (et autres viz libs)
 #   rise:
 #     slideNumber: c/t
 #     start_slideshow_at: selected
@@ -41,7 +41,7 @@
 # </div>
 
 # %% [markdown]
-# # Autres bibliothèques de visualisation
+# # bokeh (et autres viz libs)
 
 # %% [markdown]
 # ## Complément - niveau basique
@@ -402,9 +402,8 @@ dist.interact()
 
 # %% [markdown]
 # Pour terminer cette digression sur les solutions alternatives à `matplotlib`, j'aimerais vous signaler enfin rapidement quelques autres options disponibles actuellement.
-
-# %% [markdown]
-# Comme on l'a dit en introduction, l'offre dans ce domaine est pléthorique, aussi si vous avez un témoignage à apporter sur une expérience que vous avez eue dans ce domaine, nous serons ravis de vous voir la partager dans le forum du cours.
+#
+# Comme on l'a dit en introduction, l'offre dans ce domaine est pléthorique, mais les trois premiers de cette liste font partie des gros joueurs.
 
 # %% [markdown]
 # #### plotly
@@ -415,12 +414,28 @@ dist.interact()
 # Cette bibliothèque est disponible en open source, et l'offre commerciale de plotly est tournée vers le conseil autour de cette technologie. Comme pour `bokeh`, elle est conçue comme un hybride entre Python et JavaScript, au dessus de `d3.js`. En réalité, elle présente même la particularité d'offrir une API unique disponible depuis Python, JavaScript, et R.
 
 # %% [markdown]
+# #### seaborn
+
+# %% [markdown]
+# [`seaborn`: statistical data visualization](https://seaborn.pydata.org/examples/index.html)
+#
+# Une bibliothèque assez bien adaptée aux traitements statistiques (plutôt pour des données à la *pandas* que à la *numpy*), et qui s'efforce de définir une visualisation sur des critères plus *sémantiques*, et moins se perdre dans les détails de la présentation.
+
+# %% [markdown]
+# #### altair
+
+# %% [markdown]
+# [Altair: Declarative Visualization in Python]https://altair-viz.github.io/gallery/index.html)
+#
+# Relativement récente, elle fournit une approche déclarative, c'est-à-dire qu'ici aussi il s'agit d'obtenir automatiquement des visualisations plus pertinentes en se préoccupant moins des détails d'implémentation.
+
+# %% [markdown]
 # #### mpld3
 
 # %% [markdown]
 # https://mpld3.github.io/
 #
-# Je n'ai pas d'expérience à partager avec cette librairie, mais sur la papier l'approche semble prometteuse, puisqu'il s'agit (aussi) de conciler matplotlib [avec `d3.js`](d3js.org).
+# Plus anecdotique; je n'ai pas d'expérience à partager avec cette librairie, mais sur la papier l'approche semble prometteuse, puisqu'il s'agit (comme pour plotly) de conciler matplotlib [avec `d3.js`](d3js.org).
 
 # %% [markdown]
 # #### k3d
@@ -428,32 +443,4 @@ dist.interact()
 # %% [markdown]
 # J'ai utilisé récemment [la librairie k3d](https://github.com/K3D-tools/K3D-jupyter/) et j'ai trouvé le résultat assez bluffant pour les visualisations 3d. C'est un outil assez spartiate en termes [de documentation](https://k3d-jupyter.org/), mais très performant. 
 #
-# Cette librairie se prête bien à la technique d'interactions que nous avons développée dans ce notebook. On en verra un autre exemple dans un prochain notebook.
-
-# %% [markdown]
-# ## Complément - niveau avancé (voire oiseux)
-
-# %% [markdown]
-# Simplement pour finir, j'aimerais revenir sur notre classe `Animation`.
-#
-# On pourrait même considérer qu'une instance de notre classe `Animation` **est** une figure, et donc envisager de la faire hériter d'une classe `bokeh.figure`; sauf qu'en fait `bokeh.figure` n'est pas une classe mais une fonction (une *factory*, c'est-à-dire une fonction qui contruit des instances) :
-
-# %%
-# l'objet bokeh.figure est une factory, et pas une classe
-# comme on le devine grâce aux minuscules
-type(figure)
-
-# %%
-# la classe c'est celle-ci:
-type(figure())
-
-# %%
-# qu'on peut importer comme ceci
-from bokeh.plotting import Figure
-
-type(figure()) is Figure
-
-# %% [markdown]
-# **Exercice (niveau avancé)** : 
-#
-# vous semble-t-il possible de récrire la classe `Animation` comme une classe qui hérite cette fois de `Figure`; quels seraient les bénéfices de cette approche ?
+# Cette librairie se prête bien à la technique d'interactions que nous avons développée dans cette série de notebooks. On en verra un autre exemple dans un prochain notebook.
